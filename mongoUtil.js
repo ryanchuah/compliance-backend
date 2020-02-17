@@ -13,7 +13,7 @@ module.exports = {
         client.connect(function(err, client) {
             if (err) console.log(err);
             state.dbData = client.db("test");
-            return callback(err);
+            return callback(err, client);
         });
     },
 

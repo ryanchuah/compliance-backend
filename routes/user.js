@@ -5,9 +5,18 @@ const db = mongoUtil.getDbData();
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
 
+router.get("/", (req, res, next) => {
+    console.log("===== user!!======");
+    console.log(req.user);
+    if (req.user) {
+        res.json({ user: req.user });
+    } else {
+        res.json({ user: null });
+    }
+});
+
 //Login page
 router.post("/login", passport.authenticate("local"), (req, res) => {
-    console.log("logged in", req.user);
     var userInfo = {
         username: req.user.username
     };
@@ -15,8 +24,8 @@ router.post("/login", passport.authenticate("local"), (req, res) => {
 });
 
 //Register page
-router.post("/register", async (req, res) => {
-    console.log(req.body);
+router.post("/register", async (req, res, next) => {
+    console.log("req body: ", req.body);
     const newUser = req.body;
 
     try {
@@ -41,9 +50,19 @@ router.post("/register", async (req, res) => {
         });
 
         res.status(200).json(response);
+        next();
     } catch (error) {
         console.log(error);
         res.status(500).json(error);
+    }
+});
+
+router.post("/logout", (req, res) => {
+    if (req.user) {
+        req.logout();
+        res.send({ msg: "logging out" });
+    } else {
+        res.send({ msg: "no user to log out" });
     }
 });
 

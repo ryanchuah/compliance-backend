@@ -2,6 +2,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
 const mongoUtil = require("../mongoUtil");
 const db = mongoUtil.getDbData();
+var ObjectId = require("mongodb").ObjectId;
 
 module.exports = function(passport) {
     passport.use(
@@ -40,11 +41,19 @@ module.exports = function(passport) {
         )
     );
     passport.serializeUser(function(user, done) {
+        console.log("*** serializeUser called, user: ");
+        console.log(user); // the whole raw user object!
+        console.log("---------");
         done(null, user._id);
     });
 
     passport.deserializeUser(function(id, done) {
+        console.log("DeserializeUser called");
+        id = new ObjectId(id);
+
         db.collection("test").findOne({ _id: id }, function(err, user) {
+            console.log("*** Deserialize user, user:");
+            console.log(user);
             done(err, user);
         });
     });
