@@ -6,17 +6,17 @@ const bcrypt = require("bcryptjs");
 const passport = require("passport");
 
 router.get("/", (req, res, next) => {
-    console.log("===== user!!======");
-    console.log(req.user);
     if (req.user) {
-        res.json({ user: req.user });
+        res.json({ user: req.user.username });
     } else {
         res.json({ user: null });
     }
+    next()
 });
 
 //Login page
 router.post("/login", passport.authenticate("local"), (req, res) => {
+    
     var userInfo = {
         username: req.user.username
     };
@@ -25,7 +25,6 @@ router.post("/login", passport.authenticate("local"), (req, res) => {
 
 //Register page
 router.post("/register", async (req, res, next) => {
-    console.log("req body: ", req.body);
     const newUser = req.body;
 
     try {

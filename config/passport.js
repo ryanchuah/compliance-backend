@@ -9,6 +9,13 @@ module.exports = function(passport) {
         new LocalStrategy(
             { usernameField: "username" },
             (username, password, done) => {
+                console.log(
+                    "Login attempted with credentials: ",
+                    username,
+                    " ",
+                    password
+                );
+
                 // Match user
                 db.collection("test")
                     .findOne({
@@ -40,20 +47,23 @@ module.exports = function(passport) {
             }
         )
     );
+
+    // takes user then stores it in req.session.passport
     passport.serializeUser(function(user, done) {
-        console.log("*** serializeUser called, user: ");
-        console.log(user); // the whole raw user object!
-        console.log("---------");
+        // console.log("*** serializeUser called, user: ");
+        // console.log(user); // the whole raw user object!
+        // console.log("---------");
         done(null, user._id);
     });
 
+    // takes user id then stores it in req.user
     passport.deserializeUser(function(id, done) {
-        console.log("DeserializeUser called");
+        // console.log("DeserializeUser called");
         id = new ObjectId(id);
 
         db.collection("test").findOne({ _id: id }, function(err, user) {
-            console.log("*** Deserialize user, user:");
-            console.log(user);
+            // console.log("*** Deserialize user, user:");
+            // console.log(user);
             done(err, user);
         });
     });

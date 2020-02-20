@@ -34,7 +34,7 @@ mongoUtil.connectToServer(function(err, client) {
     app.use("/user", require("./routes/user"));
     app.use((req, res, next) => {
         console.log("req.session", req.session);
-        console.log("req.user", req.user);
+        // console.log("req.user", req.user);
         next();
     });
     const PORT = process.env.PORT || 5000;
