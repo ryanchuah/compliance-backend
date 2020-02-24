@@ -7,18 +7,19 @@ const passport = require("passport");
 
 router.get("/", (req, res, next) => {
     if (req.user) {
-        res.json({ user: req.user.username });
+        res.json({ user: req.user.name });
     } else {
         res.json({ user: null });
     }
-    next()
+    next();
 });
 
 //Login page
 router.post("/login", passport.authenticate("local"), (req, res) => {
+    console.log(req);
     
     var userInfo = {
-        username: req.user.username
+        name: req.user.name
     };
     res.send(userInfo);
 });
@@ -32,7 +33,7 @@ router.post("/register", async (req, res, next) => {
 
         newUser.hashedPassword = await new Promise((resolve, reject) => {
             bcrypt.hash(newUser.password, salt, (err, hash) => {
-                if (err) throw err;
+                if (err) reject(err);
                 resolve(hash);
             });
         });
@@ -44,7 +45,8 @@ router.post("/register", async (req, res, next) => {
 
     try {
         const response = await db.collection("test").insertOne({
-            username: newUser.username,
+            name: newUser.name,
+            email: newUser.email,
             password: newUser.hashedPassword
         });
 

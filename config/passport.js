@@ -7,7 +7,7 @@ var ObjectId = require("mongodb").ObjectId;
 module.exports = function(passport) {
     passport.use(
         new LocalStrategy(
-            { usernameField: "username" },
+            { usernameField: "email" },
             (username, password, done) => {
                 console.log(
                     "Login attempted with credentials: ",
@@ -19,7 +19,7 @@ module.exports = function(passport) {
                 // Match user
                 db.collection("test")
                     .findOne({
-                        username
+                        "email": username
                     })
                     .then(user => {
                         if (!user) {
