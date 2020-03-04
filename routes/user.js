@@ -44,7 +44,7 @@ router.post("/register", async (req, res, next) => {
     }
 
     try {
-        const response = await db.collection("test").insertOne({
+        const response = await db.collection("user").insertOne({
             name: newUser.name,
             email: newUser.email,
             password: newUser.hashedPassword

@@ -11,6 +11,8 @@ const dialogflowHandler = new Dialogflow()
 router.post("/", async (req, res) => {
     const message = req.body.message
     const sessionID = req.body.sessionID
+    const userID = req.session.passport.user // this is the ID used in mongoDB
+    
     try {
         var dialogflowResponse = await dialogflowHandler.sendTextMessageToDialogFlow(message, sessionID)        
     } catch (err) {

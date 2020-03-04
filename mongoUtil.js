@@ -12,7 +12,7 @@ module.exports = {
     connectToServer: function(callback) {
         client.connect(function(err, client) {
             if (err) console.log(err);
-            state.dbData = client.db("test");
+            state.dbData = client.db("compliance");
             return callback(err, client);
         });
     },

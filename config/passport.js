@@ -17,7 +17,7 @@ module.exports = function(passport) {
                 );
 
                 // Match user
-                db.collection("test")
+                db.collection("user")
                     .findOne({
                         "email": username
                     })
@@ -61,7 +61,7 @@ module.exports = function(passport) {
         // console.log("DeserializeUser called");
         id = new ObjectId(id);
 
-        db.collection("test").findOne({ _id: id }, function(err, user) {
+        db.collection("user").findOne({ _id: id }, function(err, user) {
             // console.log("*** Deserialize user, user:");
             // console.log(user);
             done(err, user);

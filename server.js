@@ -22,7 +22,7 @@ mongoUtil.connectToServer(function(err, client) {
         session({
             secret: "taco cat",
             resave: false,
-            store: new MongoStore({ client }),
+            store: new MongoStore({ client, dbName: "compliance" }),
             saveUninitialized: false
         })
     );
@@ -32,12 +32,14 @@ mongoUtil.connectToServer(function(err, client) {
 
     app.use("/", require("./routes/index"));
     app.use("/user", require("./routes/user"));
+    app.use('/api/agent', require('./routes/agent'))
     app.use((req, res, next) => {
-        console.log("req.session", req.session);
+        // console.log("req.session", req.session);
+        // console.log('user id: ', req.session.passport.user);
+        
         // console.log("req.user", req.user);
         next();
     });
-    app.use('/api/agent', require('./routes/agent'))
     app.use('/api/inputText', require('./routes/inputText'))
 
     const PORT = process.env.PORT || 5000;
