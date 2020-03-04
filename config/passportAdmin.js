@@ -1,4 +1,4 @@
-const LocalStrategy = require("passport-local").Strategy;
+const BasicStrategy = require("passport-http").BasicStrategy;
 const bcrypt = require("bcryptjs");
 const mongoUtil = require("../mongoUtil");
 const db = mongoUtil.getDbData();
@@ -6,7 +6,7 @@ var ObjectId = require("mongodb").ObjectId;
 
 module.exports = function(passport) {
     passport.use(
-        new LocalStrategy(
+        new BasicStrategy(
             { usernameField: "email" },
             (username, password, done) => {
                 console.log(
@@ -17,7 +17,7 @@ module.exports = function(passport) {
                 );
 
                 // Match user
-                db.collection("user")
+                db.collection("admin")
                     .findOne({
                         email: username
                     })
