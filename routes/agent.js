@@ -432,6 +432,11 @@ router.post("/", (request, response) => {
         agent.add("Error");
     }
 
+    function handleEmailConversationHistory(agent){
+
+        agent.add("We have emailed it")
+    }
+
     // Run the proper function handler based on the matched Dialogflow intent name
     let intentMap = new Map();
     intentMap.set("Name - Initial", handleNameInitial);
@@ -760,6 +765,7 @@ router.post("/", (request, response) => {
     );
     intentMap.set("Blood Bag - Yes", handleBloodBagYes);
     intentMap.set("Blood Bag - No", handleBloodBagNo);
+    intentMap.set("Email Conversation History", handleEmailConversationHistory);
 
     agent.handleRequest(intentMap);
 });

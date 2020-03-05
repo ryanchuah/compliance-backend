@@ -16,7 +16,6 @@ router.get("/", (req, res, next) => {
 
 //Login page
 router.post("/login", passport.authenticate("local"), (req, res) => {
-    console.log(req);
     
     var userInfo = {
         name: req.user.name
