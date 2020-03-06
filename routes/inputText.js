@@ -29,18 +29,18 @@ router.post("/", async (req, res) => {
             const user = await db.collection("user").findOne({_id: ObjectId(userID)})
             const userEmail = user.email
             var transport = nodemailer.createTransport({
-                host: "smtp.mailtrap.io",
-                port: 2525,
+                host: "in-v3.mailjet.com",
+                port: 587,
                 auth: {
-                  user: process.env.NODEMAILER_USER,
-                  pass: process.env.NODEMAILER_PASSWORD
+                  user: process.env.MAILJET_USER,
+                  pass: process.env.MAILJET_PASSWORD
                 }
               });
               const message = {
-                from: 'elonmusk@tesla.com', // Sender address
-                to: userEmail + "@gmail.com",         // List of recipients
-                subject: 'Design Your Model S | Tesla', // Subject line
-                text: 'Have the most fun you can in a car. Get your Tesla today!' // Plain text body
+                from: 'syseng.team39@gmail.com', // Sender address
+                to: "recipient@gmail.com",         // List of recipients
+                subject: 'Compliance Bot Conversation History', // Subject line
+                text: '<History>' // Plain text body
             };
             transport.sendMail(message, function(err, info) {
                 if (err) {
