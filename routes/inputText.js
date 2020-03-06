@@ -24,41 +24,45 @@ router.post("/", async (req, res) => {
         console.log(err);
     }
 
-    switch(dialogflowResponse[0].queryResult.intent.displayName){
+    switch (dialogflowResponse[0].queryResult.intent.displayName) {
         case "Email Conversation History":
-            const user = await db.collection("user").findOne({_id: ObjectId(userID)})
-            const userEmail = user.email
+            const user = await db
+                .collection("user")
+                .findOne({ _id: ObjectId(userID) });
+            const userEmail = user.email;
             var transport = nodemailer.createTransport({
                 host: "in-v3.mailjet.com",
                 port: 587,
                 auth: {
-                  user: process.env.MAILJET_USER,
-                  pass: process.env.MAILJET_PASSWORD
+                    user: process.env.MAILJET_USER,
+                    pass: process.env.MAILJET_PASSWORD
                 }
-              });
-              const message = {
-                from: 'syseng.team39@gmail.com', // Sender address
-                to: "recipient@gmail.com",         // List of recipients
-                subject: 'Compliance Bot Conversation History', // Subject line
-                text: '<History>' // Plain text body
+            });
+            const message = {
+                from: "syseng.team39@gmail.com", // Sender address
+                to: "recipient@gmail.com", // List of recipients
+                subject: "Compliance Bot Conversation History", // Subject line
+                text: "<History>" // Plain text body
             };
             transport.sendMail(message, function(err, info) {
                 if (err) {
-                  console.log(err)
-                } else {
-                  console.log(info);
+                    console.log(err);
                 }
             });
     }
     console.log(dialogflowResponse[0]);
-    
+
     const resultMessage =
         dialogflowResponse[0].queryResult.fulfillmentMessages[0].text.text[0];
 
     try {
         db.collection("userData").updateOne(
             { _id: new ObjectId(userID) },
-            { $push: { conversationHistory: { $each: [message, resultMessage] } } },
+            {
+                $push: {
+                    conversationHistory: { $each: [message, resultMessage] }
+                }
+            },
             { upsert: true }
         );
     } catch (err) {
