@@ -15,6 +15,7 @@ router.get("/history", async (req, res) => {
         } catch (err) {
             console.log(err);
         }
+        console.debug(JSON.stringify(userData.conversationHistory));
         res.json(userData.conversationHistory);
     }
 });

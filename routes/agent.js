@@ -8,17 +8,10 @@ const { WebhookClient } = require("dialogflow-fulfillment");
 const info = {};
 var currentUsername;
 process.env.DEBUG = "dialogflow:debug"; // enables lib debugging statements
-router.post("/", (request, response) => {
-    try {
-        var agent = new WebhookClient({ request, response });
-    } catch (err) {
-        console.log("===AGENT ERROR===");
-        console.log(err);
-    }
-    // console.log(
-    //     "Dialogflow Request headers: " + JSON.stringify(request.headers)
-    // );
-    // console.log("Dialogflow Request body: " + JSON.stringify(request.body));
+router.post("/", async (request, response) => {
+    const agent = new WebhookClient({ request, response });
+    console.log("Dialogflow Request headers: " + JSON.stringify(request.headers));
+    console.log("Dialogflow Request body: " + JSON.stringify(request.body));
     function handleNameInitial(agent) {
         agent.add("What’s your name?");
     }

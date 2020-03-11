@@ -30,9 +30,7 @@ router.post("/", async (req, res) => {
 
     switch (dialogflowResponse[0].queryResult.intent.displayName) {
         case "Email Conversation History":
-            const user = await db
-                .collection("user")
-                .findOne({ _id: ObjectId(userID) });
+            const user = await db.collection("user").findOne({_id: ObjectId(userID)})
             const userEmail = user.email;
             var transport = nodemailer.createTransport({
                 host: "in-v3.mailjet.com",
@@ -51,8 +49,10 @@ router.post("/", async (req, res) => {
             transport.sendMail(message, function(err, info) {
                 if (err) {
                     console.log(err);
+                } else{
+                    console.log("Email response: ", info);
                 }
-                console.log("Email response: ", info);
+                
             });
             break;
 
@@ -101,7 +101,7 @@ router.post("/", async (req, res) => {
             }
             break;
     }
-    // console.log(dialogflowResponse[0]);
+    console.log(dialogflowResponse[0]);
 
     const resultMessage =
         dialogflowResponse[0].queryResult.fulfillmentMessages[0].text.text[0];
