@@ -13,6 +13,7 @@ mongoUtil.connectToServer(function(err, client) {
     if (err) console.log(err);
 
     require("./config/passport")(passport);
+    require("./config/passportAdmin")(passport);
     app.use(express.json());
     app.use(express.urlencoded({ extended: false }));
     app.use(morgan("dev"));
@@ -41,6 +42,7 @@ mongoUtil.connectToServer(function(err, client) {
         next();
     });
     app.use("/api/inputText", require("./routes/inputText"));
+    app.use("/api/developer", require("./routes/developer"));
 
     const PORT = process.env.PORT || 5000;
     app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
