@@ -20,6 +20,10 @@ router.post("/", async (req, res) => {
             message,
             sessionID
         );
+        console.log(
+            "Intent: ",
+            dialogflowResponse[0].queryResult.intent.displayName
+        );
     } catch (err) {
         console.log(err);
     }
@@ -48,9 +52,56 @@ router.post("/", async (req, res) => {
                 if (err) {
                     console.log(err);
                 }
+                console.log("Email response: ", info);
             });
+            break;
+
+        case "Class I - Initial":
+            try {
+                db.collection("userData").updateOne(
+                    { _id: new ObjectId(userID) },
+                    { $set: { mhraClass: "Class I" } },
+                    { upsert: true }
+                );
+            } catch (err) {
+                console.log(err);
+            }
+            break;
+        case "Class IIa - Initial":
+            try {
+                db.collection("userData").updateOne(
+                    { _id: new ObjectId(userID) },
+                    { $set: { mhraClass: "Class I" } },
+                    { upsert: true }
+                );
+            } catch (err) {
+                console.log(err);
+            }
+            break;
+        case "Class IIb - Initial":
+            try {
+                db.collection("userData").updateOne(
+                    { _id: new ObjectId(userID) },
+                    { $set: { mhraClass: "Class IIb" } },
+                    { upsert: true }
+                );
+            } catch (err) {
+                console.log(err);
+            }
+            break;
+        case "Class III - Initial":
+            try {
+                db.collection("userData").updateOne(
+                    { _id: new ObjectId(userID) },
+                    { $set: { mhraClass: "Class III" } },
+                    { upsert: true }
+                );
+            } catch (err) {
+                console.log(err);
+            }
+            break;
     }
-    console.log(dialogflowResponse[0]);
+    // console.log(dialogflowResponse[0]);
 
     const resultMessage =
         dialogflowResponse[0].queryResult.fulfillmentMessages[0].text.text[0];
