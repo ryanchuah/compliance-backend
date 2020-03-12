@@ -7,29 +7,47 @@ const passport = require("passport");
 
 //Login page
 router.get("/stats", passport.authenticate("basic"), async (req, res) => {
-    const result = []
+    const result = [];
     try {
         const data = await db
-        .collection("userData")
-        .find({})
-        .project({ _id: 0, mhraClass: 1 }) //return only mhraClass without _id field
-        .toArray();
-        const classDict = {"Class I": 0,"Class IIa": 0,"Class IIb": 0,"Class III": 0}
+            .collection("userData")
+            .find({})
+            .project({ _id: 0, mhraClass: 1 }) //return only mhraClass without _id field
+            .toArray();
+        const classDict = {
+            "Class I": 0,
+            "Class IIa": 0,
+            "Class IIb": 0,
+            "Class III": 0
+        };
         for (let i = 0; i < data.length; i++) {
-            if (data[i]){
-                const currMhraClass = data[i].mhraClass
-                if (currMhraClass in classDict){
-                    classDict[currMhraClass] = classDict[currMhraClass] + 1
-                } else{
-                    console.log('Invalid value in DB Data of mhraClass');
+            if (data[i] && data[i].mhraClass) {
+                const currMhraClass = data[i].mhraClass;
+                
+                if (currMhraClass in classDict) {
+                    classDict[currMhraClass] = classDict[currMhraClass] + 1;
+                } else {
+                    console.log("Invalid value in DB Data of mhraClass");
                 }
-            }           
+            }
         }
-        res.json(classDict);
-    } catch (err) {
-        console.log(error);
-    }
+        const max = Math.max.apply(null, Object.values(classDict));
+        const min = Math.min.apply(null, Object.values(classDict));
 
+        const localResult = {
+            classCount: classDict,
+            mostFrequent: Object.keys(classDict).filter(
+                key => classDict[key] == max
+            ),
+            leastFrequent: Object.keys(classDict).filter(
+                key => classDict[key] == min
+            )
+        };
+        result.push({mhraClass: localResult})
+    } catch (err) {
+        console.log(err);
+    }
+    res.json(result)
 });
 
 //Register page
@@ -57,7 +75,6 @@ router.post("/register", async (req, res, next) => {
             email: newUser.email,
             password: newUser.hashedPassword
         });
-
         res.status(200).json(response);
         next();
     } catch (error) {
