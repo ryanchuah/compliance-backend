@@ -26,6 +26,7 @@ function getTimeStr() {
 }
 
 router.post("/", async (req, res) => {
+    console.debug("saveTimePoint");
     const userID = req.session.passport.user; // this is the ID used in mongoDB
 
     try {
