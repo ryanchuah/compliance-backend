@@ -43,6 +43,7 @@ mongoUtil.connectToServer(function(err, client) {
     });
     app.use("/api/inputText", require("./routes/inputText"));
     app.use("/api/developer", require("./routes/developer"));
+    app.use("/api/saveTimePoint", require("./routes/saveTimePoint"));
 
     const PORT = process.env.PORT || 5000;
     app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
