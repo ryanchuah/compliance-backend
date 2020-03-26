@@ -55,67 +55,71 @@ router.post("/", async (req, res) => {
                 console.log("Email response: ", info);
             });
             break;
-
-        case "Class I - Initial":
+        case "Email Address - Initial":
             try {
-                db.collection("userData").updateOne(
+                const result = await db.collection("userData").updateOne(
                     { _id: new ObjectId(userID) },
-                    { $set: { mhraClass: "Class I" } },
+                    {
+                        $set: {
+                            contactName:
+                                dialogflowResponse[0].queryResult.parameters[
+                                    "given-name"
+                                ]
+                        }
+                    },
                     { upsert: true }
                 );
-            } catch (err) {
-                console.log(err);
-            }
-            break;
-        case "Class IIa - Initial":
-            try {
-                db.collection("userData").updateOne(
-                    { _id: new ObjectId(userID) },
-                    { $set: { mhraClass: "Class I" } },
-                    { upsert: true }
-                );
-            } catch (err) {
-                console.log(err);
-            }
-            break;
-        case "Class IIb - Initial":
-            try {
-                db.collection("userData").updateOne(
-                    { _id: new ObjectId(userID) },
-                    { $set: { mhraClass: "Class IIb" } },
-                    { upsert: true }
-                );
-            } catch (err) {
-                console.log(err);
-            }
-            break;
-        case "Class III - Initial":
-            try {
-                db.collection("userData").updateOne(
-                    { _id: new ObjectId(userID) },
-                    { $set: { mhraClass: "Class III" } },
-                    { upsert: true }
-                );
+                console.log(result);
             } catch (err) {
                 console.log(err);
             }
             break;
     }
-    // console.log(dialogflowResponse[0]);
 
     const resultMessage =
         dialogflowResponse[0].queryResult.fulfillmentMessages[0].text.text[0];
 
     try {
-        db.collection("userData").updateOne(
-            { _id: new ObjectId(userID) },
-            {
-                $push: {
-                    conversationHistory: { $each: [message, resultMessage] }
+        const mhraClasses = ["Class I", "Class IIa", "Class IIb", "Class III"];
+        var updatedConvHistory = false;
+        for (const mhraClass of mhraClasses) {
+            const regex = RegExp(`\\s${mhraClass}[^a-zA-Z0-9]`);
+            // if (resultMessage.includes(mhraClass)) {
+                if (regex.test(resultMessage)){
+                // if user's MD is of var mhraClass, update convHistory and mhraClass
+                try {
+                    db.collection("userData").updateOne(
+                        { _id: new ObjectId(userID) },
+                        {
+                            $set: { mhraClass },
+                            $push: {
+                                conversationHistory: {
+                                    $each: [message, resultMessage]
+                                }
+                            }
+                        },
+                        { upsert: true }
+                    );
+                    updatedConvHistory = true;
+                    console.log(mhraClass);
+                    
+                } catch (err) {
+                    console.log(err);
                 }
-            },
-            { upsert: true }
-        );
+                break;
+            }
+        }
+        if (!updatedConvHistory) {
+            db.collection("userData").updateOne(
+                { _id: new ObjectId(userID) },
+                {
+                    $push: {
+                        conversationHistory: { $each: [message, resultMessage] }
+                    }
+                },
+                { upsert: true }
+            );
+        }
     } catch (err) {
         console.log(err);
     }
