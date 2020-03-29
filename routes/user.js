@@ -7,20 +7,24 @@ const passport = require("passport");
 
 router.get("/", (req, res, next) => {    
     if (req.user) {
-        res.json({ user: req.user.name });
+        var userInfo = {
+            user: req.user,
+            sessionID: req.sessionID
+        };
+        res.json(userInfo);
     } else {
-        res.json({ user: null });
+        res.json({ user: null, sessionID: null });
     }
     next();
 });
 
 //Login page
 router.post("/login", passport.authenticate("local"), (req, res) => {
-    console.log(req.sessionID);
+    console.log(req.user);
     
     var userInfo = {
-        name: req.user.name,
-        sessionID: req.user._id
+        user: req.user,
+        sessionID: req.sessionID
     };
     res.send(userInfo);
 });
