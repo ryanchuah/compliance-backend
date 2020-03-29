@@ -5,7 +5,7 @@ const db = mongoUtil.getDbData();
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
 
-router.get("/", (req, res, next) => {
+router.get("/", (req, res, next) => {    
     if (req.user) {
         res.json({ user: req.user.name });
     } else {
@@ -16,9 +16,11 @@ router.get("/", (req, res, next) => {
 
 //Login page
 router.post("/login", passport.authenticate("local"), (req, res) => {
+    console.log(req.sessionID);
     
     var userInfo = {
-        name: req.user.name
+        name: req.user.name,
+        sessionID: req.user._id
     };
     res.send(userInfo);
 });
@@ -59,7 +61,7 @@ router.post("/register", async (req, res, next) => {
 
 router.post("/logout", (req, res) => {
     if (req.user) {
-        req.logout();
+        req.session.destroy();
         res.send({ msg: "logging out" });
     } else {
         res.send({ msg: "no user to log out" });
