@@ -14,10 +14,12 @@ router.post("/", async (req, res) => {
     const message = req.body.message;
     const sessionID = req.body.sessionID;
     console.log("sessionID: " + req.body.sessionID);
+    console.log("user: " + JSON.stringify(req.user));
 
     if (req.session.passport && req.session.passport.user) {
         // user is logged in
         var userID = req.session.passport.user; // this is the user ID used in mongoDB
+        // TODO: change to req.user._id ^
         var isVisitor = false;
     } else {
         var isVisitor = true;
@@ -29,13 +31,23 @@ router.post("/", async (req, res) => {
             sessionID
         );
 
-        if (!dialogflowResponse) {
+        if (
+            !(
+                dialogflowResponse &&
+                dialogflowResponse[0].queryResult.fulfillmentMessages
+            )
+        ) {
             //retry once
             var dialogflowResponse = await dialogflowHandler.sendTextMessageToDialogFlow(
                 message,
                 sessionID
             );
-            if (!dialogflowResponse) {
+            if (
+                !(
+                    dialogflowResponse &&
+                    dialogflowResponse[0].queryResult.fulfillmentMessages
+                )
+            ) {
                 // if still no response after retry, send error message then quit
                 res.json({
                     message:
@@ -62,10 +74,6 @@ router.post("/", async (req, res) => {
 
     switch (intentName) {
         case "Email Conversation History":
-            const user = await db
-                .collection("user")
-                .findOne({ _id: ObjectId(userID) });
-            const userEmail = user.email;
             var transport = nodemailer.createTransport({
                 host: "in-v3.mailjet.com",
                 port: 587,
@@ -74,19 +82,75 @@ router.post("/", async (req, res) => {
                     pass: process.env.MAILJET_PASSWORD
                 }
             });
+            try {
+                var userData = await db
+                    .collection("userData")
+                    .findOne(
+                        { _id: ObjectId(userID) },
+                        { projection: { _id: 0, conversationHistory: 1 } }
+                    );
+            } catch (err) {
+                console.log(err);
+            }
+
+            var htmlBody = "";
+            var prevMessageTime = "";
+            for (let i = 0; i < userData.conversationHistory.length; i++) {
+                if (i % 3 == 0) {
+                    const messageTime = userData.conversationHistory[i];
+                    const messageDate = messageTime.substring(0, 10);
+                    const messageHoursMinutes = messageTime.substring(11, 16);
+                    if (messageDate + messageHoursMinutes !== prevMessageTime) {
+                        prevMessageTime = messageDate + messageHoursMinutes;
+                        htmlBody += `<h4>${messageDate +
+                            " " +
+                            messageHoursMinutes}</h4>`;
+                    }
+                } else if (i % 2 == 0) {
+                    htmlBody += `<p><b>${req.user.name}:</b> ${userData.conversationHistory[i]}</p>`;
+                } else {
+                    htmlBody += `<p><b>Bot:</b> ${userData.conversationHistory[i]}</p>`;
+                }
+            }
+
             const message = {
                 from: "syseng.team39@gmail.com", // Sender address
-                to: "recipient@gmail.com", // List of recipients
+                to: req.user.email, // List of recipients
                 subject: "Compliance Bot Conversation History", // Subject line
-                text: "<History>" // Plain text body
+                html: `<!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Document</title>
+                </head>
+                <body>
+                    <h2>Compliance Bot Conversation History</h2>
+                    ${htmlBody}
+                </body>
+                </html>`
             };
-            transport.sendMail(message, function(err, info) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    console.log("Email response: ", info);
-                }
-            });
+
+            // transport.sendMail(message, function(err, info) {
+            //     if (err) {
+            //         console.log(err);
+            //     } else {
+            //         console.log("Email response: ", info);
+            //     }
+            // });
+            console.log(`<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Document</title>
+            </head>
+            <body>
+                <h2>Compliance Bot Conversation History</h2>
+                ${htmlBody}
+            </body>
+            </html>`);
+
             break;
         case "Email Address - Initial":
             try {
@@ -122,7 +186,11 @@ router.post("/", async (req, res) => {
                         $set: { mhraClass },
                         $push: {
                             conversationHistory: {
-                                $each: [message, resultMessage]
+                                $each: [
+                                    new Date().toISOString(),
+                                    message,
+                                    resultMessage
+                                ]
                             }
                         }
                     },
@@ -141,7 +209,13 @@ router.post("/", async (req, res) => {
                 { _id: new ObjectId(userID) },
                 {
                     $push: {
-                        conversationHistory: { $each: [message, resultMessage] }
+                        conversationHistory: {
+                            $each: [
+                                new Date().toISOString(),
+                                message,
+                                resultMessage
+                            ]
+                        }
                     }
                 },
                 { upsert: true }
