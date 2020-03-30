@@ -9,26 +9,47 @@ var ObjectId = require("mongodb").ObjectId;
 const Dialogflow = require("../dialogflowHandler");
 const dialogflowHandler = new Dialogflow();
 const nodemailer = require("nodemailer");
+const uuid = require("uuid");
 
 router.post("/", async (req, res) => {
     const message = req.body.message;
     const sessionID = req.body.sessionID;
-    const userID = req.session.passport.user; // this is the ID used in mongoDB
+    console.log("sessionID: " + req.body.sessionID);
+
+    if (req.session.passport && req.session.passport.user) {
+        // user is logged in
+        var userID = req.session.passport.user; // this is the user ID used in mongoDB
+        var isVisitor = false;
+    } else {
+        var isVisitor = true;
+    }
+    // const userID = req.session.passport.user || uuid.v4(); // the former is the ID used in mongoDB
 
     try {
         var dialogflowResponse = await dialogflowHandler.sendTextMessageToDialogFlow(
             message,
             sessionID
         );
-        console.log(
-            "Intent: ",
-            dialogflowResponse[0].queryResult.intent.displayName
-        );
+        // console.log(
+        //     "Intent: ",
+        //     dialogflowResponse[0].queryResult.intent.displayName
+        // );
     } catch (err) {
         console.log(err);
     }
+    const resultMessage =
+        dialogflowResponse[0].queryResult.fulfillmentMessages[0].text.text[0];
 
-    switch (dialogflowResponse[0].queryResult.intent.displayName) {
+    if (isVisitor) {
+        res.json({
+            message: resultMessage
+        });
+        return;
+    }
+    
+    const intentName = dialogflowResponse[0].queryResult.intent.displayName;
+
+    switch (intentName) {
         case "Email Conversation History":
             const user = await db
                 .collection("user")
@@ -58,7 +79,7 @@ router.post("/", async (req, res) => {
             break;
         case "Email Address - Initial":
             try {
-                const result = await db.collection("userData").updateOne(
+                await db.collection("userData").updateOne(
                     { _id: new ObjectId(userID) },
                     {
                         $set: {
@@ -70,15 +91,11 @@ router.post("/", async (req, res) => {
                     },
                     { upsert: true }
                 );
-                console.log(result);
             } catch (err) {
                 console.log(err);
             }
             break;
     }
-
-    const resultMessage =
-        dialogflowResponse[0].queryResult.fulfillmentMessages[0].text.text[0];
 
     const mhraClasses = ["Class I", "Class IIa", "Class IIb", "Class III"];
     var updatedConvHistory = false;
@@ -101,7 +118,6 @@ router.post("/", async (req, res) => {
                     { upsert: true }
                 );
                 updatedConvHistory = true;
-                console.log(mhraClass);
             } catch (err) {
                 console.log(err);
             }
@@ -120,13 +136,12 @@ router.post("/", async (req, res) => {
                 { upsert: true }
             );
         } catch (err) {
-            console.log(err);  
+            console.log(err);
         }
     }
 
-    if (resultMessage == "Great! You’ve gone through all required questions!"){
+    if (resultMessage == "Great! You’ve gone through all required questions!") {
         console.log(1);
-        
     }
 
     res.json({
