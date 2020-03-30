@@ -131,26 +131,14 @@ router.post("/", async (req, res) => {
                 </html>`
             };
 
-            // transport.sendMail(message, function(err, info) {
-            //     if (err) {
-            //         console.log(err);
-            //     } else {
-            //         console.log("Email response: ", info);
-            //     }
-            // });
-            console.log(`<!DOCTYPE html>
-            <html lang="en">
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Document</title>
-            </head>
-            <body>
-                <h2>Compliance Bot Conversation History</h2>
-                ${htmlBody}
-            </body>
-            </html>`);
-
+            transport.sendMail(message, function(err, info) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log("Email response: ", info);
+                }
+            });
+            
             break;
         case "Email Address - Initial":
             try {
