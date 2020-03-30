@@ -9,7 +9,6 @@ var ObjectId = require("mongodb").ObjectId;
 const Dialogflow = require("../dialogflowHandler");
 const dialogflowHandler = new Dialogflow();
 const nodemailer = require("nodemailer");
-const uuid = require("uuid");
 
 router.post("/", async (req, res) => {
     const message = req.body.message;
@@ -23,22 +22,34 @@ router.post("/", async (req, res) => {
     } else {
         var isVisitor = true;
     }
-    // const userID = req.session.passport.user || uuid.v4(); // the former is the ID used in mongoDB
 
     try {
         var dialogflowResponse = await dialogflowHandler.sendTextMessageToDialogFlow(
             message,
             sessionID
         );
-        // console.log(
-        //     "Intent: ",
-        //     dialogflowResponse[0].queryResult.intent.displayName
-        // );
+
+        if (!dialogflowResponse) {
+            //retry once
+            var dialogflowResponse = await dialogflowHandler.sendTextMessageToDialogFlow(
+                message,
+                sessionID
+            );
+            if (!dialogflowResponse) {
+                // if still no response after retry, send error message then quit
+                res.json({
+                    message:
+                        "I'm sorry. Something went wrong with my internal server. Please resend your message or try again later"
+                });
+                return;
+            }
+        }
+        var resultMessage =
+            dialogflowResponse[0].queryResult.fulfillmentMessages[0].text
+                .text[0];
     } catch (err) {
         console.log(err);
     }
-    const resultMessage =
-        dialogflowResponse[0].queryResult.fulfillmentMessages[0].text.text[0];
 
     if (isVisitor) {
         res.json({
@@ -46,7 +57,7 @@ router.post("/", async (req, res) => {
         });
         return;
     }
-    
+
     const intentName = dialogflowResponse[0].queryResult.intent.displayName;
 
     switch (intentName) {
