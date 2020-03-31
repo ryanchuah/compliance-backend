@@ -1,0 +1,76 @@
+{
+    "mhra": {
+        "class": [
+            {
+                "value": "Class I",
+                "situation": "Your Medical Device belongs to Class I under MHRA rules",
+                "actionNeeded": [
+                    "check that your products meet the relevant essential requirements of Annex I of the MDD",
+                    "carry out a clinical evaluation as described in Annex X of the MDD",
+                    "notify MHRA of any proposals to carry out a clinical investigation to demonstrate safety and performance",
+                    "prepare technical documentation",
+                    "if your medical device is sterile or has a measuring function, get notified body approval",
+                    "draw up the ‘EC declaration of conformity’",
+                    "put the CE marking on your devices as described in Article 17 of the MDD",
+                    "register with MHRA",
+                    "implement and maintain corrective action and vigilance procedures including a systematic procedure to review experience gained in the post-production phase",
+                    "provide relevant documentation if MHRA requests it"
+                ],
+                "source": [
+                    "https://www.gov.uk/government/collections/guidance-on-class-1-medical-devices",
+                    "https://www.gov.uk/government/collections/guidance-on-class-1-medical-devices",
+                    "https://www.gov.uk/government/collections/guidance-on-class-1-medical-devices",
+                    "https://www.gov.uk/government/collections/guidance-on-class-1-medical-devices",
+                    "https://www.gov.uk/government/collections/guidance-on-class-1-medical-devices",
+                    "https://www.gov.uk/government/collections/guidance-on-class-1-medical-devices",
+                    "https://www.gov.uk/government/collections/guidance-on-class-1-medical-devices",
+                    "https://www.gov.uk/government/collections/guidance-on-class-1-medical-devices",
+                    "https://www.gov.uk/government/collections/guidance-on-class-1-medical-devices",
+                    "https://www.gov.uk/government/collections/guidance-on-class-1-medical-devices"
+                ],
+                "resource": [
+                    {
+                        "value": "MDD",
+                        "link": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:01993L0042-20071011"
+                    },
+                    {
+                        "value": "MDD",
+                        "link": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:01993L0042-20071011"
+                    },
+                    {
+                        "value": "MDD",
+                        "link": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:01993L0042-20071011"
+                    },
+                    {
+                        "value": "Notify MHRA",
+                        "link": "https://www.gov.uk/guidance/notify-mhra-about-a-clinical-investigation-for-a-medical-device"
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": "EC Declaration (See MDD Annex VII)",
+                        "link": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:01993L0042-20071011"
+                    },
+                    {
+                        "value": "MHRA Registration",
+                        "link": "https://www.gov.uk/guidance/register-as-a-manufacturer-to-sell-medical-devices"
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    }
+                ]
+            }
+        ]
+    }
+}

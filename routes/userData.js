@@ -5,7 +5,6 @@ const db = mongoUtil.getDbData();
 var ObjectId = require("mongodb").ObjectId;
 
 router.get("/history", async (req, res) => {
-    console.log(req);
     const userID = req.user._id;
     if (req.user) {
         try {
@@ -35,20 +34,40 @@ router.get("/suggestionData", async (req, res) => {
     //     console.debug(JSON.stringify(userData.conversationHistory));
     //     res.json(userData.conversationHistory);
     // }
+    const path = require("path");
+    const jsonfile = require("jsonfile");
+    const suggestionsFile = path.join(
+        __dirname,
+        "../",
+        "resources",
+        "suggestions.json"
+    );
 
-        try {
-            var userData = await db
-                .collection("userData")
-                .find({ _id: ObjectId("5e63c31d7b17c634d3a1a5f7") })
-                .project({ mhraClass: 1 }) //return only mhraClass without _id field
-                .toArray();
-            console.log(userData);
-            
-        } catch (err) {
-            console.log(err);
+    const suggestionReferenceObj = await jsonfile.readFile(suggestionsFile);
+    console.log(suggestionReferenceObj);
+    const suggestionResult = [];
+    try {
+        var userSuggestionData = await db
+            .collection("userData")
+            .findOne(
+                { _id: ObjectId("5e63c31d7b17c634d3a1a5f7") },
+                { projection: { _id: 0, mhraClass: 1 } }
+            );
+
+    } catch (err) {
+        console.log(err);
+    }
+    for (const obj of suggestionReferenceObj.mhra.class) {
+        if (obj.value === userSuggestionData.mhraClass) {
+            suggestionResult.push([
+                obj.situation,
+                obj.actionNeeded,
+                obj.source,
+                obj.resource
+            ]);
         }
-        res.json(userData[0]);
-    
+    }
+    res.json(suggestionResult);
 });
 
 module.exports = router;
