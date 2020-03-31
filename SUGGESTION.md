@@ -65,42 +65,73 @@ For example, in _inputText.js_,
             break;
         }
 
-### 2. Build Suggestion Object in Suggestions.js (client side)
-In _Suggestions.js_, look for `const suggestionObj`. Continue building this object following the existing format. For example to add to the object regarding whether or not a user knows their Tier of Digital Healthcare Device (DHT), it might look like this:  
+### 2. Build suggestions.json (server side)
+Look for _suggestions.json_ under the _resources_ folder. Continue building this json following the existing format. For example to add to the object regarding whether or not a user knows their Tier of Digital Healthcare Device (DHT), it might look like this:  
 
-    const suggestionObj = {
-        mhra: {
-            class: [
+    {
+        "mhra": {
+            "class": [
                 {
-                    value: "Class I",
-                    situation:
-                        "Your Medical Device belongs to Class I under MHRA rules",
-                    actionNeeded: [
-                        "carry out a clinical evaluation as described in Annex X of the MDD",
-                        "notify MHRA of any proposals to carry out a clinical investigation to demonstrate safety and performance"
+                    "value": "Class I",
+                    "situation": "Your Medical Device belongs to Class I under MHRA rules",
+                    "actionNeeded": [
+                        "check that your products meet the relevant essential requirements of Annex I of the MDD",
+                        "carry out a clinical evaluation as described in Annex X of the MDD",
+                        "notify MHRA of any proposals to carry out a clinical investigation to demonstrate safety and performance"
                     ],
-                    source: ["x", "x"]
+                    "source": [
+                        "https://www.gov.uk/government/collections/guidance-on-class-1-medical-devices",
+                        "https://www.gov.uk/government/collections/guidance-on-class-1-medical-devices",
+                        "https://www.gov.uk/government/collections/guidance-on-class-1-medical-devices"
+                    ],
+                    "resource": [
+                        {
+                            "value": "MDD",
+                            "link": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:01993L0042-20071011"
+                        },
+                        {
+                            "value": null,
+                            "link": null
+                        },
+                        {
+                            "value": "Notify MHRA",
+                            "link": "https://www.gov.uk/guidance/notify-mhra-about-a-clinical-investigation-for-a-medical-device"
+                        }                  
+
+                    ]
                 }
             ]
         },
-        nice: {
-            knowTierOfDHT: [
+        "nice": {
+            "knowTierOfDHT": [
                 {
-                    value: true,
-                    situation: "You already know the Tier of your DHT",
-                    actionNeeded: ["No action needed"],
-                    source: ['x']
+                    "value": true,
+                    "situation": "You already know the Tier of your DHT",
+                    "actionNeeded": ["No action needed"],
+                    "source": ["https://www.nice.com/dht-tier"],
+                    "resource": [
+                        {
+                            "value": null,
+                            "link": null
+                        }
+                    ]
                 },
                 {
-                    value: false,
-                    situation: "You do not already know the Tier of your DHT",
-                    actionNeeded: ["Consult the chatbot to find out your Tier"],
-                    source: ['x']
-                },
-
+                    "value": false,
+                    "situation": "You do not already know the Tier of your DHT",
+                    "actionNeeded": ["Consult the chatbot to find out your Tier"],
+                    "source": ["https://www.nice.com/dht-tier"],
+                    "resource": [
+                        {
+                            "value": null,
+                            "link": null
+                        }
+                    ]
+                }
             ]
         }
-    };
+    }
+
 
 Taking the **mhra** object as an example and looking at it's keys,  
 **mhra** is used to seperate MHRA, NICE, and NHSD for readability  
@@ -109,6 +140,7 @@ Taking the **mhra** object as an example and looking at it's keys,
 **situation** is the explanation given to the user about why we are suggesting that they take a certain action  
 **actionNeeded** is an array of actions that we suggest that the user take  
 **source** is an array of sources. source[0] will correspond to the source of information of actionNeeded[0]. Eg source[0] = http://mhra/what-to-do-if-you-are-class-i
+**resource** is an array of resources. Resources are helpful links that users can follow to achieve a certain task. For example, if the **actionNeeded** is to register with MHRA, a helpful resource is a link to the registration page. The **value** key is the text that the user will see, and the **link** key is the page that a user will be redirected to when the user clicks on the text.
 
 
 
