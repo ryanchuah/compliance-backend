@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
 
     if (req.session.passport && req.session.passport.user) {
         // user is logged in
-        var userID = req.session.passport.user; // this is the user ID used in mongoDB
+        var userID = req.user._id; // this is the user ID used in mongoDB
         // TODO: change to req.user._id ^
         var isVisitor = false;
     } else {
@@ -95,8 +95,9 @@ router.post("/", async (req, res) => {
 
             var htmlBody = "";
             var prevMessageTime = "";
+            var n = 0
             for (let i = 0; i < userData.conversationHistory.length; i++) {
-                if (i % 3 == 0) {
+                if (i == 3 * n) {
                     const messageTime = userData.conversationHistory[i];
                     const messageDate = messageTime.substring(0, 10);
                     const messageHoursMinutes = messageTime.substring(11, 16);
@@ -106,9 +107,10 @@ router.post("/", async (req, res) => {
                             " " +
                             messageHoursMinutes}</h4>`;
                     }
-                } else if (i % 2 == 0) {
+                } else if (i == 3 * n + 1) {
                     htmlBody += `<p><b>${req.user.name}:</b> ${userData.conversationHistory[i]}</p>`;
                 } else {
+                    n += 1
                     htmlBody += `<p><b>Bot:</b> ${userData.conversationHistory[i]}</p>`;
                 }
             }
