@@ -70,7 +70,7 @@ Look for _suggestions.json_ under the _resources_ folder. Continue building this
 
     {
         "mhra": {
-            "class": [
+            "mhraClass": [
                 {
                     "value": "Class I",
                     "situation": "Your Medical Device belongs to Class I under MHRA rules",
