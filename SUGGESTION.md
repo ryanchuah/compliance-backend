@@ -139,7 +139,7 @@ Taking the **mhra** object as an example and looking at it's keys,
 **value** is the value corresponding to the key in the database  
 **situation** is the explanation given to the user about why we are suggesting that they take a certain action  
 **actionNeeded** is an array of actions that we suggest that the user take  
-**source** is an array of sources. source[0] will correspond to the source of information of actionNeeded[0]. Eg source[0] = http://mhra/what-to-do-if-you-are-class-i
+**source** is an array of sources. source[0] will correspond to the source of information of actionNeeded[0]. Eg source[0] = http://mhra/what-to-do-if-you-are-class-i  
 **resource** is an array of resources. Resources are helpful links that users can follow to achieve a certain task. For example, if the **actionNeeded** is to register with MHRA, a helpful resource is a link to the registration page. The **value** key is the text that the user will see, and the **link** key is the page that a user will be redirected to when the user clicks on the text.
 
 
