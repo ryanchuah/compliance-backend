@@ -22,7 +22,7 @@ class DialogFlow {
         this.sessionClient = new dialogflow.SessionsClient(config);
     }
 
-    async sendTextMessageToDialogFlow(textMessage, sessionId) {
+    async sendTextMessageToDialogFlow(textMessage, sessionId, contexts) {
         // Define session path
         const sessionPath = this.sessionClient.sessionPath(
             this.projectId,
@@ -36,7 +36,8 @@ class DialogFlow {
                     text: textMessage,
                     languageCode: LANGUAGE_CODE
                 }
-            }
+            },
+            contexts: contexts ? contexts : []
         };
         try {
             let responses = await this.sessionClient.detectIntent(request);
