@@ -73,4 +73,311 @@
             }
         ]
     }
+    "nhsd": {
+        "provideURL":[
+            {
+                "value": false,
+                "situation": "you can not provide the URL",
+                "actionNeeded": ["Be able to provide your URL."],
+                "source": ["No source provided."],
+                "resource": [
+                    {
+                        "value": null,
+                        "link": null
+                    }
+                ]
+            }
+
+        ]
+
+        "contactOrganisation":[
+            {
+                "value": false,
+                "situation": " Not able to contact you or your organisation directly via the product. ",
+                "actionNeeded": ["Provide some methods that can be used to contact you or your prganisation."],
+                "source": ["No source provided."],
+                "resource": [
+                    {
+                        "value": null,
+                        "link": null
+                    }
+                ]
+            }
+
+        ]
+
+        "NHSDBranding":[
+            {
+                "value": false,
+                "situation": "You are using NHSD branding without permission.",
+                "actionNeeded": ["Request the permission from NHSD."],
+                "source": ["No source provided."],
+                "resource": [
+                    {
+                        "value": null,
+                        "link": null
+                    }
+                ]
+            }
+
+        ]
+
+        "confirmGPC":[
+            {
+                "value": false,
+                "situation": "You are not able to provide evidence showing you have registered with GPC.",
+                "actionNeeded": ["Collect evidence and be able to provide."],
+                "source": ["No source provided."],
+                "resource": [
+                    {
+                        "value": null,
+                        "link": null
+                    }
+                ]
+            }
+
+        ]
+
+        "confirmHealthcareReg":[
+            {
+                "value": false,
+                "situation": "You can not confirm their status and names of the service that requires registered healthcare professionals to operate.",
+                "actionNeeded": ["Be able to confirm their status and names."],
+                "source": ["No source provided."],
+                "resource": [
+                    {
+                        "value": null,
+                        "link": null
+                    }
+                ]
+            }
+
+        ]
+
+        "guestLogin":[
+            {
+                "value": false,
+                "situation": "You are not able to provide a guest login.",
+                "actionNeeded": ["Provide the users with a Guest Login to protect their privacy."],
+                "source": ["No source provided."],
+                "resource": [
+                    {
+                        "value": null,
+                        "link": null
+                    }
+                ]
+            }
+
+        ]
+
+        "confirmRegWithCQC":[
+            {
+                "value": false,
+                "situation": "You can not confirm the registration with CQC when required.",
+                "actionNeeded": ["Please register with CQC."],
+                "source": ["No source provided."],
+                "resource": [
+                    {
+                        "value": null,
+                        "link": null
+                    }
+                ]
+            }
+
+        ]
+
+        "provideCQCnumber":[
+            {
+                "value": false,
+                "situation": "You are not able to provide the CQC number when required.",
+                "actionNeeded": ["Contact with CQC to have your CQC number."],
+                "source": ["No source provided."],
+                "resource": [
+                    {
+                        "value": null,
+                        "link": null
+                    }
+                ]
+            }
+
+        ]
+
+        "provdieReCQC":[
+            {
+                "value": false,
+                "situation": "You are not able to provide your recent CQC registration certificate when required.",
+                "actionNeeded": ["Collect your certificates in e-format."],
+                "source": ["No source provided."],
+                "resource": [
+                    {
+                        "value": null,
+                        "link": null
+                    }
+                ]
+            }
+
+        ]
+
+        "provideDescrip":[
+            {
+                "value": false,
+                "situation": "You are not able to provide the description of your product.",
+                "actionNeeded": ["Be able to provide the description of your product in e-format."],
+                "source": ["No source provided."],
+                "resource": [
+                    {
+                        "value": null,
+                        "link": null
+                    }
+                ]
+            }
+
+        ]
+
+        "confirmReplNHSservice":[
+            {
+                "value": false,
+                "situation": "You are not able to provide details of how your product replaces a NHSD service when you confirmed that it could replace a NHSD service.",
+                "actionNeeded": ["Communicate with developers and provide the deatails of how your product could replace a NHSD service."],
+                "source": ["No source provided."],
+                "resource": [
+                    {
+                        "value": null,
+                        "link": null
+                    }
+                ]
+            }
+
+        ]
+
+        "provideTrial":[
+            {
+                "value": false,
+                "situation": "You are not able to provide the details of the pilot or trial of your product.",
+                "actionNeeded": ["Discuss with developers about the trial or pilot and have a in-depth plan of the trial or pilot."],
+                "source": ["No source provided."],
+                "resource": [
+                    {
+                        "value": null,
+                        "link": null
+                    }
+                ]
+            }
+
+        ]
+
+        "confirmWhereProcessPD":[
+            {
+                "value": false,
+                "situation": "You do not know where the product processes the personal data of NHSD an NHSD related organisation.",
+                "actionNeeded": ["Discuss with other developers to confirm where your product processes the personal data."],
+                "source": ["No source provided."],
+                "resource": [
+                    {
+                        "value": null,
+                        "link": null
+                    }
+                ]
+            }
+
+        ]
+
+        "versionNumber":[
+            {
+                "value": false,
+                "situation": "You are not able to provide the version number that running on iOS/Android/Windows Mobile/ OS X/ Linux/others.",
+                "actionNeeded": ["Confirm with version number on devices."],
+                "source": ["No source provided."],
+                "resource": [
+                    {
+                        "value": null,
+                        "link": null
+                    }
+                ]
+            }
+
+        ]
+
+        "typeOfPharmacy":[
+            {
+                "value": false,
+                "situation": "You do not have a clear type of pharmacy in the registratino or loggin page.",
+                "actionNeeded": ["Hvae a clear sign about type of pharmacy in registration or loggin page."],
+                "source": ["No source provided."],
+                "resource": [
+                    {
+                        "value": null,
+                        "link": null
+                    }
+                ]
+            }
+
+        ]
+
+        "evidenceOfClicBenefit":[
+            {
+                "value": false,
+                "situation": "You are not able to provide the evidence of the clinical benefits after you confirmed that your product can provide clinical benefits.",
+                "actionNeeded": ["Be able to provide evidence in writing documents of testing or experiments. "],
+                "source": ["No source provided."],
+                "resource": [
+                    {
+                        "value": null,
+                        "link": null
+                    }
+                ]
+            }
+
+        ]
+
+        "URLofBenefits":[
+            {
+                "value": false,
+                "situation": "You are not able to provide the URL or relevant document after you confrimed that your product has clinical benefits.",
+                "actionNeeded": ["Be able to provide the URL."],
+                "source": ["No source provided."],
+                "resource": [
+                    {
+                        "value": null,
+                        "link": null
+                    }
+                ]
+            }
+
+        ]
+
+        "reasonNotClinicBenefit":[
+            {
+                "value": false,
+                "situation": "You are not able to provide the reason why your product does not have clinical benefits.",
+                "actionNeeded": ["Prepare to provide the reason why your product does not have clinical evidence."],
+                "source": ["No source provided."],
+                "resource": [
+                    {
+                        "value": null,
+                        "link": null
+                    }
+                ]
+            }
+
+        ]
+
+        "reasonNotBehaBenefits":[
+            {
+                "value": false,
+                "situation": "You are not able to provide the reason why your product does not have behavioural benefits.",
+                "actionNeeded": ["Prepare for the reason why your product does not have behavioural benefits."],
+                "source": ["No source provided."],
+                "resource": [
+                    {
+                        "value": null,
+                        "link": null
+                    }
+                ]
+            }
+
+        ]
+
+        
+    }
 }

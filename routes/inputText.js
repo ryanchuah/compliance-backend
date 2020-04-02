@@ -168,6 +168,348 @@ router.post("/", async (req, res) => {
                     console.log(err);
                 }
                 break;
+
+            case "1provideURL - No":
+            //user can not provide URL
+            try {
+                await db.collection("userData").updateOne(
+                    { _id: new ObjectId(userID) },
+                    {
+                        $set: {
+                            providURL:
+                                false
+                        }
+                    },
+                    { upsert: true}
+                );
+            } catch(err){
+                console.log(err);
+            }
+            break;
+
+        case "2contact-organisation - No":
+        // users can not get contact with the organisation via the product
+        try {
+            await db.collection("userData").updateOne(
+                { _id: new ObjectId(userID) },
+                {
+                    $set: {
+                        contactOrganisation:
+                            false
+                    }
+                },
+                { upsert: true }
+            );
+        } catch (err) {
+            console.log(err);
+        }
+        break;
+               
+        case "4confirm use of branding - No":
+        // User do not have th permission to use NHSD branding
+        try {
+            await db.collection("userData").updateOne(
+                { _id: new ObjectId(userID) },
+                {
+                    $set: {
+                        NHSDBranding:
+                            false
+                    }
+                },
+                { upsert: true }
+            );
+        } catch (err) {
+            console.log(err);
+        }
+        break;
+               
+        case "6confirm-with-GPC - No":
+        // User can not confirm that they have registered with GPC when required
+        try {
+            await db.collection("userData").updateOne(
+                { _id: new ObjectId(userID) },
+                {
+                    $set: {
+                        confirmGPC:
+                            false
+                    }
+                },
+                { upsert: true }
+            );
+        } catch (err) {
+            console.log(err);
+        }
+        break;
+               
+        case "8confirm-healthcare-registration - No":
+        // User can not confirm the recent healthcare registration when required
+        try {
+            await db.collection("userData").updateOne(
+                { _id: new ObjectId(userID) },
+                {
+                    $set: {
+                        confirmHealthcareReg:
+                            false
+                    }
+                },
+                { upsert: true }
+            );
+        } catch (err) {
+            console.log(err);
+        }
+        break;
+               
+        case "9provide-a-guest-login - No":
+        // It does not provide a Guest Login in the product
+        try {
+            await db.collection("userData").updateOne(
+                { _id: new ObjectId(userID) },
+                {
+                    $set: {
+                        guestLogin:
+                            false
+                    }
+                },
+                { upsert: true }
+            );
+        } catch (err) {
+            console.log(err);
+        }
+        break;
+               
+        case "11confirm-registration-with-CQC - No":
+        // User can not confirm registration with CQC
+        try {
+            await db.collection("userData").updateOne(
+                { _id: new ObjectId(userID) },
+                {
+                    $set: {
+                        confirmRegWithCQC:
+                            false
+                    }
+                },
+                { upsert: true }
+            );
+        } catch (err) {
+            console.log(err);
+        }
+        break;
+               
+        case "12provide-CQC-number - No":
+        // User can not provide CQC number when required
+        try {
+            await db.collection("userData").updateOne(
+                { _id: new ObjectId(userID) },
+                {
+                    $set: {
+                        provideCQCnumber:
+                            false
+                    }
+                },
+                { upsert: true }
+            );
+        } catch (err) {
+            console.log(err);
+        }
+        break;
+               
+        case "13provide-recent-CQC-registration - No":
+        // User are not able to provide the recent CQC registration
+        try {
+            await db.collection("userData").updateOne(
+                { _id: new ObjectId(userID) },
+                {
+                    $set: {
+                        provdieReCQC:
+                            false
+                    }
+                },
+                { upsert: true }
+            );
+        } catch (err) {
+            console.log(err);
+        }
+        break;
+
+        case "16provide-description - No":
+        // User can not provide CQC number when required
+        try {
+            await db.collection("userData").updateOne(
+                { _id: new ObjectId(userID) },
+                {
+                    $set: {
+                        provideDescrip:
+                            false
+                    }
+                },
+                { upsert: true }
+            );
+        } catch (err) {
+            console.log(err);
+        }
+        break;
+
+        case "20confirm-replace-a-NHS-service - No":
+        // User can not provide CQC number when required
+        try {
+            await db.collection("userData").updateOne(
+                { _id: new ObjectId(userID) },
+                {
+                    $set: {
+                        confirmReplNHSservice:
+                            false
+                    }
+                },
+                { upsert: true }
+            );
+        } catch (err) {
+            console.log(err);
+        }
+        break;
+
+        case "24provide-detail-of-the-trial - No":
+        // User can not provide CQC number when required
+        try {
+            await db.collection("userData").updateOne(
+                { _id: new ObjectId(userID) },
+                {
+                    $set: {
+                        provideTrial:
+                            false
+                    }
+                },
+                { upsert: true }
+            );
+        } catch (err) {
+            console.log(err);
+        }
+        break;
+
+        case "26comfirm-where-to-process - No":
+        // User can not provide CQC number when required
+        try {
+            await db.collection("userData").updateOne(
+                { _id: new ObjectId(userID) },
+                {
+                    $set: {
+                        confirmWhereProcessPD:
+                            false
+                    }
+                },
+                { upsert: true }
+            );
+        } catch (err) {
+            console.log(err);
+        }
+        break;
+
+        case "28provide-platform-number - No":
+        // User can not provide CQC number when required
+        try {
+            await db.collection("userData").updateOne(
+                { _id: new ObjectId(userID) },
+                {
+                    $set: {
+                        versionNumber:
+                            false
+                    }
+                },
+                { upsert: true }
+            );
+        } catch (err) {
+            console.log(err);
+        }
+        break;
+
+        case "29comfirm-type-of-pharmacy - No":
+        // User can not provide CQC number when required
+        try {
+            await db.collection("userData").updateOne(
+                { _id: new ObjectId(userID) },
+                {
+                    $set: {
+                        typeOfPharmacy:
+                            false
+                    }
+                },
+                { upsert: true }
+            );
+        } catch (err) {
+            console.log(err);
+        }
+        break;
+
+        case "31provide-evidence-of-clinical-benefits - No":
+        // User can not provide CQC number when required
+        try {
+            await db.collection("userData").updateOne(
+                { _id: new ObjectId(userID) },
+                {
+                    $set: {
+                        evidenceOfClicBenefit:
+                            false
+                    }
+                },
+                { upsert: true }
+            );
+        } catch (err) {
+            console.log(err);
+        }
+        break;
+
+        case "32provide-the-URL-of-clinical-benefits+D11 - No":
+        // User can not provide CQC number when required
+        try {
+            await db.collection("userData").updateOne(
+                { _id: new ObjectId(userID) },
+                {
+                    $set: {
+                        URLofBenefits:
+                            false
+                    }
+                },
+                { upsert: true }
+            );
+        } catch (err) {
+            console.log(err);
+        }
+        break;
+
+        case "33provide-the-reason-of-not-have-clinical-benefits - No":
+        // User can not provide CQC number when required
+        try {
+            await db.collection("userData").updateOne(
+                { _id: new ObjectId(userID) },
+                {
+                    $set: {
+                        reasonNotClinicBenefit:
+                            false
+                    }
+                },
+                { upsert: true }
+            );
+        } catch (err) {
+            console.log(err);
+        }
+        break;
+
+        case "37comfirm-reason-not-have-behavioural-benefits - No":
+        // User can not provide CQC number when required
+        try {
+            await db.collection("userData").updateOne(
+                { _id: new ObjectId(userID) },
+                {
+                    $set: {
+                        reasonNotBehaBenefits:
+                            false
+                    }
+                },
+                { upsert: true }
+            );
+        } catch (err) {
+            console.log(err);
+        }
+        break;
         }
     }
 
