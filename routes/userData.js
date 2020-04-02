@@ -14,13 +14,17 @@ router.get("/history", async (req, res) => {
         } catch (err) {
             console.log(err);
         }
-        res.json(userData.conversationHistory);
+        if (userData && userData.conversationHistory){
+            res.json(userData.conversationHistory);
+        } else{
+            res.json([])
+        }
     }
 });
 
 router.get("/suggestionData", async (req, res) => {
     // console.log(req.user);
-    // const userID = req.user._id;
+    const userID = req.user._id;
     // if (req.user) {
     //     try {
     //         var userData = await db
@@ -50,22 +54,26 @@ router.get("/suggestionData", async (req, res) => {
         var userSuggestionData = await db
             .collection("userData")
             .findOne(
-                { _id: ObjectId("5e63c31d7b17c634d3a1a5f7") },
+                { _id: userID },
                 { projection: { _id: 0, mhraClass: 1 } }
             );
 
     } catch (err) {
         console.log(err);
     }
-    for (const obj of suggestionReferenceObj.mhra.class) {
-        if (obj.value === userSuggestionData.mhraClass) {
-            suggestionResult.push([
-                obj.situation,
-                obj.actionNeeded,
-                obj.source,
-                obj.resource
-            ]);
+
+    if (userSuggestionData){
+        for (const obj of suggestionReferenceObj.mhra.class) {
+            if (obj.value === userSuggestionData.mhraClass) {
+                suggestionResult.push([
+                    obj.situation,
+                    obj.actionNeeded,
+                    obj.source,
+                    obj.resource
+                ]);
+            }
         }
+
     }
     res.json(suggestionResult);
 });
