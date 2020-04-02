@@ -72,8 +72,298 @@
                 ]
             }
         ]
-    }
-    
+    },
 
+    "nice": {
+        "class": [
+            {
+                "value": "Tier 1",
+                "situation": "Your DHT belongs to Tier 1 under NICE rules",
+                "actionNeeded": [
+                    "Publish publicly available evidence documenting the role of relevant UK health or social care experts in the design, development, testing or sign-off of the DHT.",
+                    "Evidence to show successful implementation of the DHT in the UK health and social care system.",
+                    "Publish publically available evidence to show that representatives from intended user groups were involved in the design, development or testing of the DHT and to show that users are satisfied with the DHT.",
+                    "Show evidence of the DHT being used in hard-to-reach populations.",
+                    "Data or analysis which shows that the data generated or recorded by the DHT is: accurate, reproducible, relevant to the range of values expected in the target population.",
+                    "Technical data showing that numerical, text, audio, image-based, graphic-based or video information is: not changed during the transmission process, and not biased by the data ‘value’ expected from the target patient population."
+                ],
+                "source": [
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf"
+                ],
+                "resource": [
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    }
+                    
+                ]
+            }
+        ],
+
+        "class": [
+            {
+                "value": "Tier 2",
+                "situation": "Your DHT belongs to Tier 2 under NICE rules",
+                "actionNeeded": [
+                    "Publish publicly available evidence documenting the role of relevant UK health or social care experts in the design, development, testing or sign-off of the DHT.",
+                    "Evidence to show successful implementation of the DHT in the UK health and social care system.",
+                    "Publish publically available evidence to show that representatives from intended user groups were involved in the design, development or testing of the DHT and to show that users are satisfied with the DHT.",
+                    "Show evidence of the DHT being used in hard-to-reach populations.",
+                    "Data or analysis which shows that the data generated or recorded by the DHT is: accurate, reproducible, relevant to the range of values expected in the target population.",
+                    "Technical data showing that numerical, text, audio, image-based, graphic-based or video information is: not changed during the transmission process, and not biased by the data ‘value’ expected from the target patient population.",
+                    "Evidence of endorsement, accreditation or recommendation by NICE, NHS England, a relevant professional body or recognised UK patient organisation. Alternatively, evidence that the information content has been validated though an independent accreditation such as The Information Standard or HONcode certification.",
+                    "Evidence that data on usage is being collected in line with the minimum standards and can be made available to relevant decision-makers.",
+                    "Evidence that data on outcomes or user satisfaction is being collected in line with the minimum standard and can be made available to relevant decision-makers.",
+                    "Show that appropriate safeguarding measures are in place around peer-support and other communication functions within the platform. Describe who has access to the platform and their roles within the platform. Describe why these people or groups are suitable and qualified to have access. Describe any measures in place to ensure safety in peer-to-peer communication, for example through user agreements or moderation."
+                ],
+                "source": [
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf"
+                ],
+                "resource": [
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": "The information standard",
+                        "link": "https://www.england.nhs.uk/tis/about/"
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    }
+                    
+                ]
+            }
+        ],
+
+        "class": [
+            {
+                "value": "Tier 3a",
+                "situation": "Your DHT belongs to Tier 3a under NICE rules",
+                "actionNeeded": [
+                    "Publish publicly available evidence documenting the role of relevant UK health or social care experts in the design, development, testing or sign-off of the DHT.",
+                    "Evidence to show successful implementation of the DHT in the UK health and social care system.",
+                    "Publish publically available evidence to show that representatives from intended user groups were involved in the design, development or testing of the DHT and to show that users are satisfied with the DHT.",
+                    "Show evidence of the DHT being used in hard-to-reach populations.",
+                    "Data or analysis which shows that the data generated or recorded by the DHT is: accurate, reproducible, relevant to the range of values expected in the target population.",
+                    "Technical data showing that numerical, text, audio, image-based, graphic-based or video information is: not changed during the transmission process, and not biased by the data ‘value’ expected from the target patient population.",
+                    "Evidence of endorsement, accreditation or recommendation by NICE, NHS England, a relevant professional body or recognised UK patient organisation. Alternatively, evidence that the information content has been validated though an independent accreditation such as The Information Standard or HONcode certification.",
+                    "Evidence that data on usage is being collected in line with the minimum standards and can be made available to relevant decision-makers.",
+                    "Evidence that data on outcomes or user satisfaction is being collected in line with the minimum standard and can be made available to relevant decision-makers.",
+                    "Show that appropriate safeguarding measures are in place around peer-support and other communication functions within the platform. Describe who has access to the platform and their roles within the platform. Describe why these people or groups are suitable and qualified to have access. Describe any measures in place to ensure safety in peer-to-peer communication, for example through user agreements or moderation.",
+                    "High quality intervention study (quasi-experimental or experimental design) which incorporates a comparison group, showing improvements in relevant outcomes, such as: patient-reported outcomes (preferably using validated tools) including symptom severity or quality of life ,other clinical measures of disease severity or disability ,healthy behaviours ,physiological measures ,user satisfaction and engagement ,health and social care resource use, such as admissions or appointments.",
+                    "Published qualitative or quantitative evidence showing that the techniques used in the DHT are: based on published and recognised effective behaviour change techniques ,aligned with recommended practice ,appropriate for the target population."
+                ],
+                "source": [
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf"
+                ],
+                "resource": [
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": "The information standard",
+                        "link": "https://www.england.nhs.uk/tis/about/"
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": "Intervention study",
+                        "link": "Page 34 of https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf"
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    }
+                    
+                ]
+            }
+        ],
+
+        "class": [
+            {
+                "value": "Tier 3b",
+                "situation": "Your DHT belongs to Tier 3b under NICE rules",
+                "actionNeeded": [
+                    "Publish publicly available evidence documenting the role of relevant UK health or social care experts in the design, development, testing or sign-off of the DHT.",
+                    "Evidence to show successful implementation of the DHT in the UK health and social care system.",
+                    "Publish publically available evidence to show that representatives from intended user groups were involved in the design, development or testing of the DHT and to show that users are satisfied with the DHT.",
+                    "Show evidence of the DHT being used in hard-to-reach populations.",
+                    "Data or analysis which shows that the data generated or recorded by the DHT is: accurate, reproducible, relevant to the range of values expected in the target population.",
+                    "Technical data showing that numerical, text, audio, image-based, graphic-based or video information is: not changed during the transmission process, and not biased by the data ‘value’ expected from the target patient population.",
+                    "Evidence of endorsement, accreditation or recommendation by NICE, NHS England, a relevant professional body or recognised UK patient organisation. Alternatively, evidence that the information content has been validated though an independent accreditation such as The Information Standard or HONcode certification.",
+                    "Evidence that data on usage is being collected in line with the minimum standards and can be made available to relevant decision-makers.",
+                    "Evidence that data on outcomes or user satisfaction is being collected in line with the minimum standard and can be made available to relevant decision-makers.",
+                    "Show that appropriate safeguarding measures are in place around peer-support and other communication functions within the platform. Describe who has access to the platform and their roles within the platform. Describe why these people or groups are suitable and qualified to have access. Describe any measures in place to ensure safety in peer-to-peer communication, for example through user agreements or moderation.",
+                    "High quality randomised controlled study or studies done in a setting relevant to the UK health and social care system, comparing the DHT with a relevant comparator and demonstrating consistent benefit including in clinical outcomes in the target population, using validated condition-specific outcome measures. Alternatively, a well-conducted meta-analysis of randomised controlled studies if there are enough available studies on the DHT."
+                ],
+                "source": [
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf",
+                    "https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf"
+                ],
+                "resource": [
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": "The information standard",
+                        "link": "https://www.england.nhs.uk/tis/about/"
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": null,
+                        "link": null
+                    },
+                    {
+                        "value": "Randomised controlled study",
+                        "link": "Page 34 of https://www.nice.org.uk/Media/Default/About/what-we-do/our-programmes/evidence-standards-framework/digital-evidence-standards-framework.pdf"
+                    }
+                    
+                ]
+            }
+        ]
+    }
     
 }
