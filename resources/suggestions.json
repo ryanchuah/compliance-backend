@@ -38,12 +38,12 @@
                         "link": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:01993L0042-20071011"
                     },
                     {
-                        "value": "MDD",
-                        "link": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:01993L0042-20071011"
-                    },
-                    {
                         "value": "Notify MHRA",
                         "link": "https://www.gov.uk/guidance/notify-mhra-about-a-clinical-investigation-for-a-medical-device"
+                    },
+                    {
+                        "value": null,
+                        "link": null
                     },
                     {
                         "value": null,

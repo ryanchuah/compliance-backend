@@ -57,6 +57,92 @@ router.post("/", async (request, response) => {
         return mostRecent;
     }
 
+    function handleNameInitial(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("What’s your name?");
+    }
+    function handleContactPersonNameInitial(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "What is the name of the contact person in your organization?"
+        );
+    }
+    function handleEmailAddressInitial(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("What is their email address?");
+    }
+    function handlePhoneNumberInitial(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("What is their phone number?");
+    }
+    function handleOrganisationNameInitial(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("What is your organisation's name");
+    }
+    function handleOrganisationAddressInitial(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("What is your organisation's address?");
+    }
     function handleKnowClassOfMedicalDeviceInitial(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
@@ -82,12 +168,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Great! You're all set! Now, let's move on to NICE. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+            "Great! You’re all set! Now, let's move on to NICE. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleKnowClassOfMedicalDeviceNo(agent) {
@@ -99,7 +184,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -114,12 +198,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Now we’ll move on to answering questions required by NHS Digital. Based on your answers, I’ll make suggestions regarding your next steps. Would you like to answer these questions to receive suggestions?"
+            "Great let’s get started. Is your product available to the public and can you provide URL(s) to the app store location(s)?"
         );
     }
     function handleAlreadyKnowsMhraClassNo(agent) {
@@ -131,7 +214,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -148,12 +230,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class I. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Your MD belongs to Class I. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleNotTouchPatientNo(agent) {
@@ -165,7 +246,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -173,7 +253,7 @@ router.post("/", async (request, response) => {
             "Does the MD involve channelling or storing for eventual administration?"
         );
     }
-    function handleConfirmWhetherOrNotGoNhsdYes(agent) {
+    function handle1ProvideurlYes(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -182,28 +262,12 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Is your product available to the public and can you provide URL(s) to the app store location(s)?"
+            "Can you confirm that users are able to contact you or your organisation directly via the product, if required? "
         );
-    }
-    function handleConfirmWhetherOrNotGoNhsdNo(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add("Great! You’ve gone through all required questions!");
     }
     function handle1SystemServiceYes(agent) {
         // reset contexts
@@ -214,7 +278,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -231,12 +294,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "I am sorry. NICE's framework has been designed for DHTs that are commissioned in the UK health and care system, it is less relevant to DHTs that are downloaded or purchased directly by users (such as through app stores). Separate standards (including principle 7 of the code of conduct for data-driven health and care technology) will apply to your DHT. Do you want me to move on to the NHSD checking? Plus, NICE's framework may be used with DHTs that incorporate artificial intelligence using fixed algorithms. However, it is not designed for use with DHTs that incorporate artificial intelligence using adaptive algorithms. For the same reason, separate standards (including principle 7 of the code of conduct for data-driven health and care technology) will apply to your DHT."
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassINo(agent) {
@@ -248,7 +310,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -265,7 +326,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -282,7 +342,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -290,7 +349,7 @@ router.post("/", async (request, response) => {
             "Does the MD modify biological or chemical composition of blood, body liquids, or other liquids intended for infusion?"
         );
     }
-    function handle1ProvideurlYes(agent) {
+    function handle2ContactOrganisationYes(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -299,43 +358,10 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
-        agent.add(
-            "Can you confirm that users are able to contact you or your organisation directly via the product, if required? "
-        );
-    }
-    function handlePlaceholder1Yes(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add("PLACEHOLDER");
-    }
-    function handlePlaceholder1No(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add("PLACEHOLDER");
+        agent.add("Does your product use any forms of NHS Branding?");
     }
     function handle2InformYes(agent) {
         // reset contexts
@@ -346,7 +372,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -354,7 +379,7 @@ router.post("/", async (request, response) => {
             "Does your DHT allow users to record health parameters to create health diaries that are NOT shared with or sent to others? (If yes, Tier 2 - simple monitoring)"
         );
     }
-    function handleKnowNiceWaitForNhsdYes(agent) {
+    function handlePlaceholderYes(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -363,12 +388,27 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Now we’ll move on to answering questions required by NHS Digital. Based on your answers, I’ll make suggestions regarding your next steps. Would you like to answer these questions to receive suggestions?"
+            "Great let’s get started. Is your product available to the public and can you provide URL(s) to the app store location(s)?"
+        );
+    }
+    function handlePlaceholderNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! You’re all set! You can view suggested next steps by clicking on Suggestions in the navigation bar above."
         );
     }
     function handleDownloadedOrPurchasedYes(agent) {
@@ -380,12 +420,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Now we’ll move on to answering questions required by NHS Digital. Based on your answers, I’ll make suggestions regarding your next steps. Would you like to answer these questions to receive suggestions?"
+            "Great let’s get started. Is your product available to the public and can you provide URL(s) to the app store location(s)?"
         );
     }
     function handleDownloadedOrPurchasedNo(agent) {
@@ -397,7 +436,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -414,12 +452,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleUsedWithBloodNo(agent) {
@@ -431,7 +468,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -448,7 +484,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -465,180 +500,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
             "Does the MD involve contact with injured skin (mechanical barrier, compression, absorb exudates)?"
-        );
-    }
-    function handle2ContactOrganisationYes(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add("Does your product use any forms of NHS Branding?");
-    }
-    function handle2SimpleMonitoringYes(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Does your DHT allow 2-way communication between users and professionals, 3rd party organisations or peers? (Clinical advice is provided by professionals using the DHT). (If yes, Tier 2 - communicate)"
-        );
-    }
-    function handleClassIiaYes(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "I am sorry. NICE's framework has been designed for DHTs that are commissioned in the UK health and care system, it is less relevant to DHTs that are downloaded or purchased directly by users (such as through app stores). Separate standards (including principle 7 of the code of conduct for data-driven health and care technology) will apply to your DHT. Do you want me to move on to the NHSD checking? Plus, NICE's framework may be used with DHTs that incorporate artificial intelligence using fixed algorithms. However, it is not designed for use with DHTs that incorporate artificial intelligence using adaptive algorithms. For the same reason, separate standards (including principle 7 of the code of conduct for data-driven health and care technology) will apply to your DHT."
-        );
-    }
-    function handleClassIiaNo(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
-        );
-    }
-    function handleConnectedToActiveMedicalDeviceYes(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Your MD belongs to Class I. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
-        );
-    }
-    function handleConnectedToActiveMedicalDeviceNo(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
-        );
-    }
-    function handleFiltrationCentrifigurationYes(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
-        );
-    }
-    function handleFiltrationCentrifigurationNo(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
-        );
-    }
-    function handleContactWithInjuredSkinYes(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Is the MD intended for wounds which breach dermis and heal only by secondary intent?"
-        );
-    }
-    function handleContactWithInjuredSkinNo(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Is the MD invasive in body orifice or stoma (not surgically)?"
         );
     }
     function handle3UseNhsBrandingYes(agent) {
@@ -650,7 +516,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -667,7 +532,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -675,7 +539,7 @@ router.post("/", async (request, response) => {
             "Does your product require registration with the General Pharmaceutical Council?"
         );
     }
-    function handle2CommunicateYes(agent) {
+    function handle2SimpleMonitoringYes(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -684,15 +548,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Is your DHT designed to change user behaviour related to health issues (eg. smoking, eating, alcohol, sexual health, sleeping and exercise.)? (If yes, Tier 3a - preventative behaviour change)"
+            "Does your DHT allow 2-way communication between users and professionals, 3rd party organisations or peers? (Clinical advice is provided by professionals using the DHT). (If yes, Tier 2 - communicate)"
         );
     }
-    function handleClassIibYes(agent) {
+    function handle1ProvideurlYes2(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -701,15 +564,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "I am sorry. NICE's framework has been designed for DHTs that are commissioned in the UK health and care system, it is less relevant to DHTs that are downloaded or purchased directly by users (such as through app stores). Separate standards (including principle 7 of the code of conduct for data-driven health and care technology) will apply to your DHT. Do you want me to move on to the NHSD checking? Plus, NICE's framework may be used with DHTs that incorporate artificial intelligence using fixed algorithms. However, it is not designed for use with DHTs that incorporate artificial intelligence using adaptive algorithms. For the same reason, separate standards (including principle 7 of the code of conduct for data-driven health and care technology) will apply to your DHT."
+            "Can you confirm that users are able to contact you or your organisation directly via the product, if required? "
         );
     }
-    function handleClassIibNo(agent) {
+    function handleEndYes(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -718,7 +580,82 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("The session has ended");
+    }
+    function handleEndNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("The session has ended");
+    }
+    function handle1ProvideurlYes3(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Can you confirm that users are able to contact you or your organisation directly via the product, if required? "
+        );
+    }
+    function handle1SystemServiceYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does your DHT provides information and resources to patients or the public? The information can include specific conditions or about healty living. (If yes, Tier 2 - inform)"
+        );
+    }
+    function handleClassIiaYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIiaNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -726,7 +663,7 @@ router.post("/", async (request, response) => {
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
-    function handleWoundsWhichBreachDermisYes(agent) {
+    function handleConnectedToActiveMedicalDeviceYes(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -735,15 +672,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Your MD belongs to Class I. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
-    function handleWoundsWhichBreachDermisNo(agent) {
+    function handleConnectedToActiveMedicalDeviceNo(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -752,15 +688,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Yes, is the MD intended to manage micro-environment of wounds + others?"
+            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
-    function handleInvasiveInBodyOrificeYes(agent) {
+    function handleFiltrationCentrifigurationYes(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -769,13 +704,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
-        agent.add("Is the MD for trancient use?");
+        agent.add(
+            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
     }
-    function handleInvasiveInBodyOrificeNo(agent) {
+    function handleFiltrationCentrifigurationNo(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -784,11 +720,44 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
-        agent.add("Is the MD surgically invasive and for trancient use?");
+        agent.add(
+            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleContactWithInjuredSkinYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Is the MD intended for wounds which breach dermis and heal only by secondary intent?"
+        );
+    }
+    function handleContactWithInjuredSkinNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Is the MD invasive in body orifice or stoma (not surgically)?"
+        );
     }
     function handle4ConfirmUseOfBrandingYes(agent) {
         // reset contexts
@@ -799,7 +768,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -816,7 +784,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -831,7 +798,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -839,7 +805,7 @@ router.post("/", async (request, response) => {
             "Does your product forms part of a service that requires registered healthcare professionals to operate?"
         );
     }
-    function handle3ABehaviourChangeYes(agent) {
+    function handle2CommunicateYes(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -848,15 +814,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Does your DHT aim to help people with a diagnosed condition to manage their health? This may include symptom tracking function that connects with a healthcare professional. (If yes, Tier 3a - self-manage)"
+            "Is your DHT designed to change user behaviour related to health issues (eg. smoking, eating, alcohol, sexual health, sleeping and exercise.)? (If yes, Tier 3a - preventative behaviour change)"
         );
     }
-    function handleManageMicroEnvironmentsYes(agent) {
+    function handleEndYes2(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -865,15 +830,70 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("The session has ended");
+    }
+    function handleEndNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("The session has ended");
+    }
+    function handleEndYes3(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("The session has ended");
+    }
+    function handleEndNo3(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("The session has ended");
+    }
+    function handlePlaceholderYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Great let’s get started. Is your product available to the public and can you provide URL(s) to the app store location(s)?"
         );
     }
-    function handleManageMicroEnvironmentsNo(agent) {
+    function handlePlaceholderNo2(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -882,15 +902,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class I. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Great! You’re all set! You can view suggested next steps by clicking on Suggestions in the navigation bar above."
         );
     }
-    function handleTrancientUseYes(agent) {
+    function handleDownloadedOrPurchasedYes2(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -899,15 +918,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class I. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Great let’s get started. Is your product available to the public and can you provide URL(s) to the app store location(s)?"
         );
     }
-    function handleTrancientUseNo(agent) {
+    function handleDownloadedOrPurchasedNo2(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -916,30 +934,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add("Is the MD for short-term use?");
-    }
-    function handleSurgicallyInvasiveYes(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Is the MD specifically to control/diagnose/monitor/correct a defect of heart or central circulatory system through direct contact?"
+            "Now, let's start figuring out which Tier your DHT belongs to. Please remember your latest Tier as I say. Is your DHT unlikely to have direct and measurable individual patient outcomes? (If yes, Tier 1 - system service)"
         );
     }
-    function handleSurgicallyInvasiveNo(agent) {
+    function handleClassIYes2(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -948,11 +950,214 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
-        agent.add("Is the MD surgically invasive and for short-term use?");
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassINo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleClassIiaYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIiaNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleClassIiaYes3(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIiaNo3(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleClassIibYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIibNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleWoundsWhichBreachDermisYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleWoundsWhichBreachDermisNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Yes, is the MD intended to manage micro-environment of wounds + others?"
+        );
+    }
+    function handleInvasiveInBodyOrificeYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Is the MD for trancient use?");
+    }
+    function handleInvasiveInBodyOrificeNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Is the MD surgically invasive and for trancient use?");
+    }
+    function handle5RequireGpcYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Can you provide evidence confirming registration?");
+    }
+    function handle5RequireGpcNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does your product forms part of a service that requires registered healthcare professionals to operate?"
+        );
     }
     function handle6ConfirmWithGpcYes(agent) {
         // reset contexts
@@ -963,7 +1168,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -980,7 +1184,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -995,7 +1198,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -1003,7 +1205,7 @@ router.post("/", async (request, response) => {
             "Can you provide a guest login for your product so that assessors can access and evaluate it? "
         );
     }
-    function handle3ASelf_ManageYes(agent) {
+    function handle3ABehaviourChangeYes(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -1012,15 +1214,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Does your DHT provide treatment for a diagnosed condition, such as CBT for anxiety, or guides treatment decisions? (If yes, Tier 3b - treat)"
+            "Does your DHT aim to help people with a diagnosed condition to manage their health? This may include symptom tracking function that connects with a healthcare professional. (If yes, Tier 3a - self-manage)"
         );
     }
-    function handleShortTermUseYes(agent) {
+    function handlePlaceholderYes3(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -1029,15 +1230,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Is the MD only for use in oral cavity, ear canal, or in nasal cavity?"
+            "Great let’s get started. Is your product available to the public and can you provide URL(s) to the app store location(s)?"
         );
     }
-    function handleShortTermUseNo(agent) {
+    function handlePlaceholderNo3(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -1046,30 +1246,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add("Is the MD for long-term use?");
-    }
-    function handleControlDiagnoseMonitorOrCorrectYes(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Great! You’re all set! You can view suggested next steps by clicking on Suggestions in the navigation bar above."
         );
     }
-    function handleControlDiagnoseMonitorOrCorrectNo(agent) {
+    function handleDownloadedOrPurchasedYes3(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -1078,15 +1262,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Is the MD or use in direct contact with the central nervous systerm?"
+            "Great let’s get started. Is your product available to the public and can you provide URL(s) to the app store location(s)?"
         );
     }
-    function handleSurgicallyInvasiveAndShortTermUseYes(agent) {
+    function handleDownloadedOrPurchasedNo3(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -1095,15 +1278,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Is the MD for use in direct contact with the central nervous system?"
+            "Now, let's start figuring out which Tier your DHT belongs to. Please remember your latest Tier as I say. Is your DHT unlikely to have direct and measurable individual patient outcomes? (If yes, Tier 1 - system service)"
         );
     }
-    function handleSurgicallyInvasiveAndShortTermUseNo(agent) {
+    function handleClassIibYes2(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -1112,12 +1294,149 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Is the MD surgically invasive, for long term use, or is an implantable device?"
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIibNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleManageMicroEnvironmentsYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleManageMicroEnvironmentsNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class I. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleTrancientUseYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class I. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleTrancientUseNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Is the MD for short-term use?");
+    }
+    function handleSurgicallyInvasiveYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Is the MD specifically to control/diagnose/monitor/correct a defect of heart or central circulatory system through direct contact?"
+        );
+    }
+    function handleSurgicallyInvasiveNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Is the MD surgically invasive and for short-term use?");
+    }
+    function handle7RequireHealthcaresYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Can you confirm their registration status and names? ");
+    }
+    function handle7RequireHealthcaresNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Can you provide a guest login for your product so that assessors can access and evaluate it? "
         );
     }
     function handle8ConfirmHealthcareRegistrationYes(agent) {
@@ -1129,7 +1448,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -1146,11 +1464,260 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add("Your organisation requires CQC registration?");
+    }
+    function handle3ASelf_ManageYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does your DHT provide treatment for a diagnosed condition, such as CBT for anxiety, or guides treatment decisions? (If yes, Tier 3b - treat)"
+        );
+    }
+    function handleClassIiaYes4(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIiaNo4(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleClassIYes3(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassINo3(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleClassIYes4(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassINo4(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleShortTermUseYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Is the MD only for use in oral cavity, ear canal, or in nasal cavity?"
+        );
+    }
+    function handleShortTermUseNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Is the MD for long-term use?");
+    }
+    function handleControlDiagnoseMonitorOrCorrectYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleControlDiagnoseMonitorOrCorrectNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Is the MD or use in direct contact with the central nervous systerm?"
+        );
+    }
+    function handleSurgicallyInvasiveAndShortTermUseYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Is the MD for use in direct contact with the central nervous system?"
+        );
+    }
+    function handleSurgicallyInvasiveAndShortTermUseNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Is the MD surgically invasive, for long term use, or is an implantable device?"
+        );
+    }
+    function handle9ProvideAGuestLoginYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Your organisation requires CQC registration?");
+    }
+    function handle10RequireRegistrationWithCqcYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Is your organisation registered with CQC? ");
+    }
+    function handle10RequireRegistrationWithCqcNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Do you think that your organisation does not require CQC registration?"
+        );
     }
     function handle3BTreatYes(agent) {
         // reset contexts
@@ -1161,7 +1728,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -1178,12 +1744,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class I. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Your MD belongs to Class I. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleOralCavityEarCanalNo(agent) {
@@ -1195,12 +1760,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleLongTermUseYes(agent) {
@@ -1212,7 +1776,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -1229,7 +1792,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -1246,12 +1808,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "I am sorry. NICE's framework has been designed for DHTs that are commissioned in the UK health and care system, it is less relevant to DHTs that are downloaded or purchased directly by users (such as through app stores). Separate standards (including principle 7 of the code of conduct for data-driven health and care technology) will apply to your DHT. Do you want me to move on to the NHSD checking? Plus, NICE's framework may be used with DHTs that incorporate artificial intelligence using fixed algorithms. However, it is not designed for use with DHTs that incorporate artificial intelligence using adaptive algorithms. For the same reason, separate standards (including principle 7 of the code of conduct for data-driven health and care technology) will apply to your DHT."
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIiiNo(agent) {
@@ -1263,7 +1824,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -1280,12 +1840,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleDirectContactWithCnsNo(agent) {
@@ -1297,7 +1856,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -1312,12 +1870,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleDirectContactWithCns2No(agent) {
@@ -1329,7 +1886,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -1346,7 +1902,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -1361,259 +1916,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
             "Is the MD an active therapeutic device intended to administer or exchange energy?"
-        );
-    }
-    function handle10RequireRegistrationWithCqcYes(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add("Is your organisation registered with CQC? ");
-    }
-    function handle10RequireRegistrationWithCqcNo(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Do you think that your organisation does not require CQC registration?"
-        );
-    }
-    function handle3BAcitve_MonitoringYes(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Does your DHT have tools that perform clinical calculations that are likely to affect clinical care decisions? (If yes, Tier 3b - calculate)"
-        );
-    }
-    function handleOralCavityEarCanalNotLiableToBeAbsorbedYes(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
-        );
-    }
-    function handleOralCavityEarCanalNotLiableToBeAbsorbedNo(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
-        );
-    }
-    function handleConnectedToActiveMedicalDevice2Yes(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
-        );
-    }
-    function handleConnectedToActiveMedicalDevice2No(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add("Is the MD surgically invasive and for trancient use?");
-    }
-    function handleReusableSurgicalInstrumentYes(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Your MD belongs to Class I. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
-        );
-    }
-    function handleReusableSurgicalInstrumentNo(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add("Does the MD supply energy or ionising radiation?");
-    }
-    function handleMonitorControlDiagnoseOrCorrectYes(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
-        );
-    }
-    function handleMonitorControlDiagnoseOrCorrectNo(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add("Does the MD supply energy or ionising radiation?");
-    }
-    function handleUsedInTeethYes(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
-        );
-    }
-    function handleUsedInTeethNo(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Is the MD to be used in direct contact with heart or central nervous/circulatory system?"
-        );
-    }
-    function handleActiveTherapeuticDeviceYes(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Does the MD administer or exchange energy in a potentially hazardous way?"
-        );
-    }
-    function handleActiveTherapeuticDeviceNo(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Is the MD an active device for diagnosis intended to supply energy to image in vivo distribution of radiopharmaceuticals, or for direct diagnosis or monitoring of vital physiological processes?"
         );
     }
     function handle11ConfirmRegistrationWithCqcYes(agent) {
@@ -1625,7 +1932,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -1640,7 +1946,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -1657,7 +1962,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -1672,7 +1976,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -1680,7 +1983,7 @@ router.post("/", async (request, response) => {
             "Have you reviewed the scope of registration for CQC and confirmed your organisation's activities do not require registration?"
         );
     }
-    function handle3BCalculateYes(agent) {
+    function handle3BAcitve_MonitoringYes(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -1689,15 +1992,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Does your DHT use data to diagnose a condition in a patient, or to guide a diagnostic decision made by a healthcare professional? (If yes, Tier 3b - diagnose)"
+            "Does your DHT have tools that perform clinical calculations that are likely to affect clinical care decisions? (If yes, Tier 3b - calculate)"
         );
     }
-    function handleSupplyEnergyYes(agent) {
+    function handleClassIYes5(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -1706,15 +2008,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
-    function handleSupplyEnergyNo(agent) {
+    function handleClassINo5(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -1723,15 +2024,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Does the MD have a biological effect, ie it is mainly or wholly absorbed?"
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
-    function handleSupplyEnergy2Yes(agent) {
+    function handleClassIiaYes5(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -1740,15 +2040,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
-    function handleSupplyEnergy2No(agent) {
+    function handleClassIiaNo5(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -1757,15 +2056,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Does the MD have a biological effect or is mainly absorbed?"
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
-    function handleDirectContactWithHeartYes(agent) {
+    function handleOralCavityEarCanalNotLiableToBeAbsorbedYes(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -1774,15 +2072,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
-    function handleDirectContactWithHeartNo(agent) {
+    function handleOralCavityEarCanalNotLiableToBeAbsorbedNo(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -1791,15 +2088,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Does the MD have a biological effect or is mainly absorbed?"
+            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
-    function handleAdministerOrExchangeEnergyYes(agent) {
+    function handleConnectedToActiveMedicalDevice2Yes(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -1808,15 +2104,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
-    function handleAdministerOrExchangeEnergyNo(agent) {
+    function handleConnectedToActiveMedicalDevice2No(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -1825,15 +2120,28 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Is the MD surgically invasive and for trancient use?");
+    }
+    function handlePlaceholderYes4(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Does the MD control, monitor, or influence directly the performance of a Class IIb active therapeutic device?"
+            "Great let’s get started. Is your product available to the public and can you provide URL(s) to the app store location(s)?"
         );
     }
-    function handleSupplyEnergyToImageInVivoYes(agent) {
+    function handlePlaceholderNo4(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -1842,15 +2150,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Is the MD specifically intended to monitor vital physiological parameters where variations could result in immediate danger?"
+            "Great! You’re all set! You can view suggested next steps by clicking on Suggestions in the navigation bar above."
         );
     }
-    function handleSupplyEnergyToImageInVivoNo(agent) {
+    function handleDownloadedOrPurchasedYes4(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -1859,12 +2166,215 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Is the MD an active device to administer or remove medicines and other substances to or from the body?"
+            "Great let’s get started. Is your product available to the public and can you provide URL(s) to the app store location(s)?"
+        );
+    }
+    function handleDownloadedOrPurchasedNo4(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Now, let's start figuring out which Tier your DHT belongs to. Please remember your latest Tier as I say. Is your DHT unlikely to have direct and measurable individual patient outcomes? (If yes, Tier 1 - system service)"
+        );
+    }
+    function handleClassIiiYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIiiNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleReusableSurgicalInstrumentYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class I. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleReusableSurgicalInstrumentNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Does the MD supply energy or ionising radiation?");
+    }
+    function handleClassIiiYes3(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIiiNo3(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleMonitorControlDiagnoseOrCorrectYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleMonitorControlDiagnoseOrCorrectNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Does the MD supply energy or ionising radiation?");
+    }
+    function handleUsedInTeethYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleUsedInTeethNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Is the MD to be used in direct contact with heart or central nervous/circulatory system?"
+        );
+    }
+    function handleActiveTherapeuticDeviceYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does the MD administer or exchange energy in a potentially hazardous way?"
+        );
+    }
+    function handleActiveTherapeuticDeviceNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Is the MD an active device for diagnosis intended to supply energy to image in vivo distribution of radiopharmaceuticals, or for direct diagnosis or monitoring of vital physiological processes?"
         );
     }
     function handle12ProvideCqcNumberYes(agent) {
@@ -1876,7 +2386,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -1893,12 +2402,41 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
             "Do you think that your organisation does not require CQC registration?"
+        );
+    }
+    function handle14NeedRegistrationCqcYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Can you provide a brief description of your product?");
+    }
+    function handle14NeedRegistrationCqcNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Have you reviewed the scope of registration for CQC and confirmed your organisation's activities do not require registration?"
         );
     }
     function handle16ProvideDescriptionYes(agent) {
@@ -1910,7 +2448,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -1927,11 +2464,486 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add("Can you provide a brief description of your product?");
+    }
+    function handle3BCalculateYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does your DHT use data to diagnose a condition in a patient, or to guide a diagnostic decision made by a healthcare professional? (If yes, Tier 3b - diagnose)"
+        );
+    }
+    function handleClassIiaYes6(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIiaNo6(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleClassIibYes3(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIibNo3(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleClassIiaYes7(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIiaNo7(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleSurgicallyInvasiveYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Is the MD specifically to control/diagnose/monitor/correct a defect of heart or central circulatory system through direct contact?"
+        );
+    }
+    function handleSurgicallyInvasiveNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Is the MD surgically invasive and for short-term use?");
+    }
+    function handleClassIYes6(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassINo6(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleSupplyEnergyYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleSupplyEnergyNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does the MD have a biological effect, ie it is mainly or wholly absorbed?"
+        );
+    }
+    function handleClassIiiYes4(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIiiNo4(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleSupplyEnergy2Yes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleSupplyEnergy2No(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does the MD have a biological effect or is mainly absorbed?"
+        );
+    }
+    function handleClassIiaYes8(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIiaNo8(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleDirectContactWithHeartYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleDirectContactWithHeartNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does the MD have a biological effect or is mainly absorbed?"
+        );
+    }
+    function handleAdministerOrExchangeEnergyYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleAdministerOrExchangeEnergyNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does the MD control, monitor, or influence directly the performance of a Class IIb active therapeutic device?"
+        );
+    }
+    function handleSupplyEnergyToImageInVivoYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Is the MD specifically intended to monitor vital physiological parameters where variations could result in immediate danger?"
+        );
+    }
+    function handleSupplyEnergyToImageInVivoNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Is the MD an active device to administer or remove medicines and other substances to or from the body?"
+        );
+    }
+    function handle13ProvideRecentCqcRegistrationYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Do you think that your organisation does not require CQC registration?"
+        );
+    }
+    function handle14NeedRegistrationCqcYes3(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Can you provide a brief description of your product?");
+    }
+    function handle14NeedRegistrationCqcNo3(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Have you reviewed the scope of registration for CQC and confirmed your organisation's activities do not require registration?"
+        );
+    }
+    function handle17IntegrateWithWebsiteOrOthersYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does your product connects to any of the NHS Service listed: Electronic Prescription Service (EPS) or Electronic Referrals Service (eRS) or GP2GP or GP? Connect  GPSoC Connection to Primary Care Systems (EMIS, Microtest, TPP & VISION)  Health and Social Care Network  NHS Mail  NHS Pathways  Spine  Summary Care Records."
+        );
+    }
+    function handle16ProvideDescriptionYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does your product integrate with a website or other software/device?"
+        );
     }
     function handle3BDiagnoseYes(agent) {
         // reset contexts
@@ -1942,12 +2954,43 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "I am sorry. NICE's framework has been designed for DHTs that are commissioned in the UK health and care system, it is less relevant to DHTs that are downloaded or purchased directly by users (such as through app stores). Separate standards (including principle 7 of the code of conduct for data-driven health and care technology) will apply to your DHT. Do you want me to move on to the NHSD checking? Plus, NICE's framework may be used with DHTs that incorporate artificial intelligence using fixed algorithms. However, it is not designed for use with DHTs that incorporate artificial intelligence using adaptive algorithms. For the same reason, separate standards (including principle 7 of the code of conduct for data-driven health and care technology) will apply to your DHT."
+            "This is the end of the Functional Classification. If you have told multiple Tiers, then you have to choose the highest Tier. Plus, the Tiers are cumulative. This means that your DHT must meet all the standards in the previous Tier(s), as well as its own Tier. (Please say Clarification if you need more explanation). Now we will move on to NHSD’s questions. Would you like to go through them?"
+        );
+    }
+    function handleClassIibYes4(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIibNo4(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleHaveABiologicalEffectYes(agent) {
@@ -1959,12 +3002,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleHaveABiologicalEffectNo(agent) {
@@ -1976,12 +3018,43 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
             "Is the MD intended to administer medicine in a potentially hazardous manner?"
+        );
+    }
+    function handleClassIibYes5(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIibNo5(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleHaveABiologicalEffect2Yes(agent) {
@@ -1993,12 +3066,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleHaveABiologicalEffect2No(agent) {
@@ -2010,12 +3082,43 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
             "Does the MD undergo chemical change in the body, or is used to administer medicine (not in teeth)?"
+        );
+    }
+    function handleClassIiiYes5(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIiiNo5(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleHaveABiologicalEffectOrMainlyAbsorbedYes(agent) {
@@ -2027,12 +3130,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleHaveABiologicalEffectOrMainlyAbsorbedNo(agent) {
@@ -2044,12 +3146,43 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
             "Does the MD undergo chemical change in the body, or is used to administer medicine (not in teeth"
+        );
+    }
+    function handleClassIibYes6(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIibNo6(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleControlMonitorOrInfluenceYes(agent) {
@@ -2061,12 +3194,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleControlMonitorOrInfluenceNo(agent) {
@@ -2078,12 +3210,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleMonitorVitalPhysiologicalParametersYes(agent) {
@@ -2095,12 +3226,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleMonitorVitalPhysiologicalParametersNo(agent) {
@@ -2112,7 +3242,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -2129,7 +3258,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -2144,7 +3272,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -2152,7 +3279,7 @@ router.post("/", async (request, response) => {
             "Is the MD an active medical device but is not classified by any of the above rules?"
         );
     }
-    function handle13ProvideRecentCqcRegistrationYes(agent) {
+    function handle14NeedRegistrationCqcYes4(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -2161,15 +3288,12 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
-        agent.add(
-            "Do you think that your organisation does not require CQC registration?"
-        );
+        agent.add("Can you provide a brief description of your product?");
     }
-    function handle17IntegrateWithWebsiteOrOthersYes(agent) {
+    function handle14NeedRegistrationCqcNo4(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -2178,216 +3302,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Does your product connects to any of the NHS Service listed: Electronic Prescription Service (EPS) or Electronic Referrals Service (eRS) or GP2GP or GP? Connect | GPSoC Connection to Primary Care Systems (EMIS, Microtest, TPP & VISION) | Health and Social Care Network | NHS Mail | NHS Pathways | Spine | Summary Care Records."
-        );
-    }
-    function handleAdministerMedicineYes(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
-        );
-    }
-    function handleAdministerMedicineNo(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
-        );
-    }
-    function handleUndergoChemicalChangeYes(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
-        );
-    }
-    function handleUndergoChemicalChangeNo(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
-        );
-    }
-    function handleUndergoChemicalChangeOrAdministerMedicineYes(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
-        );
-    }
-    function handleUndergoChemicalChangeOrAdministerMedicineNo(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Is the MD for use in breast implants, or hip, knee, or shoulder joint replacements?"
-        );
-    }
-    function handleEmitIonizingRadiationYes(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
-        );
-    }
-    function handleEmitIonizingRadiationNo(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
-        );
-    }
-    function handlePotentiallyHazardousYes(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
-        );
-    }
-    function handlePotentiallyHazardousNo(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
-        );
-    }
-    function handleActiveDeviceNotClassifiedYes(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Your MD belongs to Class I. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
-        );
-    }
-    function handleActiveDeviceNotClassifiedNo(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Does the MD incorporate integral medicinal substances liable to act in an ancillary way on the human body?"
+            "Have you reviewed the scope of registration for CQC and confirmed your organisation's activities do not require registration?"
         );
     }
     function handle18ConnectWithDevicesYes(agent) {
@@ -2399,7 +3318,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -2414,7 +3332,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -2422,7 +3339,7 @@ router.post("/", async (request, response) => {
             "Can provide details about how your product could replace a commissioned service?"
         );
     }
-    function handleUseInBreastImplantsYes(agent) {
+    function handleFunctionalClassificationOverYes(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -2431,15 +3348,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Great let’s get started. Is your product available to the public and can you provide URL(s) to the app store location(s)?"
         );
     }
-    function handleUseInBreastImplantsNo(agent) {
+    function handleFunctionalClassificationOverNo(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -2448,15 +3364,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Great! You’re all set! You can view suggested next steps by clicking on Suggestions in the navigation bar above."
         );
     }
-    function handleIncorporateIntegralMedicinalSubstancesYes(agent) {
+    function handleClassIibYes7(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -2465,15 +3380,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
-    function handleIncorporateIntegralMedicinalSubstancesNo(agent) {
+    function handleClassIibNo7(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -2482,12 +3396,363 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Is the MD used for contraception or prevention of sexually transmitted diseases?"
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleAdministerMedicineYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleAdministerMedicineNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleClassIiiYes6(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIiiNo6(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleUndergoChemicalChangeYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleUndergoChemicalChangeNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleClassIiiYes7(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIiiNo7(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleUndergoChemicalChangeOrAdministerMedicineYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleUndergoChemicalChangeOrAdministerMedicineNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Is the MD for use in breast implants, or hip, knee, or shoulder joint replacements?"
+        );
+    }
+    function handleClassIibYes8(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIibNo8(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleClassIiaYes9(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIiaNo9(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleClassIibYes9(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIibNo9(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleEmitIonizingRadiationYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleEmitIonizingRadiationNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handlePotentiallyHazardousYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handlePotentiallyHazardousNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleActiveDeviceNotClassifiedYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class I. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleActiveDeviceNotClassifiedNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does the MD incorporate integral medicinal substances liable to act in an ancillary way on the human body?"
         );
     }
     function handle19ReplaceANhsServiceYes(agent) {
@@ -2499,7 +3764,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -2516,7 +3780,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -2531,11 +3794,576 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add("Is your product free to public users? ");
+    }
+    function handle1ProvideurlYes4(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Can you confirm that users are able to contact you or your organisation directly via the product, if required? "
+        );
+    }
+    function handleEndYes4(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("The session has ended");
+    }
+    function handleEndNo4(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("The session has ended");
+    }
+    function handleClassIibYes10(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIibNo10(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleClassIiaYes10(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIiaNo10(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleClassIibYes11(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIibNo11(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleClassIiaYes11(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIiaNo11(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleClassIiiYes8(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIiiNo8(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleUseInBreastImplantsYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleUseInBreastImplantsNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleClassIibYes12(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIibNo12(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleClassIiaYes12(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIiaNo12(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleClassIibYes13(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIibNo13(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleClassIiaYes13(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIiaNo13(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleClassIYes7(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassINo7(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleIncorporateIntegralMedicinalSubstancesYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleIncorporateIntegralMedicinalSubstancesNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Is the MD used for contraception or prevention of sexually transmitted diseases?"
+        );
+    }
+    function handle20ConfirmReplaceANhsServiceYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Is your product free to public users? ");
+    }
+    function handle21FreeToPublicYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Do you have the source of funding?");
+    }
+    function handle21FreeToPublicYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Do you have the source of funding?");
+    }
+    function handleClassIiiYes9(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIiiNo9(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleClassIibYes14(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIibNo14(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleClassIiiYes10(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIiiNo10(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
     }
     function handleContraceptionYes(agent) {
         // reset contexts
@@ -2546,7 +4374,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -2561,13 +4388,12 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add("Is the MD specifically to be used for disinfecting MDs?");
     }
-    function handle21FreeToPublicYes(agent) {
+    function handle22SourceOfFundingYes(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -2576,11 +4402,12 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
-        agent.add("Do you have the source of funding?");
+        agent.add(
+            "Is your product involved in a pilot or trial with an NHS hospital, Trust, CCG or in a primary care setting?"
+        );
     }
     function handleImplantableYes(agent) {
         // reset contexts
@@ -2591,12 +4418,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleImplantableNo(agent) {
@@ -2608,12 +4434,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleDisinfectingMdsYes(agent) {
@@ -2625,7 +4450,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -2642,97 +4466,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
             "Is the MD intended for recording of X-ray diagnostic images?"
-        );
-    }
-    function handle22SourceOfFundingYes(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Is your product involved in a pilot or trial with an NHS hospital, Trust, CCG or in a primary care setting?"
-        );
-    }
-    function handleDisinfectingContactLensesYes(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
-        );
-    }
-    function handleDisinfectingContactLensesNo(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Is the MD specifically to be used for disinfecting invasive MDs?"
-        );
-    }
-    function handleRecordingOfXRayYes(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
-        );
-    }
-    function handleRecordingOfXRayNo(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
-        agent.add(
-            "Does the MD utilize non-viable animal tissues or derivatives (not devices in contact with only intact skin)?"
         );
     }
     function handle23ProvideATrialYes(agent) {
@@ -2744,7 +4482,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -2761,7 +4498,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -2769,7 +4505,7 @@ router.post("/", async (request, response) => {
             "Does your product process personal data of NHS or Social Care users?"
         );
     }
-    function handleDisinfectingInvasiveMdsYes(agent) {
+    function handleClassIiiYes11(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -2778,15 +4514,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
-    function handleDisinfectingInvasiveMdsNo(agent) {
+    function handleClassIiiNo11(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -2795,15 +4530,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
-    function handleNonViableAnimalTissuesYes(agent) {
+    function handleClassIibYes15(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -2812,15 +4546,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
-    function handleNonViableAnimalTissuesNo(agent) {
+    function handleClassIibNo15(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -2829,11 +4562,76 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
-        agent.add("Is the MD a blood bag?");
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleDisinfectingContactLensesYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleDisinfectingContactLensesNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Is the MD specifically to be used for disinfecting invasive MDs?"
+        );
+    }
+    function handleRecordingOfXRayYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleRecordingOfXRayNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does the MD utilize non-viable animal tissues or derivatives (not devices in contact with only intact skin)?"
+        );
     }
     function handle24ProvideDetailOfTheTrialYes(agent) {
         // reset contexts
@@ -2844,7 +4642,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -2861,7 +4658,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -2878,7 +4674,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -2886,7 +4681,7 @@ router.post("/", async (request, response) => {
             "Is your product available on iOS/Android/Windows Mobile/ OS X/ Linux/others?"
         );
     }
-    function handleBloodBagYes(agent) {
+    function handleClassIibYes16(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -2895,15 +4690,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT), simply put, your software belongs to according to NICE rules?"
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
-    function handleBloodBagNo(agent) {
+    function handleClassIibNo16(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -2912,11 +4706,138 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
-        agent.add("Error");
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleDisinfectingInvasiveMdsYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleDisinfectingInvasiveMdsNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleClassIiaYes14(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIiaNo14(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleNonViableAnimalTissuesYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleNonViableAnimalTissuesNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Is the MD a blood bag?");
+    }
+    function handle25ConfirmProcessPersonalDataYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Do you know where does the product process (e.g. store) the personal data of NHS or Social Care patient/client/service users?"
+        );
+    }
+    function handle25ConfirmProcessPersonalDataNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Is your product available on iOS/Android/Windows Mobile/ OS X/ Linux/others?"
+        );
     }
     function handle26ComfirmWhereToProcessYes(agent) {
         // reset contexts
@@ -2927,7 +4848,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -2944,7 +4864,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -2959,7 +4878,162 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Is the type of pharmacy is clearly stated prior to the beginning of any sign up process?"
+        );
+    }
+    function handleClassIibYes17(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIibNo17(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleClassIiaYes15(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIiaNo15(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleClassIiiYes12(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIiiNo12(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleBloodBagYes(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleBloodBagNo(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Error");
+    }
+    function handle27ComfrimAvailableOnPlatformsYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Can you provide the following version number?");
+    }
+    function handle27ComfrimAvailableOnPlatformsNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -2976,7 +5050,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -2993,7 +5066,82 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Does your product provide any clinical benefits?");
+    }
+    function handleClassIibYes18(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
+        );
+    }
+    function handleClassIibNo18(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+        );
+    }
+    function handleBloodBagYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
+        );
+    }
+    function handleBloodBagNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Error");
+    }
+    function handle29ComfirmTypeOfPharmacyYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3008,7 +5156,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3025,7 +5172,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3042,7 +5188,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3059,7 +5204,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3074,7 +5218,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3091,7 +5234,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3106,7 +5248,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3123,7 +5264,50 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Can you give a reason why not?");
+    }
+    function handle33ProvideTheReasonOfNotHaveClinicalBenefitsYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Does your product provide any behavioural benefits?");
+    }
+    function handle34ProvideBehaviouralBenefitsYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Can you describe the improvements to psychological or social motivation, patient reported outcomes or experience measures?(Just answer Yes or No)."
+        );
+    }
+    function handle34ProvideBehaviouralBenefitsNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3138,7 +5322,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3155,7 +5338,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3170,7 +5352,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3185,7 +5366,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3200,7 +5380,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3215,7 +5394,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3232,7 +5410,80 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Can you give a reason why not?");
+    }
+    function handle38ComfirmOfEconomicBenefitsYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Can you describe what economic benefits and the timeframe for success?"
+        );
+    }
+    function handle38ComfirmOfEconomicBenefitsNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Can you give a reason why not?");
+    }
+    function handle37ComfirmReasonNotHaveBehaviouralBenefitsYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Are there any economic benefits to using your product?");
+    }
+    function handle38ComfirmOfEconomicBenefitsYes3(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Can you describe what economic benefits and the timeframe for success?"
+        );
+    }
+    function handle38ComfirmOfEconomicBenefitsNo3(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3247,7 +5498,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3264,7 +5514,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3279,7 +5528,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3294,7 +5542,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3309,7 +5556,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3324,7 +5570,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3341,7 +5586,80 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Can you give the reason why not?");
+    }
+    function handle42ComfirmAnyOtherOutcomesYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Can you describe what other outcomes and the timeframe for success?"
+        );
+    }
+    function handle42ComfirmAnyOtherOutcomesNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Can you give the reason why not?");
+    }
+    function handle41ProvideAReasonNotHaveEconomicBenefitsYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Are there any other outcomes that you have measured? ");
+    }
+    function handle42ComfirmAnyOtherOutcomesYes3(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Can you describe what other outcomes and the timeframe for success?"
+        );
+    }
+    function handle42ComfirmAnyOtherOutcomesNo3(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3356,7 +5674,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3373,7 +5690,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3390,7 +5706,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3407,7 +5722,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3424,7 +5738,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3439,7 +5752,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3456,7 +5768,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3473,7 +5784,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3488,7 +5798,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3505,7 +5814,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3520,7 +5828,66 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Can you rovide a brief explanation as to why your product does not fall within the scope of the NHS England mandated Safety Standard DCB0129?"
+        );
+    }
+    function handle46ProvideUrlOfEvaluatingOutcomesYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Can you give the reason why not?");
+    }
+    function handle47ProvideReasonWhyNoOutcomesYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Are there any resource impact benefits associated with your product?"
+        );
+    }
+    function handle50ConfirmWithinNhsDcb0129Yes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Can you provide a copy of your Safety Case and Hazard Log?");
+    }
+    function handle50ConfirmWithinNhsDcb0129No2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3537,7 +5904,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3554,7 +5920,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3571,7 +5936,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3588,7 +5952,38 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Has the safety assessment for your product been approved by a qualified clinician?"
+        );
+    }
+    function handle53ComfirmAdverseEffectsYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Can you list all of the possible adverse effects of using your product if require?"
+        );
+    }
+    function handle53ComfirmAdverseEffectsNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3605,7 +6000,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3622,7 +6016,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3637,7 +6030,34 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Does your product process personal data?");
+    }
+    function handle55ComfirmApprovedByClinicianYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Can you the name and job title of the reviewer?");
+    }
+    function handle55ComfirmApprovedByClinicianNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3652,7 +6072,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3667,7 +6086,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3684,12 +6102,43 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "You have indicated that the use of your product will not cause any personal or sensitive personal data to be processed. Please confirm that: 1.You have read and fully understood the definitions of personal sensitive personal data provided by the Information Commissioner’s Office 2.You have read and fully understood the supporting information and examples 3.You have fully considered all the data including that processed by placing and retrieving information through a cookie or similar technology.4.Should there be an intention to process such data, you  accept that a reassessment will be required before the data processing begins in order to remain on the NHS Apps Library Iconfirm."
+            "You have indicated that the use of your product will not cause any personal or sensitive personal data to be processed.Please confirm that: You have read and fully understood the definitions of personal sensitive personal data provided by the Information Commissioner’s Office You have read and fully understood the supporting information and examples You have fully considered all the data including that processed by placing and retrieving information through a cookie or similar technology Should there be an intention to process such data, you accept that a reassessment will be required before the data processing begins in order to remain on the NHS Apps LibraryI confirm"
+        );
+    }
+    function handle57ConfirmProcessTheDataPersonalYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Can you provide details of any other personal data items being processed by your product that are not listed in the supporting information?"
+        );
+    }
+    function handle57ConfirmProcessTheDataPersonalNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "You have indicated that the use of your product will not cause any personal or sensitive personal data to be processed.Please confirm that: You have read and fully understood the definitions of personal sensitive personal data provided by the Information Commissioner’s Office You have read and fully understood the supporting information and examples You have fully considered all the data including that processed by placing and retrieving information through a cookie or similar technology Should there be an intention to process such data, you accept that a reassessment will be required before the data processing begins in order to remain on the NHS Apps LibraryI confirm"
         );
     }
     function handle58ProvidePeronalDataProcessedYes(agent) {
@@ -3701,7 +6150,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3718,12 +6166,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Do you understand you/your organisation's role?'Controller'1.'Controller' and 'manufacturer/designer' of the product) 2.'Processor' only or 3.Product 'manufacturer/designer' only."
+            "Do you understand you/your organisation's role? 'Controller' 'Controller' and 'manufacturer/designer' of the product)  'Processor' only or Product 'manufacturer/designer' only."
         );
     }
     function handle59ConfirmProcessSensitiveDataYes(agent) {
@@ -3735,7 +6182,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3752,12 +6198,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "You have indicated that the use of your product will not cause any personal or sensitive personal data to be processed. Please confirm that: 1.You have read and fully understood the definitions of personal sensitive personal data provided by the Information Commissioner’s Office 2.You have read and fully understood the supporting information and examples 3.You have fully considered all the data including that processed by placing and retrieving information through a cookie or similar technology.4.Should there be an intention to process such data, you  accept that a reassessment will be required before the data processing begins in order to remain on the NHS Apps Library Iconfirm."
+            "You have indicated that the use of your product will not cause any personal or sensitive personal data to be processed.Please confirm that: You have read and fully understood the definitions of personal sensitive personal data provided by the Information Commissioner’s Office You have read and fully understood the supporting information and examples You have fully considered all the data including that processed by placing and retrieving information through a cookie or similar technology Should there be an intention to process such data, you accept that a reassessment will be required before the data processing begins in order to remain on the NHS Apps LibraryI confirm"
         );
     }
     function handle62UnderstandOrganisationSRoleYes(agent) {
@@ -3769,7 +6214,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3786,12 +6230,29 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Do you understand you/your organisation's role?'Controller'1.'Controller' and 'manufacturer/designer' of the product) 2.'Processor' only or 3.Product 'manufacturer/designer' only."
+            "Do you understand you/your organisation's role? 'Controller' 'Controller' and 'manufacturer/designer' of the product)  'Processor' only or Product 'manufacturer/designer' only."
+        );
+    }
+    function handle61ConfirmFullyUnderstandingOfPersonalDataSensitiveDataYes2(
+        agent
+    ) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Do you understand you/your organisation's role? 'Controller' 'Controller' and 'manufacturer/designer' of the product)  'Processor' only or Product 'manufacturer/designer' only."
         );
     }
     function handle63ProcessDataAndNotAControllerYes(agent) {
@@ -3803,12 +6264,27 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
             "Does your product personal OR sensitive personal data AND your organisation is a Processor (and not a Controller)?"
+        );
+    }
+    function handle62UnderstandOrganisationSRoleYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does your product process personal OR sensitive personal data AND your organisation is not a Controller?"
         );
     }
     function handle64ProcessPersonalDataAndProcessorNotControllerYes(agent) {
@@ -3820,7 +6296,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3837,7 +6312,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3854,12 +6328,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "You/your organisation is developing, or has developed, a product but you will not control or process the personal data because:1the individual user who downloads your product controls their own data entirely OR 2.the client (organisation) which buys your product is the ‘Controller’ and will make the decisions described earlier regarding what personal data is processed when using your product). If your answer to this is 'Yes', then you/your organisation is a manufacturer or designer (neither a 'Controller' nor 'Processor'). Your app must be designed and configurable to meet the potential clients' (the 'Controller') legal requirements or safeguard the privacy rights of users who individually download the product you make available."
+            "You/your organisation is developing, or has developed, a product but you will not control or process the personal data because: the individual user who downloads your product controls their own data entirely OR the client (organisation) which buys your product is the Controller’ and will make the decisions described earlier regarding what personal data is processed when using your product).If your answer to this is 'Yes', then you/your organisation is a manufacturer or designer (neither a 'Controller' nor 'Processor'). Your app must be designed and configurable to meet the potential clients' (the 'Controller') legal requirements or safeguard the privacy rights of users who individually download the product you make available."
         );
     }
     function handle66ProcessDataNotControllerNotProcessorNo(agent) {
@@ -3871,7 +6344,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3888,7 +6360,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3905,7 +6376,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3922,7 +6392,38 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does your product process personal OR sensitive personal data AND your organisation is a Controller AND is subject to European/UK Data Protection Laws?"
+        );
+    }
+    function handle68ProcessDataAndControllerYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Is your organisation subject to European/UK Data Protection laws?"
+        );
+    }
+    function handle68ProcessDataAndControllerNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3939,7 +6440,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3956,7 +6456,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -3973,12 +6472,43 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Can you tell us your overall grading (which must achieve Green or Amber to be considered for the NHS Apps Library?"
+            "Can you tell us your overall grading (which must achieve Green or Amber to be considered for the NHS Apps Library)?"
+        );
+    }
+    function handle70DataAndControllerAndLawsYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does your product have a registration number in the Data Protection Register?"
+        );
+    }
+    function handle70DataAndControllerAndLawsNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Can you tell us your overall grading (which must achieve Green or Amber to be considered for the NHS Apps Library)?"
         );
     }
     function handle71ConfirmNumberOfDprYes(agent) {
@@ -3990,12 +6520,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Can you tell us your overall grading (which must achieve Green or Amber to be considered for the NHS Apps Library?"
+            "Can you tell us your overall grading (which must achieve Green or Amber to be considered for the NHS Apps Library)?"
         );
     }
     function handle72ProvideTheOverallGradingYes(agent) {
@@ -4007,7 +6536,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4024,7 +6552,38 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does your product your product partially meet the criteria set out in Annex 2 of Guidelines of DPIA?"
+        );
+    }
+    function handle72ProvideTheOverallGradingYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Can you provide the name and title of a senior manager in the 'Controller' organisation who verifies the grading is accurate?"
+        );
+    }
+    function handle72ProvideTheOverallGradingNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4041,7 +6600,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4056,7 +6614,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4073,7 +6630,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4090,7 +6646,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4107,7 +6662,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4124,7 +6678,54 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does your product porcess personal data AND your organisation is a Controller?"
+        );
+    }
+    function handle74ComfirmMeetsAnnex2Yes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Can you provide DPIA includes details of trackers and permissions used by your product along with the justification for why each is required and their purpose?"
+        );
+    }
+    function handle74ComfirmMeetsAnnex2No2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does your DPIA include details of trackers and permissions used by your product?"
+        );
+    }
+    function handle76ConfirmPermissionOfDpiaYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4141,7 +6742,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4158,7 +6758,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4175,7 +6774,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4192,7 +6790,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4207,7 +6804,36 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Has your organisation developed measures to protect the applicable rights of the data subjects?"
+        );
+    }
+    function handle79ConfirmOtherLegalBasisYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Can you describe the other legal basis?");
+    }
+    function handle79ConfirmOtherLegalBasisNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4224,7 +6850,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4241,7 +6866,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4258,7 +6882,38 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does your organisation use all reasonable measures to verify the identity of an individual who exercises these rights?"
+        );
+    }
+    function handle81ConfirmMeasuresToProtectRightYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Do the rights of the data subjects include providing transparency/fair processing information to data subjects?"
+        );
+    }
+    function handle81ConfirmMeasuresToProtectRightNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4275,12 +6930,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Do the rights of the data include the right of data portability (which only applies where consent or contract with the data subject is the legal basis and personal data are / knowingly and actively provided by the data subject / generated by and collected from the use of the service or device e.g. ‘observed’ such as search history, traffic data, location data, other raw data such as heartbeat tracked by fitness and health trackers)?"
+            "Do the rights of the data include the right of data portability (which only applies where consent or contract with the data subject is the legal basis and personal data are / knowingly and actively provided by the data subject / generated by and collected from the use of the service or device e.g. observed’ such as search history, traffic data, location data, other raw data such as heartbeat tracked by fitness and health trackers)?"
         );
     }
     function handle86ConfirmMeasureOtVerifyTheIdentityYes(agent) {
@@ -4292,7 +6946,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4309,12 +6962,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Do the rights of the data subjects include the right to erase or the right to be forgotten?"
+            "Do the rights of the data subjects include the right to erase (or the right to be forgotten)?"
         );
     }
     function handle87ConfirmDataAndControllerAndProcessedByAThirdPartyYes(
@@ -4328,12 +6980,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Does your organisation allows or causes your users' personal data to be processed by a third party (e.g. hosts the data, manages your website, provides user research or analytics services, user survey tools, bulk email providers that manage your client email lists)?"
+            "Does your organisation allows or causes your users' personaldata to be processed by a third party (e.g. hosts the data, manages your website, provides user research or analytics services, user survey tools, bulk email providers that manage your client email lists)?"
         );
     }
     function handle87ConfirmDataAndControllerAndProcessedByAThirdPartyNo(
@@ -4347,7 +6998,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4364,7 +7014,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4381,7 +7030,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4398,7 +7046,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4415,7 +7062,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4430,7 +7076,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4447,7 +7092,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4464,7 +7108,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4479,7 +7122,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4496,12 +7138,27 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
             "Does your organisation process personal OR sensitive personal data AND is a Controller?"
+        );
+    }
+    function handle86ConfirmMeasureOtVerifyTheIdentityYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does your product processe personal OR sensitive personal data AND your organisation is a Controller AND allows your users personal data to be processed by a third party?"
         );
     }
     function handle90ConfirmThirdPartyOfPersonalDataYes(agent) {
@@ -4513,12 +7170,43 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
             "Is a written binding agreement n place between you/your organisation and each third party ('Processor')?"
+        );
+    }
+    function handle106ConfirmPdFormThirdPartyYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Is a fair processing information provided within one month of having obtained the data from a third party OR, if the personal data is used to communicate with the individual, at the latest, when the first communication takes place?"
+        );
+    }
+    function handle106ConfirmPdFormThirdPartyNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does your organisation process personal OR sensitive personal data AND is a Controller?"
         );
     }
     function handle107ConfirmFairPdOfThirdPartyYes(agent) {
@@ -4530,7 +7218,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4547,7 +7234,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4564,7 +7250,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4581,12 +7266,43 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
             "Do No contract clauses indemnify 'Processors' against fines or claims under UK/EU data protection law?"
+        );
+    }
+    function handle108ConfirmPdAndControllerFollowingQYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does your organisation processing include The identity and the contact details of the 'Controller' and where applicable, the 'Controller's' representative?"
+        );
+    }
+    function handle108ConfirmPdAndControllerFollowingQNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does  your product processe personal OR sensitive personal data AND your organisation is a Controller and if the legal basis for processing personal data is consent?"
         );
     }
     function handle109ConfirmIncludeContactOfControllerYes(agent) {
@@ -4598,7 +7314,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4615,7 +7330,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4632,7 +7346,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4649,7 +7362,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4666,7 +7378,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4683,7 +7394,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4700,7 +7410,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4717,7 +7426,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4734,7 +7442,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4751,12 +7458,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Does your organisation include the details of data transfers outside the European Economic Area, including how the data will be protected. For example: • The recipient is in an ‘adequate’ country (e.g. recognised by the EU Commission to have an adequate level of protection) • Binding Corporate Rules (BCR) or • Model Contract Clauses and you have made the individual aware of how they may obtain a copy of the safeguards, or where they can be seen?"
+            "Does your organisation include the details of data transfers outside the European Economic Area, including how the data will be protected. For example:  The recipient is in an adequate’ country (e.g. recognised by the EU Commission to have an adequate level of protection) Binding Corporate Rules (BCR) or Model Contract Clausesand you have made the individual aware of how they may obtain a copy of the safeguards, or where they can be seen?"
         );
     }
     function handle126ConfirmNotAPreconditionYes(agent) {
@@ -4768,7 +7474,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4785,7 +7490,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4802,7 +7506,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4819,7 +7522,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4836,7 +7538,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4853,7 +7554,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4870,7 +7570,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4887,7 +7586,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4904,7 +7602,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4921,7 +7618,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4938,7 +7634,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4955,7 +7650,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4972,7 +7666,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -4989,7 +7682,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5006,7 +7698,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5023,7 +7714,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5040,7 +7730,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5057,7 +7746,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5074,7 +7762,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5089,7 +7776,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5106,7 +7792,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5123,7 +7808,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5140,7 +7824,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5157,7 +7840,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5174,7 +7856,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5191,7 +7872,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5206,7 +7886,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5223,7 +7902,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5240,7 +7918,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5259,7 +7936,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5276,7 +7952,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5291,7 +7966,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5308,12 +7982,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Does your organisation use ‘strictly necessary’ cookies (without which the end user would be unable to use the specific service explicitly requested)?"
+            "Does your organisation use strictly necessary’ cookies (without which the end user would be unable to use the specific service explicitly requested)?"
         );
     }
     function handle178ConfirmFullyAnonymisedYes(agent) {
@@ -5325,12 +7998,43 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
             "Does your organisation use Appointment of a Data Protection Officer?"
+        );
+    }
+    function handle181ConfirmProductAMobileDevicesYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does your product access, process or store personal or sensitive personal data?"
+        );
+    }
+    function handle181ConfirmProductAMobileDevicesNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does the colour contrast of the text on your native app comply with WCAG 2.0 AA level requirements? All text in your product must have a contrast ratio of at least 4.5 : 1.?"
         );
     }
     function handle182ConfirmProductProcessesPdYes(agent) {
@@ -5342,7 +8046,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5359,7 +8062,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5374,7 +8076,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5391,7 +8092,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5408,7 +8108,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5425,7 +8124,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5442,7 +8140,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5459,13 +8156,42 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
             "Does you organisation Exclude 'strictly necessary' cookies, is consent obtained for each separate cookie purpose?"
         );
+    }
+    function handle179ConfirmDpoYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does your organisatin have a designated Data Protection Officer who is formally tasked with ensuring that you/your organisation is aware of, and complies with, its data protection responsibilities?"
+        );
+    }
+    function handle179ConfirmDpoNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Is your product an application for a smartphone or tablet?");
     }
     function handle183ConfirmSmartPhoneAndProcessPdYes(agent) {
         // reset contexts
@@ -5476,7 +8202,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5491,7 +8216,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5506,7 +8230,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5521,7 +8244,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5538,7 +8260,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5555,7 +8276,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5572,7 +8292,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5589,7 +8308,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5606,7 +8324,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5623,12 +8340,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Can your organisation evidence that the individual gave their valid consent to the processing (e.g. how and when consent was obtained and the information provided to the individual (data subject) at the time)?"
+            "Can your organisation evidence that the individual gavetheir valid consent to the processing (e.g. how and when consent was obtained and the information provided to the individual (data subject) at the time)?"
         );
     }
     function handle184ConfirmPersistedToMobileDevicesYes(agent) {
@@ -5640,11 +8356,40 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add("Has a code-level security assessment been undertaken?");
+    }
+    function handle185ConfirmCodeLevelSecurityYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Can your organisation evidence of the assessment report?");
+    }
+    function handle185ConfirmCodeLevelSecurityNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does the colour contrast of the text on your native app comply with WCAG 2.0 AA level requirements? All text in your product must have a contrast ratio of at least 4.5 : 1.?"
+        );
     }
     function handle186ConfirmEvidenceOfCodeLevelReportYes(agent) {
         // reset contexts
@@ -5655,12 +8400,27 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
             "Has the security assessment been undertaken by an external body?"
+        );
+    }
+    function handle188ConfirmColorYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Did you follow the 6 key principles under the human- centred design process that conforms to the ISO 9241-210 Standard?"
         );
     }
     function handle190RpovidePhaseOfHumanCnetredDesignYes(agent) {
@@ -5672,7 +8432,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5689,7 +8448,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5706,7 +8464,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5723,7 +8480,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5738,7 +8494,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5755,12 +8510,41 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
             "Can the consent be withdrawn as easily as it was given (e.g. via the same electronic interface)?"
+        );
+    }
+    function handle185ConfirmCodeLevelSecurityYes3(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Can your organisation evidence of the assessment report?");
+    }
+    function handle185ConfirmCodeLevelSecurityNo3(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does the colour contrast of the text on your native app comply with WCAG 2.0 AA level requirements? All text in your product must have a contrast ratio of at least 4.5 : 1.?"
         );
     }
     function handle187ConfirmByExternalBodyYes(agent) {
@@ -5772,7 +8556,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5789,7 +8572,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5806,12 +8588,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "Do all contracts require the 'Processor' to assist the 'Controller' in meeting its UK/EU data protection law obligations in relation to: • the security of processing • the notification of personal data breaches, and•data protection impact assessment?"
+            "Do all contracts require the 'Processor' to assist the 'Controller' in meeting its UK/EU data protection law obligations in relation to: the security of processing the notification of personal data breaches, and  data protection impact assessment?"
         );
     }
     function handle119ConfirmIncludeExistenceOfTheDataYes(agent) {
@@ -5823,7 +8604,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5840,7 +8620,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5855,7 +8634,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5872,12 +8650,27 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
             "Does your organisation use Bug reporting and Online tracking?"
+        );
+    }
+    function handle188ConfirmColorYes3(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Did you follow the 6 key principles under the human- centred design process that conforms to the ISO 9241-210 Standard?"
         );
     }
     function handle192ResearchInformedUserNeedsYes(agent) {
@@ -5889,7 +8682,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5906,7 +8698,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5923,7 +8714,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5940,7 +8730,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5955,12 +8744,43 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
             "Can you explain to children why you require the personal data you have asked for, and what you will do with it, in a way which they can understand?"
+        );
+    }
+    function handle175ConfirmBugReportingYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does your organisation collect usage or bug report data (e.g. Google/Adobe Analytics)?"
+        );
+    }
+    function handle175ConfirmBugReportingNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does your organisation use Appointment of a Data Protection Officer?"
         );
     }
     function handle193ProvideProductAddressesYes(agent) {
@@ -5972,7 +8792,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -5989,7 +8808,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6006,7 +8824,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6023,7 +8840,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6040,7 +8856,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6057,13 +8872,42 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
             "Was your product evaluated for usability and accessibility before release?"
         );
+    }
+    function handle104ConfirmPdFromIndividualYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Is fair processing information provided at the time the personal data is obtained?"
+        );
+    }
+    function handle104ConfirmPdFromIndividualNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Is the personal data obtained from a third party?");
     }
     function handle122ConfirmIncludeDecissionBasedOnAutomatedProcessingYes(
         agent
@@ -6076,7 +8920,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6093,7 +8936,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6110,7 +8952,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6127,7 +8968,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6144,7 +8984,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6159,7 +8998,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6176,7 +9014,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6193,7 +9030,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6210,7 +9046,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6227,7 +9062,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6244,11 +9078,74 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add("Is your product a progressive web app?");
+    }
+    function handle124ConfirmSpdAndControllerAndConsentYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Is consent freely given, specific for each separate purpose and informed?"
+        );
+    }
+    function handle124ConfirmSpdAndControllerAndConsentNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does your product processe personal OR sensitive personal data of children AND your organisation is a Controller?"
+        );
+    }
+    function handle139ConfirmPdOfChildAndControllerYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does the processes design by which a child can exercise their data protection rights with the child in mind, and make them easy for children to access and understand?"
+        );
+    }
+    function handle139ConfirmPdOfChildAndControllerNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does your organisation use cookies, web beacons or similar technologies?"
+        );
     }
     function handle153ConfirmNotUsePdToAutoDecisionYes(agent) {
         // reset contexts
@@ -6259,12 +9156,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "If you do use children’s personal data to make such decisions, then you make sure that one of the exceptions applies and that suitable, child appropriate measures are in place to safeguard the child’s rights, freedoms and legitimate interests."
+            "If you do use children’s personal data to make suchdecisions, then you make sure that one of the exceptions applies and that suitable, child appropriate measures are in place to safeguard the child’s rights, freedoms and legitimate interests."
         );
     }
     function handle197ProvidePostReleaseYes(agent) {
@@ -6276,7 +9172,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6293,7 +9188,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6308,7 +9202,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6325,7 +9218,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6340,7 +9232,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6357,11 +9248,40 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add("Is your product a native iOS or Android app?");
+    }
+    function handle201ConfirmProgressiveWebAppYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does your product comply with the baseline checklist for progressive web apps, as defined by Google?"
+        );
+    }
+    function handle201ConfirmProgressiveWebAppNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Is your product a website?");
     }
     function handle202ConfirmComplyWithBaselineYes(agent) {
         // reset contexts
@@ -6372,7 +9292,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6389,7 +9308,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6404,7 +9322,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6421,13 +9338,42 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
             "When considering marketing to children, you take into account their reduced ability to recognise and critically assess the purposes behind the processing and the potential consequences of providing their personal data."
         );
+    }
+    function handle199IosOrAndroidYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Can you give what device OS accessibility features does your product use? For example VoiceOver (iOS), Dynamic Type (iOS), TalkBack (Android) or Select To Speak (Android)?"
+        );
+    }
+    function handle199IosOrAndroidNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Is your product a progressive web app?");
     }
     function handle203ConfirmAccessibilityTestingYes(agent) {
         // reset contexts
@@ -6438,7 +9384,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6453,7 +9398,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6470,7 +9414,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6487,7 +9430,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6504,12 +9446,41 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
             "Does your organisation take into account sector specific guidance on marketing to make sure that children’s personal data is not used in a way that might lead to their exploitation?"
+        );
+    }
+    function handle204ConfirmWebsiteYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Is your website responsive? ");
+    }
+    function handle204ConfirmWebsiteNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does your product expose any Application Programming Interfaces (APIs) or integration channels for other consumers?"
         );
     }
     function handle206ConfirmWcag21Yes(agent) {
@@ -6521,7 +9492,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6538,7 +9508,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6555,7 +9524,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6572,7 +9540,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6589,12 +9556,27 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
             "Have you conducted accessibility testing on your web service?"
+        );
+    }
+    function handle214CapableInStandardFormatYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Is your product a wearable or device or integrates with them?"
         );
     }
     function handle215ConfirmWearableDeviceYes(agent) {
@@ -6606,7 +9588,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6623,7 +9604,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6640,7 +9620,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6657,7 +9636,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6674,7 +9652,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6691,7 +9668,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6708,7 +9684,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6725,11 +9700,26 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add("Does your website provide an accessibility statement?");
+    }
+    function handle217ConfirmSourceCodeControlledWithAuditedYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Do you have accreditation to any industry wide testing standards such as ISO 9001, ISO 29119 etc?"
+        );
     }
     function handle218ConfirmIso9001Yes(agent) {
         // reset contexts
@@ -6740,7 +9730,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6757,7 +9746,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6774,7 +9762,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6791,7 +9778,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6808,7 +9794,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6825,12 +9810,11 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
-            "When offering ISS to UK children on the basis of consent, you obtain parental consent to the processing for children who are under the age of 13, and make reasonable efforts (taking into account the available technology and risks inherent in the processing) to verify that the person providing consent holds parental responsibility for the child?"
+            "When offering ISS to UK children on the basis of consent, youobtain parental consent to the processing for children who are under the age of 13, and make reasonable efforts (taking into account the available technology and risks inherent in the processing) to verify that the person providing consent holds parental responsibility for the child?"
         );
     }
     function handle211ProvideEvidenceImporvingAccessbilityYes(agent) {
@@ -6842,12 +9826,43 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
             "Does your product expose any Application Programming Interfaces (APIs) or integration channels for other consumers?"
+        );
+    }
+    function handle212ConfirmExposeApiYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does your API adhere to the Government Digital Services (GDS) Open API Best Practices?"
+        );
+    }
+    function handle212ConfirmExposeApiNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Is your product capable of exporting data in a standard format?"
         );
     }
     function handle220ConfirmIssuesInAllTestsYes(agent) {
@@ -6859,7 +9874,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6874,12 +9888,43 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
             "When targeting wider European (non UK) markets you comply with the age limits applicable in each member state?"
+        );
+    }
+    function handle212ConfirmExposeApiYes3(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does your API adhere to the Government Digital Services (GDS) Open API Best Practices?"
+        );
+    }
+    function handle212ConfirmExposeApiNo3(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Is your product capable of exporting data in a standard format?"
         );
     }
     function handle221ConfirmRollbackYes(agent) {
@@ -6891,7 +9936,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6908,7 +9952,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6925,7 +9968,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6942,7 +9984,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6959,7 +10000,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -6976,12 +10016,27 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
         agent.add(
             "You do NOT seek parental consent when offering online preventive or counselling services to a child?"
+        );
+    }
+    function handle223ConfirmMonitorRunningOfSystemYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Do you have a documented roadmap for the future development of your product?"
         );
     }
     function handle224ConfirmDocumentedRoadmapYes(agent) {
@@ -6993,7 +10048,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -7010,7 +10064,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -7027,7 +10080,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -7044,7 +10096,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -7061,7 +10112,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -7078,7 +10128,68 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("Do you have a plan for decommissioning your product?");
+    }
+    function handle166ConfirmCookiesYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does your organisation provides users with a cookie policy?"
+        );
+    }
+    function handle166ConfirmCookiesNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Does your organisation use Bug reporting and Online tracking?"
+        );
+    }
+    function handle226ConfirmRoadmapForFutureYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Can you provide details of how you will ensure the continued availability of your product?"
+        );
+    }
+    function handle226ConfirmRoadmapForFutureNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -7093,7 +10204,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -7108,7 +10218,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -7125,11 +10234,44 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
-        agent.add("Great! You’ve gone through all required questions!");
+        agent.add(
+            "Great! You’re all set! You can view suggested next steps by clicking on Suggestions in the navigation bar above."
+        );
+    }
+    function handle228DecommissioningYes2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Can you describe your processes for decommissioning your product and dealing with any retained identifiable data?"
+        );
+    }
+    function handle228DecommissioningNo2(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add(
+            "Great! You’re all set! You can view suggested next steps by clicking on Suggestions in the navigation bar above."
+        );
     }
     function handle229ProvideDecommissioningYes(agent) {
         // reset contexts
@@ -7140,7 +10282,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -7148,7 +10289,7 @@ router.post("/", async (request, response) => {
             "Do you have a plan for dealing with any retained identifiable data in the event that an individual stops using your product? For example by uninstalling or unsubscribing?"
         );
     }
-    function handlePlaceholder2Yes(agent) {
+    function handleEndYes5(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -7157,13 +10298,12 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
-        agent.add("PLACEHOLDER");
+        agent.add("The session has ended");
     }
-    function handlePlaceholder2No(agent) {
+    function handleEndNo5(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -7172,11 +10312,10 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
-        agent.add("PLACEHOLDER");
+        agent.add("The session has ended");
     }
     function handle230ProvideIdentifiableDataYes(agent) {
         // reset contexts
@@ -7187,7 +10326,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -7204,14 +10342,14 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
-        agent.add("Great! You’ve gone through all required questions!");
+        agent.add(
+            "Great! You’re all set! You can view suggested next steps by clicking on Suggestions in the navigation bar above."
+        );
     }
-
-    function handleEmailConversationHistory(agent){
+    function handleEndYes6(agent) {
         // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
@@ -7220,11 +10358,24 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
-        agent.add("On it!")
+        agent.add("The session has ended");
+    }
+    function handleEndNo6(agent) {
+        // reset contexts
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        for (const ctx of requestContexts) {
+            const words = ctx.name.split("/");
+
+            const context = words[words.length - 1];
+            if (!mostRecentContextNames.has(context)) {
+                agent.context.set({ name: context, lifespan: "0" });
+            }
+        }
+        agent.add("The session has ended");
     }
     function handleDefaultFallbackIntent(agent) {
         // reset contexts
@@ -7235,7 +10386,6 @@ router.post("/", async (request, response) => {
 
             const context = words[words.length - 1];
             if (!mostRecentContextNames.has(context)) {
-                
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
@@ -7255,33 +10405,61 @@ router.post("/", async (request, response) => {
 
     function handleClarification(agent) {
         var clarificationMap = new Map();
-        clarificationMap.set("know-class-of-medical-device-initial", "");
+        clarificationMap.set("name-initial", "What name should I call you by?");
+        clarificationMap.set(
+            "contact-person-name-initial",
+            "A contact person is the person in your organisation who is available to be contacted. What is his or her name?"
+        );
+        clarificationMap.set(
+            "email-address-initial",
+            "What is your contact person’s email address?"
+        );
+        clarificationMap.set(
+            "phone-number-initial",
+            "What is your contact person’s phone number?"
+        );
+        clarificationMap.set(
+            "organisation-name-initial",
+            "What is the name of the organisation who is applying to have their Medical Device comply with regulations?"
+        );
+        clarificationMap.set(
+            "organisation-address-initial",
+            "What is the address of the organisation who is applying to have their Medical Device comply with regulations?"
+        );
+        clarificationMap.set(
+            "know-class-of-medical-device-initial",
+            "A medical device is any instrument, apparatus, appliance, software, material or other article, whether used alone or in combination, including the software intended by its manufacturer to be used specifically for diagnostic and/or therapeutic purposes and necessary for its proper application, intended by the manufacturer to be used for human beings for the purpose of diagnosis, prevention, monitoring, treatment or alleviation of disease, OR diagnosis, monitoring, treatment, alleviation of or compensation for an injury or handicap, OR investigation, replacement or modification of the anatomy or of a physiological process OR control of conception, and which does not achieve its principal intended action in or on the human body by pharmacological, immunological or metabolic means, but which may be assisted in its function by such means"
+        );
         clarificationMap.set("know-class-of-medical-device-yes", "");
         clarificationMap.set("know-class-of-medical-device-no", "");
         clarificationMap.set("already-knows-mhra-class-yes", "");
         clarificationMap.set("already-knows-mhra-class-no", "");
         clarificationMap.set("not-touch-patient-yes", "");
         clarificationMap.set("not-touch-patient-no", "");
-        clarificationMap.set("confirm-whether-or-not-go-nhsd-yes", "");
-        clarificationMap.set("confirm-whether-or-not-go-nhsd-no", "");
+        clarificationMap.set("1provideurl-yes", "");
         clarificationMap.set("1-system-service-yes", "");
         clarificationMap.set("class-i-yes", "");
         clarificationMap.set("class-i-no", "");
         clarificationMap.set("channeling-for-administration-yes", "");
         clarificationMap.set("channeling-for-administration-no", "");
-        clarificationMap.set("1provideurl-yes", "");
-        clarificationMap.set("placeholder1-yes", "");
-        clarificationMap.set("placeholder1-no", "");
+        clarificationMap.set("2contact-organisation-yes", "");
         clarificationMap.set("2-inform-yes", "");
-        clarificationMap.set("know-nice-wait-for-nhsd-yes", "");
+        clarificationMap.set("placeholder-yes", "");
+        clarificationMap.set("placeholder-no", "");
         clarificationMap.set("downloaded-or-purchased-yes", "");
         clarificationMap.set("downloaded-or-purchased-no", "");
         clarificationMap.set("used-with-blood-yes", "");
         clarificationMap.set("used-with-blood-no", "");
         clarificationMap.set("modify-biological-composition-yes", "");
         clarificationMap.set("modify-biological-composition-no", "");
-        clarificationMap.set("2contact-organisation-yes", "");
+        clarificationMap.set("3use-nhs-branding-yes", "");
+        clarificationMap.set("3use-nhs-branding-no", "");
         clarificationMap.set("2-simple-monitoring-yes", "");
+        clarificationMap.set("1provideurl-yes", "");
+        clarificationMap.set("end-yes", "");
+        clarificationMap.set("end-no", "");
+        clarificationMap.set("1provideurl-yes", "");
+        clarificationMap.set("1-system-service-yes", "");
         clarificationMap.set("class-iia-yes", "");
         clarificationMap.set("class-iia-no", "");
         clarificationMap.set("connected-to-active-medical-device-yes", "");
@@ -7290,37 +10468,68 @@ router.post("/", async (request, response) => {
         clarificationMap.set("filtration--centrifiguration-no", "");
         clarificationMap.set("contact-with-injured-skin-yes", "");
         clarificationMap.set("contact-with-injured-skin-no", "");
-        clarificationMap.set("3use-nhs-branding-yes", "");
-        clarificationMap.set("3use-nhs-branding-no", "");
+        clarificationMap.set("4confirm-use-of-branding-yes", "");
+        clarificationMap.set("5require-gpc-yes", "");
+        clarificationMap.set("5require-gpc-no", "");
         clarificationMap.set("2-communicate-yes", "");
+        clarificationMap.set("end-yes", "");
+        clarificationMap.set("end-no", "");
+        clarificationMap.set("end-yes", "");
+        clarificationMap.set("end-no", "");
+        clarificationMap.set("placeholder-yes", "");
+        clarificationMap.set("placeholder-no", "");
+        clarificationMap.set("downloaded-or-purchased-yes", "");
+        clarificationMap.set("downloaded-or-purchased-no", "");
+        clarificationMap.set("class-i-yes", "");
+        clarificationMap.set("class-i-no", "");
+        clarificationMap.set("class-iia-yes", "");
+        clarificationMap.set("class-iia-no", "");
+        clarificationMap.set("class-iia-yes", "");
+        clarificationMap.set("class-iia-no", "");
         clarificationMap.set("class-iib-yes", "");
         clarificationMap.set("class-iib-no", "");
         clarificationMap.set("wounds-which-breach-dermis-yes", "");
         clarificationMap.set("wounds-which-breach-dermis-no", "");
         clarificationMap.set("invasive-in-body-orifice-yes", "");
         clarificationMap.set("invasive-in-body-orifice-no", "");
-        clarificationMap.set("4confirm-use-of-branding-yes", "");
         clarificationMap.set("5require-gpc-yes", "");
         clarificationMap.set("5require-gpc-no", "");
+        clarificationMap.set("6confirm-with-gpc-yes", "");
+        clarificationMap.set("7require-healthcares-yes", "");
+        clarificationMap.set("7require-healthcares-no", "");
         clarificationMap.set("3a-behaviour-change-yes", "");
+        clarificationMap.set("placeholder-yes", "");
+        clarificationMap.set("placeholder-no", "");
+        clarificationMap.set("downloaded-or-purchased-yes", "");
+        clarificationMap.set("downloaded-or-purchased-no", "");
+        clarificationMap.set("class-iib-yes", "");
+        clarificationMap.set("class-iib-no", "");
         clarificationMap.set("manage-micro-environments-yes", "");
         clarificationMap.set("manage-micro-environments-no", "");
         clarificationMap.set("trancient-use-yes", "");
         clarificationMap.set("trancient-use-no", "");
         clarificationMap.set("surgically-invasive-yes", "");
         clarificationMap.set("surgically-invasive-no", "");
-        clarificationMap.set("6confirm-with-gpc-yes", "");
         clarificationMap.set("7require-healthcares-yes", "");
         clarificationMap.set("7require-healthcares-no", "");
+        clarificationMap.set("8confirm-healthcare-registration-yes", "");
+        clarificationMap.set("9provide-a-guest-login-yes", "");
         clarificationMap.set("3a-self_manage-yes", "");
+        clarificationMap.set("class-iia-yes", "");
+        clarificationMap.set("class-iia-no", "");
+        clarificationMap.set("class-i-yes", "");
+        clarificationMap.set("class-i-no", "");
+        clarificationMap.set("class-i-yes", "");
+        clarificationMap.set("class-i-no", "");
         clarificationMap.set("short-term-use-yes", "");
         clarificationMap.set("short-term-use-no", "");
         clarificationMap.set("control--diagnose--monitor-or-correct-yes", "");
         clarificationMap.set("control--diagnose--monitor-or-correct-no", "");
         clarificationMap.set("surgically-invasive-and-short-term-use-yes", "");
         clarificationMap.set("surgically-invasive-and-short-term-use-no", "");
-        clarificationMap.set("8confirm-healthcare-registration-yes", "");
         clarificationMap.set("9provide-a-guest-login-yes", "");
+        clarificationMap.set("10require-registration-with-cqc-yes", "");
+        clarificationMap.set("10require-registration-with-cqc-no", "");
         clarificationMap.set("3b-treat-yes", "");
         clarificationMap.set("oral-cavity--ear-canal-yes", "");
         clarificationMap.set("oral-cavity--ear-canal-no", "");
@@ -7334,9 +10543,15 @@ router.post("/", async (request, response) => {
         clarificationMap.set("direct-contact-with-cns--2--no", "");
         clarificationMap.set("surgically-invasive--long-term-use-yes", "");
         clarificationMap.set("surgically-invasive--long-term-use-no", "");
-        clarificationMap.set("10require-registration-with-cqc-yes", "");
-        clarificationMap.set("10require-registration-with-cqc-no", "");
+        clarificationMap.set("11confirm-registration-with-cqc-yes", "");
+        clarificationMap.set("11confirm-registration-with-cqc-no", "");
+        clarificationMap.set("14need-registration-cqc-yes", "");
+        clarificationMap.set("14need-registration-cqc-no", "");
         clarificationMap.set("3b-acitve_monitoring-yes", "");
+        clarificationMap.set("class-i-yes", "");
+        clarificationMap.set("class-i-no", "");
+        clarificationMap.set("class-iia-yes", "");
+        clarificationMap.set("class-iia-no", "");
         clarificationMap.set(
             "oral-cavity--ear-canal--not-liable-to-be-absorbed-yes",
             ""
@@ -7347,38 +10562,72 @@ router.post("/", async (request, response) => {
         );
         clarificationMap.set("connected-to-active-medical-device--2--yes", "");
         clarificationMap.set("connected-to-active-medical-device--2--no", "");
+        clarificationMap.set("placeholder-yes", "");
+        clarificationMap.set("placeholder-no", "");
+        clarificationMap.set("downloaded-or-purchased-yes", "");
+        clarificationMap.set("downloaded-or-purchased-no", "");
+        clarificationMap.set("class-iii-yes", "");
+        clarificationMap.set("class-iii-no", "");
         clarificationMap.set("reusable-surgical-instrument-yes", "");
         clarificationMap.set("reusable-surgical-instrument-no", "");
+        clarificationMap.set("class-iii-yes", "");
+        clarificationMap.set("class-iii-no", "");
         clarificationMap.set("monitor--control--diagnose-or-correct-yes", "");
         clarificationMap.set("monitor--control--diagnose-or-correct-no", "");
         clarificationMap.set("used-in-teeth-yes", "");
         clarificationMap.set("used-in-teeth-no", "");
         clarificationMap.set("active-therapeutic-device-yes", "");
         clarificationMap.set("active-therapeutic-device-no", "");
-        clarificationMap.set("11confirm-registration-with-cqc-yes", "");
-        clarificationMap.set("11confirm-registration-with-cqc-no", "");
+        clarificationMap.set("12provide-cqc-number-yes", "");
+        clarificationMap.set("12provide-cqc-number-no", "");
         clarificationMap.set("14need-registration-cqc-yes", "");
         clarificationMap.set("14need-registration-cqc-no", "");
+        clarificationMap.set("16provide-description-yes", "");
+        clarificationMap.set("15confirm-does-not-need-cqc-yes", "");
         clarificationMap.set("3b-calculate-yes", "");
+        clarificationMap.set("class-iia-yes", "");
+        clarificationMap.set("class-iia-no", "");
+        clarificationMap.set("class-iib-yes", "");
+        clarificationMap.set("class-iib-no", "");
+        clarificationMap.set("class-iia-yes", "");
+        clarificationMap.set("class-iia-no", "");
+        clarificationMap.set("surgically-invasive-yes", "");
+        clarificationMap.set("surgically-invasive-no", "");
+        clarificationMap.set("class-i-yes", "");
+        clarificationMap.set("class-i-no", "");
         clarificationMap.set("supply-energy-yes", "");
         clarificationMap.set("supply-energy-no", "");
+        clarificationMap.set("class-iii-yes", "");
+        clarificationMap.set("class-iii-no", "");
         clarificationMap.set("supply-energy--2--yes", "");
         clarificationMap.set("supply-energy--2--no", "");
+        clarificationMap.set("class-iia-yes", "");
+        clarificationMap.set("class-iia-no", "");
         clarificationMap.set("direct-contact-with-heart-yes", "");
         clarificationMap.set("direct-contact-with-heart-no", "");
         clarificationMap.set("administer-or-exchange-energy-yes", "");
         clarificationMap.set("administer-or-exchange-energy-no", "");
         clarificationMap.set("supply-energy-to-image-in-vivo-yes", "");
         clarificationMap.set("supply-energy-to-image-in-vivo-no", "");
-        clarificationMap.set("12provide-cqc-number-yes", "");
-        clarificationMap.set("12provide-cqc-number-no", "");
+        clarificationMap.set("13provide-recent-cqc-registration-yes", "");
+        clarificationMap.set("14need-registration-cqc-yes", "");
+        clarificationMap.set("14need-registration-cqc-no", "");
+        clarificationMap.set("17integrate-with-website-or-others-yes", "");
         clarificationMap.set("16provide-description-yes", "");
-        clarificationMap.set("15confirm-does-not-need-cqc-yes", "");
-        clarificationMap.set("3b-diagnose-yes", "");
+        clarificationMap.set(
+            "3b-diagnose-yes",
+            "For Example, a DHT in Tier3a must meet the standard for Tier 1, Tier 2 and Tier 3a; DHT in Tier 3b must meet the standards for all Tiers"
+        );
+        clarificationMap.set("class-iib-yes", "");
+        clarificationMap.set("class-iib-no", "");
         clarificationMap.set("have-a-biological-effect-yes", "");
         clarificationMap.set("have-a-biological-effect-no", "");
+        clarificationMap.set("class-iib-yes", "");
+        clarificationMap.set("class-iib-no", "");
         clarificationMap.set("have-a-biological-effect--2--yes", "");
         clarificationMap.set("have-a-biological-effect--2--no", "");
+        clarificationMap.set("class-iii-yes", "");
+        clarificationMap.set("class-iii-no", "");
         clarificationMap.set(
             "have-a-biological-effect-or-mainly-absorbed-yes",
             ""
@@ -7387,18 +10636,30 @@ router.post("/", async (request, response) => {
             "have-a-biological-effect-or-mainly-absorbed-no",
             ""
         );
+        clarificationMap.set("class-iib-yes", "");
+        clarificationMap.set("class-iib-no", "");
         clarificationMap.set("control--monitor-or-influence-yes", "");
         clarificationMap.set("control--monitor-or-influence-no", "");
         clarificationMap.set("monitor-vital-physiological-parameters-yes", "");
         clarificationMap.set("monitor-vital-physiological-parameters-no", "");
         clarificationMap.set("active-device-to-administer-medicines-yes", "");
         clarificationMap.set("active-device-to-administer-medicines-no", "");
-        clarificationMap.set("13provide-recent-cqc-registration-yes", "");
-        clarificationMap.set("17integrate-with-website-or-others-yes", "");
+        clarificationMap.set("14need-registration-cqc-yes", "");
+        clarificationMap.set("14need-registration-cqc-no", "");
+        clarificationMap.set("18connect-with-devices-yes", "");
+        clarificationMap.set("18connect-with-devices-no", "");
+        clarificationMap.set("functional-classification-over-yes", "");
+        clarificationMap.set("functional-classification-over-no", "");
+        clarificationMap.set("class-iib-yes", "");
+        clarificationMap.set("class-iib-no", "");
         clarificationMap.set("administer-medicine-yes", "");
         clarificationMap.set("administer-medicine-no", "");
+        clarificationMap.set("class-iii-yes", "");
+        clarificationMap.set("class-iii-no", "");
         clarificationMap.set("undergo-chemical-change-yes", "");
         clarificationMap.set("undergo-chemical-change-no", "");
+        clarificationMap.set("class-iii-yes", "");
+        clarificationMap.set("class-iii-no", "");
         clarificationMap.set(
             "undergo-chemical-change-or-administer-medicine-yes",
             ""
@@ -7407,16 +10668,46 @@ router.post("/", async (request, response) => {
             "undergo-chemical-change-or-administer-medicine-no",
             ""
         );
+        clarificationMap.set("class-iib-yes", "");
+        clarificationMap.set("class-iib-no", "");
+        clarificationMap.set("class-iia-yes", "");
+        clarificationMap.set("class-iia-no", "");
+        clarificationMap.set("class-iib-yes", "");
+        clarificationMap.set("class-iib-no", "");
         clarificationMap.set("emit-ionizing-radiation-yes", "");
         clarificationMap.set("emit-ionizing-radiation-no", "");
         clarificationMap.set("potentially-hazardous-yes", "");
         clarificationMap.set("potentially-hazardous-no", "");
         clarificationMap.set("active-device-not-classified-yes", "");
         clarificationMap.set("active-device-not-classified-no", "");
-        clarificationMap.set("18connect-with-devices-yes", "");
-        clarificationMap.set("18connect-with-devices-no", "");
+        clarificationMap.set("19replace-a-nhs-service-yes", "");
+        clarificationMap.set("19replace-a-nhs-service-no", "");
+        clarificationMap.set("20confirm-replace-a-nhs-service-yes", "");
+        clarificationMap.set("1provideurl-yes", "");
+        clarificationMap.set("end-yes", "");
+        clarificationMap.set("end-no", "");
+        clarificationMap.set("class-iib-yes", "");
+        clarificationMap.set("class-iib-no", "");
+        clarificationMap.set("class-iia-yes", "");
+        clarificationMap.set("class-iia-no", "");
+        clarificationMap.set("class-iib-yes", "");
+        clarificationMap.set("class-iib-no", "");
+        clarificationMap.set("class-iia-yes", "");
+        clarificationMap.set("class-iia-no", "");
+        clarificationMap.set("class-iii-yes", "");
+        clarificationMap.set("class-iii-no", "");
         clarificationMap.set("use-in-breast-implants-yes", "");
         clarificationMap.set("use-in-breast-implants-no", "");
+        clarificationMap.set("class-iib-yes", "");
+        clarificationMap.set("class-iib-no", "");
+        clarificationMap.set("class-iia-yes", "");
+        clarificationMap.set("class-iia-no", "");
+        clarificationMap.set("class-iib-yes", "");
+        clarificationMap.set("class-iib-no", "");
+        clarificationMap.set("class-iia-yes", "");
+        clarificationMap.set("class-iia-no", "");
+        clarificationMap.set("class-i-yes", "");
+        clarificationMap.set("class-i-no", "");
         clarificationMap.set(
             "incorporate-integral-medicinal-substances-yes",
             ""
@@ -7425,36 +10716,64 @@ router.post("/", async (request, response) => {
             "incorporate-integral-medicinal-substances-no",
             ""
         );
-        clarificationMap.set("19replace-a-nhs-service-yes", "");
-        clarificationMap.set("19replace-a-nhs-service-no", "");
         clarificationMap.set("20confirm-replace-a-nhs-service-yes", "");
+        clarificationMap.set("21free-to-public-yes", "");
+        clarificationMap.set("21free-to-public-yes", "");
+        clarificationMap.set("class-iii-yes", "");
+        clarificationMap.set("class-iii-no", "");
+        clarificationMap.set("class-iib-yes", "");
+        clarificationMap.set("class-iib-no", "");
+        clarificationMap.set("class-iii-yes", "");
+        clarificationMap.set("class-iii-no", "");
         clarificationMap.set("contraception-yes", "");
         clarificationMap.set("contraception-no", "");
-        clarificationMap.set("21free-to-public-yes", "");
+        clarificationMap.set("22source-of-funding-yes", "");
         clarificationMap.set("implantable-yes", "");
         clarificationMap.set("implantable-no", "");
         clarificationMap.set("disinfecting-mds-yes", "");
         clarificationMap.set("disinfecting-mds-no", "");
-        clarificationMap.set("22source-of-funding-yes", "");
+        clarificationMap.set("23provide-a-trial-yes", "");
+        clarificationMap.set("23provide-a-trial-no", "");
+        clarificationMap.set("class-iii-yes", "");
+        clarificationMap.set("class-iii-no", "");
+        clarificationMap.set("class-iib-yes", "");
+        clarificationMap.set("class-iib-no", "");
         clarificationMap.set("disinfecting-contact-lenses-yes", "");
         clarificationMap.set("disinfecting-contact-lenses-no", "");
         clarificationMap.set("recording-of-x-ray-yes", "");
         clarificationMap.set("recording-of-x-ray-no", "");
-        clarificationMap.set("23provide-a-trial-yes", "");
-        clarificationMap.set("23provide-a-trial-no", "");
-        clarificationMap.set("disinfecting-invasive-mds-yes", "");
-        clarificationMap.set("disinfecting-invasive-mds-no", "");
-        clarificationMap.set("non-viable-animal-tissues-yes", "");
-        clarificationMap.set("non-viable-animal-tissues-no", "");
         clarificationMap.set("24provide-detail-of-the-trial-yes", "");
         clarificationMap.set("25confirm-process-personal-data-yes", "");
         clarificationMap.set("25confirm-process-personal-data-no", "");
-        clarificationMap.set("blood-bag-yes", "");
-        clarificationMap.set("blood-bag-no", "");
+        clarificationMap.set("class-iib-yes", "");
+        clarificationMap.set("class-iib-no", "");
+        clarificationMap.set("disinfecting-invasive-mds-yes", "");
+        clarificationMap.set("disinfecting-invasive-mds-no", "");
+        clarificationMap.set("class-iia-yes", "");
+        clarificationMap.set("class-iia-no", "");
+        clarificationMap.set("non-viable-animal-tissues-yes", "");
+        clarificationMap.set("non-viable-animal-tissues-no", "");
+        clarificationMap.set("25confirm-process-personal-data-yes", "");
+        clarificationMap.set("25confirm-process-personal-data-no", "");
         clarificationMap.set("26comfirm-where-to-process-yes", "");
         clarificationMap.set("27comfrim-available-on-platforms-yes", "");
         clarificationMap.set("27comfrim-available-on-platforms-no", "");
+        clarificationMap.set("class-iib-yes", "");
+        clarificationMap.set("class-iib-no", "");
+        clarificationMap.set("class-iia-yes", "");
+        clarificationMap.set("class-iia-no", "");
+        clarificationMap.set("class-iii-yes", "");
+        clarificationMap.set("class-iii-no", "");
+        clarificationMap.set("blood-bag-yes", "");
+        clarificationMap.set("blood-bag-no", "");
+        clarificationMap.set("27comfrim-available-on-platforms-yes", "");
+        clarificationMap.set("27comfrim-available-on-platforms-no", "");
         clarificationMap.set("28provide-platform-number-yes", "");
+        clarificationMap.set("29comfirm-type-of-pharmacy-yes", "");
+        clarificationMap.set("class-iib-yes", "");
+        clarificationMap.set("class-iib-no", "");
+        clarificationMap.set("blood-bag-yes", "");
+        clarificationMap.set("blood-bag-no", "");
         clarificationMap.set("29comfirm-type-of-pharmacy-yes", "");
         clarificationMap.set("30provide-clinical-benefits-yes", "");
         clarificationMap.set("30provide-clinical-benefits-no", "");
@@ -7469,6 +10788,12 @@ router.post("/", async (request, response) => {
         );
         clarificationMap.set(
             "32provide-the-url-of-clinical-benefits-d11-no",
+            ""
+        );
+        clarificationMap.set("34provide-behavioural-benefits-yes", "");
+        clarificationMap.set("34provide-behavioural-benefits-no", "");
+        clarificationMap.set(
+            "33provide-the-reason-of-not-have-clinical-benefits-yes",
             ""
         );
         clarificationMap.set("34provide-behavioural-benefits-yes", "");
@@ -7489,6 +10814,14 @@ router.post("/", async (request, response) => {
         clarificationMap.set("36provide-url-of-behaviroural-benefits-no", "");
         clarificationMap.set("38comfirm-of-economic-benefits-yes", "");
         clarificationMap.set("38comfirm-of-economic-benefits-no", "");
+        clarificationMap.set("38comfirm-of-economic-benefits-yes", "");
+        clarificationMap.set("38comfirm-of-economic-benefits-no", "");
+        clarificationMap.set(
+            "37comfirm-reason-not-have-behavioural-benefits-yes",
+            ""
+        );
+        clarificationMap.set("38comfirm-of-economic-benefits-yes", "");
+        clarificationMap.set("38comfirm-of-economic-benefits-no", "");
         clarificationMap.set("39describe-the-economic-benefits-yes", "");
         clarificationMap.set("39describe-the-economic-benefits-no", "");
         clarificationMap.set(
@@ -7497,6 +10830,14 @@ router.post("/", async (request, response) => {
         );
         clarificationMap.set("40provide-evidence-of-economic-benefits-yes", "");
         clarificationMap.set("40provide-evidence-of-economic-benefits-no", "");
+        clarificationMap.set("42comfirm-any-other-outcomes-yes", "");
+        clarificationMap.set("42comfirm-any-other-outcomes-no", "");
+        clarificationMap.set("42comfirm-any-other-outcomes-yes", "");
+        clarificationMap.set("42comfirm-any-other-outcomes-no", "");
+        clarificationMap.set(
+            "41provide-a-reason-not-have-economic-benefits-yes",
+            ""
+        );
         clarificationMap.set("42comfirm-any-other-outcomes-yes", "");
         clarificationMap.set("42comfirm-any-other-outcomes-no", "");
         clarificationMap.set("43provide-what-other-outcomes-yes", "");
@@ -7516,14 +10857,24 @@ router.post("/", async (request, response) => {
         );
         clarificationMap.set("50confirm-within-nhs-dcb0129-yes", "");
         clarificationMap.set("50confirm-within-nhs-dcb0129-no", "");
+        clarificationMap.set("46provide-url-of-evaluating-outcomes-yes", "");
+        clarificationMap.set("47provide-reason-why-no-outcomes-yes", "");
+        clarificationMap.set("50confirm-within-nhs-dcb0129-yes", "");
+        clarificationMap.set("50confirm-within-nhs-dcb0129-no", "");
         clarificationMap.set("51provide-copy-of-safety-case-yes", "");
         clarificationMap.set("52provide-why-not-fall-within-dcb0129-yes", "");
+        clarificationMap.set("53comfirm-adverse-effects-yes", "");
+        clarificationMap.set("53comfirm-adverse-effects-no", "");
         clarificationMap.set("53comfirm-adverse-effects-yes", "");
         clarificationMap.set("53comfirm-adverse-effects-no", "");
         clarificationMap.set("54provide-possible-adverse-effects-yes", "");
         clarificationMap.set("55comfirm-approved-by-clinician-yes", "");
         clarificationMap.set("55comfirm-approved-by-clinician-no", "");
+        clarificationMap.set("55comfirm-approved-by-clinician-yes", "");
+        clarificationMap.set("55comfirm-approved-by-clinician-no", "");
         clarificationMap.set("56provide-name-of-clinician-yes", "");
+        clarificationMap.set("-57confirm-process-the-data-personal-yes", "");
+        clarificationMap.set("-57confirm-process-the-data-personal-no", "");
         clarificationMap.set("-57confirm-process-the-data-personal-yes", "");
         clarificationMap.set("-57confirm-process-the-data-personal-no", "");
         clarificationMap.set("58provide-peronal-data-processed-yes", "");
@@ -7538,7 +10889,12 @@ router.post("/", async (request, response) => {
             "60provide-sensitive-personal-data-processed-yes",
             ""
         );
+        clarificationMap.set(
+            "61confirm-fully-understanding-of-personal-data-sensitive-data-yes",
+            ""
+        );
         clarificationMap.set("63process-data-and-not-a-controller-yes", "");
+        clarificationMap.set("62understand-organisation-s-role-yes", "");
         clarificationMap.set(
             "64process-personal-data-and-processor-not-controller-yes",
             ""
@@ -7558,10 +10914,16 @@ router.post("/", async (request, response) => {
         );
         clarificationMap.set("68process-data-and-controller-yes", "");
         clarificationMap.set("68process-data-and-controller-no", "");
+        clarificationMap.set("68process-data-and-controller-yes", "");
+        clarificationMap.set("68process-data-and-controller-no", "");
         clarificationMap.set("69subject-to-laws-yes", "");
         clarificationMap.set("70data-and-controller-and-laws-yes", "");
         clarificationMap.set("70data-and-controller-and-laws-no", "");
+        clarificationMap.set("70data-and-controller-and-laws-yes", "");
+        clarificationMap.set("70data-and-controller-and-laws-no", "");
         clarificationMap.set("71confirm-number-of-dpr-yes", "");
+        clarificationMap.set("72provide-the-overall-grading-yes", "");
+        clarificationMap.set("72provide-the-overall-grading-no", "");
         clarificationMap.set("72provide-the-overall-grading-yes", "");
         clarificationMap.set("72provide-the-overall-grading-no", "");
         clarificationMap.set("72provide-the-name-of-overall-grading-yes", "");
@@ -7570,12 +10932,19 @@ router.post("/", async (request, response) => {
         clarificationMap.set("73provide-copy-pf-the-checklist-yes", "");
         clarificationMap.set("75provide-dpia-yes", "");
         clarificationMap.set("76confirm-permission-of-dpia--yes", "");
+        clarificationMap.set("74comfirm-meets-annex-2-yes", "");
+        clarificationMap.set("74comfirm-meets-annex-2-no", "");
+        clarificationMap.set("76confirm-permission-of-dpia--yes", "");
         clarificationMap.set("77confirm-data-and-controller-yes", "");
         clarificationMap.set("77confirm-data-and-controller-no", "");
         clarificationMap.set("78comfirm-legal-basis-yes", "");
         clarificationMap.set("79confirm-other-legal-basis-yes", "");
         clarificationMap.set("79confirm-other-legal-basis-no", "");
+        clarificationMap.set("79confirm-other-legal-basis-yes", "");
+        clarificationMap.set("79confirm-other-legal-basis-no", "");
         clarificationMap.set("80describe-the-other-legal-basis-yes", "");
+        clarificationMap.set("81confirm-measures-to-protect-right-yes", "");
+        clarificationMap.set("81confirm-measures-to-protect-right-no", "");
         clarificationMap.set("81confirm-measures-to-protect-right-yes", "");
         clarificationMap.set("81confirm-measures-to-protect-right-no", "");
         clarificationMap.set("82provide-transparency-to-data-subject-yes", "");
@@ -7607,7 +10976,13 @@ router.post("/", async (request, response) => {
         clarificationMap.set("105confirm-fair-pd-yes", "");
         clarificationMap.set("106confirm-pd-form-third-party-yes", "");
         clarificationMap.set("106confirm-pd-form-third-party-no", "");
+        clarificationMap.set(
+            "86confirm-measure-ot-verify-the-identity-yes",
+            ""
+        );
         clarificationMap.set("90confirm-third-party-of-personal-data-yes", "");
+        clarificationMap.set("106confirm-pd-form-third-party-yes", "");
+        clarificationMap.set("106confirm-pd-form-third-party-no", "");
         clarificationMap.set("107confirm-fair-pd-of-third-party-yes", "");
         clarificationMap.set(
             "108confirm-pd-and-controller-following-q-yes",
@@ -7615,6 +10990,11 @@ router.post("/", async (request, response) => {
         );
         clarificationMap.set("108confirm-pd-and-controller-following-q-no", "");
         clarificationMap.set("91confirm-written-binding--yes", "");
+        clarificationMap.set(
+            "108confirm-pd-and-controller-following-q-yes",
+            ""
+        );
+        clarificationMap.set("108confirm-pd-and-controller-following-q-no", "");
         clarificationMap.set(
             "109confirm-include-contact-of-controller-yes",
             ""
@@ -7689,6 +11069,8 @@ router.post("/", async (request, response) => {
         clarificationMap.set("144confirm-process-chil-dfrom-outset-yes", "");
         clarificationMap.set("170confirm-cookie-explain-the-purpose-yes", "");
         clarificationMap.set("178confirm-fully-anonymised-yes", "");
+        clarificationMap.set("181confirm-product-a-mobile-devices-yes", "");
+        clarificationMap.set("181confirm-product-a-mobile-devices-no", "");
         clarificationMap.set("182confirm-product-processes-pd-yes", "");
         clarificationMap.set("182confirm-product-processes-pd-no", "");
         clarificationMap.set("188confirm-color-yes", "");
@@ -7703,6 +11085,8 @@ router.post("/", async (request, response) => {
             "171confirm-use-strictly-necessary-cookies-yes",
             ""
         );
+        clarificationMap.set("179confirm-dpo-yes", "");
+        clarificationMap.set("179confirm-dpo-no", "");
         clarificationMap.set("183confirm-smart-phone-and-process-pd-yes", "");
         clarificationMap.set("183confirm-smart-phone-and-process-pd-no", "");
         clarificationMap.set("185confirm-code-level-security-yes", "");
@@ -7720,10 +11104,13 @@ router.post("/", async (request, response) => {
             ""
         );
         clarificationMap.set("184confirm-persisted-to-mobile-devices-yes", "");
+        clarificationMap.set("185confirm-code-level-security-yes", "");
+        clarificationMap.set("185confirm-code-level-security-no", "");
         clarificationMap.set(
             "186confirm-evidence-of-code-level-report-yes",
             ""
         );
+        clarificationMap.set("188confirm-color-yes", "");
         clarificationMap.set(
             "190rpovide-phase-of-human-cnetred-design-yes",
             ""
@@ -7733,6 +11120,8 @@ router.post("/", async (request, response) => {
         clarificationMap.set("133confirm-affirmative-yes", "");
         clarificationMap.set("147confirm-risk-of-childs-yes", "");
         clarificationMap.set("173confirm-evidence-valid-consent-yes", "");
+        clarificationMap.set("185confirm-code-level-security-yes", "");
+        clarificationMap.set("185confirm-code-level-security-no", "");
         clarificationMap.set("187confirm-by-external-body-yes", "");
         clarificationMap.set("191provide-user-demographics-yes", "");
         clarificationMap.set(
@@ -7746,6 +11135,7 @@ router.post("/", async (request, response) => {
         clarificationMap.set("134confirm-not-preticked-yes", "");
         clarificationMap.set("148confirm-privacy-notices-yes", "");
         clarificationMap.set("174confirm-consent-withdraw-easily-yes", "");
+        clarificationMap.set("188confirm-color-yes", "");
         clarificationMap.set("192research-informed-user-needs-yes", "");
         clarificationMap.set("102confirm-processor-assist-controller-yes", "");
         clarificationMap.set(
@@ -7754,6 +11144,8 @@ router.post("/", async (request, response) => {
         );
         clarificationMap.set("135confirm-not-use-blank-yes", "");
         clarificationMap.set("149confirm-friendly-way-of-data-yes", "");
+        clarificationMap.set("175confirm-bug-reporting-yes", "");
+        clarificationMap.set("175confirm-bug-reporting-no", "");
         clarificationMap.set("193provide-product-addresses-yes", "");
         clarificationMap.set("103confirm-processor-tell-controller-yes", "");
         clarificationMap.set(
@@ -7763,6 +11155,8 @@ router.post("/", async (request, response) => {
         clarificationMap.set("136confirm-not-default-setting-yes", "");
         clarificationMap.set("150confirmexplain-to-childs-yes", "");
         clarificationMap.set("194provide-times-tested-yes", "");
+        clarificationMap.set("104confirm-pd-from-individual-yes", "");
+        clarificationMap.set("104confirm-pd-from-individual-no", "");
         clarificationMap.set(
             "122confirm-include-decission-based-on-automated-processing-yes",
             ""
@@ -7786,6 +11180,16 @@ router.post("/", async (request, response) => {
         clarificationMap.set("196provide-user-feedback-yes", "");
         clarificationMap.set("199ios-or-android-yes", "");
         clarificationMap.set("199ios-or-android-no", "");
+        clarificationMap.set(
+            "124confirm-spd-and-controller-and-consent-yes",
+            ""
+        );
+        clarificationMap.set(
+            "124confirm-spd-and-controller-and-consent-no",
+            ""
+        );
+        clarificationMap.set("139confirm-pd-of-child-and-controller-yes", "");
+        clarificationMap.set("139confirm-pd-of-child-and-controller-no", "");
         clarificationMap.set("153confirm-not-use-pd-to-auto-decision-yes", "");
         clarificationMap.set("197provide-post-release-yes", "");
         clarificationMap.set("200os-accessibility-yes", "");
@@ -7793,20 +11197,27 @@ router.post("/", async (request, response) => {
         clarificationMap.set("201confirm-progressive-web-app-no", "");
         clarificationMap.set("154confirm-noe-exception-yes", "");
         clarificationMap.set("198provide-schedule-of-improvement-yes", "");
+        clarificationMap.set("201confirm-progressive-web-app-yes", "");
+        clarificationMap.set("201confirm-progressive-web-app-no", "");
         clarificationMap.set("202confirm-comply-with-baseline-yes", "");
         clarificationMap.set("204confirm-website-yes", "");
         clarificationMap.set("204confirm-website-no", "");
         clarificationMap.set("155confrim-stop-profilling-yes", "");
+        clarificationMap.set("199ios-or-android-yes", "");
+        clarificationMap.set("199ios-or-android-no", "");
         clarificationMap.set("203confirm-accessibility-testing-yes", "");
         clarificationMap.set("205confirm-responsive-yes", "");
         clarificationMap.set("212confirm-expose-api-yes", "");
         clarificationMap.set("212confirm-expose-api-no", "");
         clarificationMap.set("156confirm-marketing-child-s-pd-yes", "");
+        clarificationMap.set("204confirm-website-yes", "");
+        clarificationMap.set("204confirm-website-no", "");
         clarificationMap.set("206confirm-wcag2-1-yes", "");
         clarificationMap.set("213api-adhere-to-gds-yes", "");
         clarificationMap.set("214capable-in-standard-format-yes", "");
         clarificationMap.set("157confirm-take-guidance-into-account-yes", "");
         clarificationMap.set("207provide-text-equivalence-yes", "");
+        clarificationMap.set("214capable-in-standard-format-yes", "");
         clarificationMap.set("215confirm-wearable-device-yes", "");
         clarificationMap.set("215confirm-wearable-device-no", "");
         clarificationMap.set("158confirm-stop-pd-for-marketing-yes", "");
@@ -7818,6 +11229,10 @@ router.post("/", async (request, response) => {
         );
         clarificationMap.set("159confirm-comply-with-marketing-yes", "");
         clarificationMap.set("209confirm-keyboard-only-control-yes", "");
+        clarificationMap.set(
+            "217confirm-source-code-controlled-with-audited-yes",
+            ""
+        );
         clarificationMap.set("218confirm-iso-9001-yes", "");
         clarificationMap.set("160confirm-not-offer-iss-yes", "");
         clarificationMap.set("210provide-accessibility-testing--yes", "");
@@ -7828,28 +11243,41 @@ router.post("/", async (request, response) => {
             "211provide-evidence-imporving-accessbility-yes",
             ""
         );
+        clarificationMap.set("212confirm-expose-api-yes", "");
+        clarificationMap.set("212confirm-expose-api-no", "");
         clarificationMap.set("220confirm-issues-in-all-tests-yes", "");
         clarificationMap.set("162provide-effort-yes", "");
+        clarificationMap.set("212confirm-expose-api-yes", "");
+        clarificationMap.set("212confirm-expose-api-no", "");
         clarificationMap.set("221confirm-rollback-yes", "");
         clarificationMap.set("221confirm-rollback-no", "");
         clarificationMap.set("163confirm-age-limits-yes", "");
         clarificationMap.set("222provide-how-rollback-yes", "");
         clarificationMap.set("223confirm-monitor-running-of-system-yes", "");
         clarificationMap.set("164confirm-review-age-verification-yes", "");
+        clarificationMap.set("223confirm-monitor-running-of-system-yes", "");
         clarificationMap.set("224confirm-documented-roadmap-yes", "");
         clarificationMap.set("224confirm-documented-roadmap-no", "");
         clarificationMap.set("165confirm-not-seek-parental-consent-yes", "");
         clarificationMap.set("225confirm-details-of-development-yes", "");
         clarificationMap.set("226confirm-roadmap-for-future-yes", "");
         clarificationMap.set("226confirm-roadmap-for-future-no", "");
+        clarificationMap.set("166confirm-cookies-yes", "");
+        clarificationMap.set("166confirm-cookies-no", "");
+        clarificationMap.set("226confirm-roadmap-for-future-yes", "");
+        clarificationMap.set("226confirm-roadmap-for-future-no", "");
         clarificationMap.set("227provide-ensure-availibility--yes", "");
         clarificationMap.set("228decommissioning-yes", "");
         clarificationMap.set("228decommissioning-no", "");
+        clarificationMap.set("228decommissioning-yes", "");
+        clarificationMap.set("228decommissioning-no", "");
         clarificationMap.set("229provide-decommissioning-yes", "");
-        clarificationMap.set("placeholder2-yes", "");
-        clarificationMap.set("placeholder2-no", "");
+        clarificationMap.set("end-yes", "");
+        clarificationMap.set("end-no", "");
         clarificationMap.set("230provide-identifiable-data-yes", "");
         clarificationMap.set("231provide-retained-identifiable-yes", "");
+        clarificationMap.set("end-yes", "");
+        clarificationMap.set("end-no", "");
 
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContext = getMostRecentContext(requestContexts);
@@ -7868,6 +11296,18 @@ router.post("/", async (request, response) => {
 
     // Run the proper function handler based on the matched Dialogflow intent name
     let intentMap = new Map();
+    intentMap.set("Name - Initial", handleNameInitial);
+    intentMap.set(
+        "Contact Person Name - Initial",
+        handleContactPersonNameInitial
+    );
+    intentMap.set("Email Address - Initial", handleEmailAddressInitial);
+    intentMap.set("Phone Number - Initial", handlePhoneNumberInitial);
+    intentMap.set("Organisation Name - Initial", handleOrganisationNameInitial);
+    intentMap.set(
+        "Organisation Address - Initial",
+        handleOrganisationAddressInitial
+    );
     intentMap.set(
         "Know Class Of Medical Device - Initial",
         handleKnowClassOfMedicalDeviceInitial
@@ -7890,14 +11330,7 @@ router.post("/", async (request, response) => {
     );
     intentMap.set("Not-Touch-Patient - Yes", handleNotTouchPatientYes);
     intentMap.set("Not-Touch-Patient - No", handleNotTouchPatientNo);
-    intentMap.set(
-        "Confirm-Whether-Or-Not-Go-Nhsd - Yes",
-        handleConfirmWhetherOrNotGoNhsdYes
-    );
-    intentMap.set(
-        "Confirm-Whether-Or-Not-Go-Nhsd - No",
-        handleConfirmWhetherOrNotGoNhsdNo
-    );
+    intentMap.set("1Provideurl - Yes", handle1ProvideurlYes);
     intentMap.set("1-System-Service - Yes", handle1SystemServiceYes);
     intentMap.set("Class-I - Yes", handleClassIYes);
     intentMap.set("Class-I - No", handleClassINo);
@@ -7909,14 +11342,10 @@ router.post("/", async (request, response) => {
         "Channeling-For-Administration - No",
         handleChannelingForAdministrationNo
     );
-    intentMap.set("1Provideurl - Yes", handle1ProvideurlYes);
-    intentMap.set("Placeholder1 - Yes", handlePlaceholder1Yes);
-    intentMap.set("Placeholder1 - No", handlePlaceholder1No);
+    intentMap.set("2Contact-Organisation - Yes", handle2ContactOrganisationYes);
     intentMap.set("2-Inform - Yes", handle2InformYes);
-    intentMap.set(
-        "Know-Nice-Wait-For-Nhsd - Yes",
-        handleKnowNiceWaitForNhsdYes
-    );
+    intentMap.set("Placeholder - Yes", handlePlaceholderYes);
+    intentMap.set("Placeholder - No", handlePlaceholderNo);
     intentMap.set(
         "Downloaded-Or-Purchased - Yes",
         handleDownloadedOrPurchasedYes
@@ -7935,8 +11364,14 @@ router.post("/", async (request, response) => {
         "Modify-Biological-Composition - No",
         handleModifyBiologicalCompositionNo
     );
-    intentMap.set("2Contact-Organisation - Yes", handle2ContactOrganisationYes);
+    intentMap.set("3Use-Nhs-Branding - Yes", handle3UseNhsBrandingYes);
+    intentMap.set("3Use-Nhs-Branding - No", handle3UseNhsBrandingNo);
     intentMap.set("2-Simple-Monitoring - Yes", handle2SimpleMonitoringYes);
+    intentMap.set("1Provideurl - Yes 2", handle1ProvideurlYes2);
+    intentMap.set("End - Yes", handleEndYes);
+    intentMap.set("End - No", handleEndNo);
+    intentMap.set("1Provideurl - Yes 3", handle1ProvideurlYes3);
+    intentMap.set("1-System-Service - Yes 2", handle1SystemServiceYes2);
     intentMap.set("Class-Iia - Yes", handleClassIiaYes);
     intentMap.set("Class-Iia - No", handleClassIiaNo);
     intentMap.set(
@@ -7963,9 +11398,33 @@ router.post("/", async (request, response) => {
         "Contact-With-Injured-Skin - No",
         handleContactWithInjuredSkinNo
     );
-    intentMap.set("3Use-Nhs-Branding - Yes", handle3UseNhsBrandingYes);
-    intentMap.set("3Use-Nhs-Branding - No", handle3UseNhsBrandingNo);
+    intentMap.set(
+        "4Confirm-Use-Of-Branding - Yes",
+        handle4ConfirmUseOfBrandingYes
+    );
+    intentMap.set("5Require-Gpc - Yes", handle5RequireGpcYes);
+    intentMap.set("5Require-Gpc - No", handle5RequireGpcNo);
     intentMap.set("2-Communicate - Yes", handle2CommunicateYes);
+    intentMap.set("End - Yes 2", handleEndYes2);
+    intentMap.set("End - No 2", handleEndNo2);
+    intentMap.set("End - Yes 3", handleEndYes3);
+    intentMap.set("End - No 3", handleEndNo3);
+    intentMap.set("Placeholder - Yes 2", handlePlaceholderYes2);
+    intentMap.set("Placeholder - No 2", handlePlaceholderNo2);
+    intentMap.set(
+        "Downloaded-Or-Purchased - Yes 2",
+        handleDownloadedOrPurchasedYes2
+    );
+    intentMap.set(
+        "Downloaded-Or-Purchased - No 2",
+        handleDownloadedOrPurchasedNo2
+    );
+    intentMap.set("Class-I - Yes 2", handleClassIYes2);
+    intentMap.set("Class-I - No 2", handleClassINo2);
+    intentMap.set("Class-Iia - Yes 2", handleClassIiaYes2);
+    intentMap.set("Class-Iia - No 2", handleClassIiaNo2);
+    intentMap.set("Class-Iia - Yes 3", handleClassIiaYes3);
+    intentMap.set("Class-Iia - No 3", handleClassIiaNo3);
     intentMap.set("Class-Iib - Yes", handleClassIibYes);
     intentMap.set("Class-Iib - No", handleClassIibNo);
     intentMap.set(
@@ -7984,13 +11443,24 @@ router.post("/", async (request, response) => {
         "Invasive-In-Body-Orifice - No",
         handleInvasiveInBodyOrificeNo
     );
-    intentMap.set(
-        "4Confirm-Use-Of-Branding - Yes",
-        handle4ConfirmUseOfBrandingYes
-    );
-    intentMap.set("5Require-Gpc - Yes", handle5RequireGpcYes);
-    intentMap.set("5Require-Gpc - No", handle5RequireGpcNo);
+    intentMap.set("5Require-Gpc - Yes 2", handle5RequireGpcYes2);
+    intentMap.set("5Require-Gpc - No 2", handle5RequireGpcNo2);
+    intentMap.set("6Confirm-With-Gpc - Yes", handle6ConfirmWithGpcYes);
+    intentMap.set("7Require-Healthcares - Yes", handle7RequireHealthcaresYes);
+    intentMap.set("7Require-Healthcares - No", handle7RequireHealthcaresNo);
     intentMap.set("3A-Behaviour-Change - Yes", handle3ABehaviourChangeYes);
+    intentMap.set("Placeholder - Yes 3", handlePlaceholderYes3);
+    intentMap.set("Placeholder - No 3", handlePlaceholderNo3);
+    intentMap.set(
+        "Downloaded-Or-Purchased - Yes 3",
+        handleDownloadedOrPurchasedYes3
+    );
+    intentMap.set(
+        "Downloaded-Or-Purchased - No 3",
+        handleDownloadedOrPurchasedNo3
+    );
+    intentMap.set("Class-Iib - Yes 2", handleClassIibYes2);
+    intentMap.set("Class-Iib - No 2", handleClassIibNo2);
     intentMap.set(
         "Manage-Micro-Environments - Yes",
         handleManageMicroEnvironmentsYes
@@ -8003,10 +11473,23 @@ router.post("/", async (request, response) => {
     intentMap.set("Trancient-Use - No", handleTrancientUseNo);
     intentMap.set("Surgically-Invasive - Yes", handleSurgicallyInvasiveYes);
     intentMap.set("Surgically-Invasive - No", handleSurgicallyInvasiveNo);
-    intentMap.set("6Confirm-With-Gpc - Yes", handle6ConfirmWithGpcYes);
-    intentMap.set("7Require-Healthcares - Yes", handle7RequireHealthcaresYes);
-    intentMap.set("7Require-Healthcares - No", handle7RequireHealthcaresNo);
+    intentMap.set(
+        "7Require-Healthcares - Yes 2",
+        handle7RequireHealthcaresYes2
+    );
+    intentMap.set("7Require-Healthcares - No 2", handle7RequireHealthcaresNo2);
+    intentMap.set(
+        "8Confirm-Healthcare-Registration - Yes",
+        handle8ConfirmHealthcareRegistrationYes
+    );
+    intentMap.set("9Provide-A-Guest-Login - Yes", handle9ProvideAGuestLoginYes);
     intentMap.set("3A-Self_Manage - Yes", handle3ASelf_ManageYes);
+    intentMap.set("Class-Iia - Yes 4", handleClassIiaYes4);
+    intentMap.set("Class-Iia - No 4", handleClassIiaNo4);
+    intentMap.set("Class-I - Yes 3", handleClassIYes3);
+    intentMap.set("Class-I - No 3", handleClassINo3);
+    intentMap.set("Class-I - Yes 4", handleClassIYes4);
+    intentMap.set("Class-I - No 4", handleClassINo4);
     intentMap.set("Short-Term-Use - Yes", handleShortTermUseYes);
     intentMap.set("Short-Term-Use - No", handleShortTermUseNo);
     intentMap.set(
@@ -8026,10 +11509,17 @@ router.post("/", async (request, response) => {
         handleSurgicallyInvasiveAndShortTermUseNo
     );
     intentMap.set(
-        "8Confirm-Healthcare-Registration - Yes",
-        handle8ConfirmHealthcareRegistrationYes
+        "9Provide-A-Guest-Login - Yes 2",
+        handle9ProvideAGuestLoginYes2
     );
-    intentMap.set("9Provide-A-Guest-Login - Yes", handle9ProvideAGuestLoginYes);
+    intentMap.set(
+        "10Require-Registration-With-Cqc - Yes",
+        handle10RequireRegistrationWithCqcYes
+    );
+    intentMap.set(
+        "10Require-Registration-With-Cqc - No",
+        handle10RequireRegistrationWithCqcNo
+    );
     intentMap.set("3B-Treat - Yes", handle3BTreatYes);
     intentMap.set("Oral-Cavity--Ear-Canal - Yes", handleOralCavityEarCanalYes);
     intentMap.set("Oral-Cavity--Ear-Canal - No", handleOralCavityEarCanalNo);
@@ -8059,14 +11549,26 @@ router.post("/", async (request, response) => {
         handleSurgicallyInvasiveLongTermUseNo
     );
     intentMap.set(
-        "10Require-Registration-With-Cqc - Yes",
-        handle10RequireRegistrationWithCqcYes
+        "11Confirm-Registration-With-Cqc - Yes",
+        handle11ConfirmRegistrationWithCqcYes
     );
     intentMap.set(
-        "10Require-Registration-With-Cqc - No",
-        handle10RequireRegistrationWithCqcNo
+        "11Confirm-Registration-With-Cqc - No",
+        handle11ConfirmRegistrationWithCqcNo
+    );
+    intentMap.set(
+        "14Need-Registration-Cqc - Yes",
+        handle14NeedRegistrationCqcYes
+    );
+    intentMap.set(
+        "14Need-Registration-Cqc - No",
+        handle14NeedRegistrationCqcNo
     );
     intentMap.set("3B-Acitve_Monitoring - Yes", handle3BAcitve_MonitoringYes);
+    intentMap.set("Class-I - Yes 5", handleClassIYes5);
+    intentMap.set("Class-I - No 5", handleClassINo5);
+    intentMap.set("Class-Iia - Yes 5", handleClassIiaYes5);
+    intentMap.set("Class-Iia - No 5", handleClassIiaNo5);
     intentMap.set(
         "Oral-Cavity--Ear-Canal--Not-Liable-To-Be-Absorbed - Yes",
         handleOralCavityEarCanalNotLiableToBeAbsorbedYes
@@ -8083,6 +11585,18 @@ router.post("/", async (request, response) => {
         "Connected-To-Active-Medical-Device--2- - No",
         handleConnectedToActiveMedicalDevice2No
     );
+    intentMap.set("Placeholder - Yes 4", handlePlaceholderYes4);
+    intentMap.set("Placeholder - No 4", handlePlaceholderNo4);
+    intentMap.set(
+        "Downloaded-Or-Purchased - Yes 4",
+        handleDownloadedOrPurchasedYes4
+    );
+    intentMap.set(
+        "Downloaded-Or-Purchased - No 4",
+        handleDownloadedOrPurchasedNo4
+    );
+    intentMap.set("Class-Iii - Yes 2", handleClassIiiYes2);
+    intentMap.set("Class-Iii - No 2", handleClassIiiNo2);
     intentMap.set(
         "Reusable-Surgical-Instrument - Yes",
         handleReusableSurgicalInstrumentYes
@@ -8091,6 +11605,8 @@ router.post("/", async (request, response) => {
         "Reusable-Surgical-Instrument - No",
         handleReusableSurgicalInstrumentNo
     );
+    intentMap.set("Class-Iii - Yes 3", handleClassIiiYes3);
+    intentMap.set("Class-Iii - No 3", handleClassIiiNo3);
     intentMap.set(
         "Monitor--Control--Diagnose-Or-Correct - Yes",
         handleMonitorControlDiagnoseOrCorrectYes
@@ -8109,27 +11625,40 @@ router.post("/", async (request, response) => {
         "Active-Therapeutic-Device - No",
         handleActiveTherapeuticDeviceNo
     );
+    intentMap.set("12Provide-Cqc-Number - Yes", handle12ProvideCqcNumberYes);
+    intentMap.set("12Provide-Cqc-Number - No", handle12ProvideCqcNumberNo);
     intentMap.set(
-        "11Confirm-Registration-With-Cqc - Yes",
-        handle11ConfirmRegistrationWithCqcYes
+        "14Need-Registration-Cqc - Yes 2",
+        handle14NeedRegistrationCqcYes2
     );
     intentMap.set(
-        "11Confirm-Registration-With-Cqc - No",
-        handle11ConfirmRegistrationWithCqcNo
+        "14Need-Registration-Cqc - No 2",
+        handle14NeedRegistrationCqcNo2
     );
+    intentMap.set("16Provide-Description - Yes", handle16ProvideDescriptionYes);
     intentMap.set(
-        "14Need-Registration-Cqc - Yes",
-        handle14NeedRegistrationCqcYes
-    );
-    intentMap.set(
-        "14Need-Registration-Cqc - No",
-        handle14NeedRegistrationCqcNo
+        "15Confirm-Does-Not-Need-Cqc - Yes",
+        handle15ConfirmDoesNotNeedCqcYes
     );
     intentMap.set("3B-Calculate - Yes", handle3BCalculateYes);
+    intentMap.set("Class-Iia - Yes 6", handleClassIiaYes6);
+    intentMap.set("Class-Iia - No 6", handleClassIiaNo6);
+    intentMap.set("Class-Iib - Yes 3", handleClassIibYes3);
+    intentMap.set("Class-Iib - No 3", handleClassIibNo3);
+    intentMap.set("Class-Iia - Yes 7", handleClassIiaYes7);
+    intentMap.set("Class-Iia - No 7", handleClassIiaNo7);
+    intentMap.set("Surgically-Invasive - Yes 2", handleSurgicallyInvasiveYes2);
+    intentMap.set("Surgically-Invasive - No 2", handleSurgicallyInvasiveNo2);
+    intentMap.set("Class-I - Yes 6", handleClassIYes6);
+    intentMap.set("Class-I - No 6", handleClassINo6);
     intentMap.set("Supply-Energy - Yes", handleSupplyEnergyYes);
     intentMap.set("Supply-Energy - No", handleSupplyEnergyNo);
+    intentMap.set("Class-Iii - Yes 4", handleClassIiiYes4);
+    intentMap.set("Class-Iii - No 4", handleClassIiiNo4);
     intentMap.set("Supply-Energy--2- - Yes", handleSupplyEnergy2Yes);
     intentMap.set("Supply-Energy--2- - No", handleSupplyEnergy2No);
+    intentMap.set("Class-Iia - Yes 8", handleClassIiaYes8);
+    intentMap.set("Class-Iia - No 8", handleClassIiaNo8);
     intentMap.set(
         "Direct-Contact-With-Heart - Yes",
         handleDirectContactWithHeartYes
@@ -8154,14 +11683,29 @@ router.post("/", async (request, response) => {
         "Supply-Energy-To-Image-In-Vivo - No",
         handleSupplyEnergyToImageInVivoNo
     );
-    intentMap.set("12Provide-Cqc-Number - Yes", handle12ProvideCqcNumberYes);
-    intentMap.set("12Provide-Cqc-Number - No", handle12ProvideCqcNumberNo);
-    intentMap.set("16Provide-Description - Yes", handle16ProvideDescriptionYes);
     intentMap.set(
-        "15Confirm-Does-Not-Need-Cqc - Yes",
-        handle15ConfirmDoesNotNeedCqcYes
+        "13Provide-Recent-Cqc-Registration - Yes",
+        handle13ProvideRecentCqcRegistrationYes
+    );
+    intentMap.set(
+        "14Need-Registration-Cqc - Yes 3",
+        handle14NeedRegistrationCqcYes3
+    );
+    intentMap.set(
+        "14Need-Registration-Cqc - No 3",
+        handle14NeedRegistrationCqcNo3
+    );
+    intentMap.set(
+        "17Integrate-With-Website-Or-Others - Yes",
+        handle17IntegrateWithWebsiteOrOthersYes
+    );
+    intentMap.set(
+        "16Provide-Description - Yes 2",
+        handle16ProvideDescriptionYes2
     );
     intentMap.set("3B-Diagnose - Yes", handle3BDiagnoseYes);
+    intentMap.set("Class-Iib - Yes 4", handleClassIibYes4);
+    intentMap.set("Class-Iib - No 4", handleClassIibNo4);
     intentMap.set(
         "Have-A-Biological-Effect - Yes",
         handleHaveABiologicalEffectYes
@@ -8170,6 +11714,8 @@ router.post("/", async (request, response) => {
         "Have-A-Biological-Effect - No",
         handleHaveABiologicalEffectNo
     );
+    intentMap.set("Class-Iib - Yes 5", handleClassIibYes5);
+    intentMap.set("Class-Iib - No 5", handleClassIibNo5);
     intentMap.set(
         "Have-A-Biological-Effect--2- - Yes",
         handleHaveABiologicalEffect2Yes
@@ -8178,6 +11724,8 @@ router.post("/", async (request, response) => {
         "Have-A-Biological-Effect--2- - No",
         handleHaveABiologicalEffect2No
     );
+    intentMap.set("Class-Iii - Yes 5", handleClassIiiYes5);
+    intentMap.set("Class-Iii - No 5", handleClassIiiNo5);
     intentMap.set(
         "Have-A-Biological-Effect-Or-Mainly-Absorbed - Yes",
         handleHaveABiologicalEffectOrMainlyAbsorbedYes
@@ -8186,6 +11734,8 @@ router.post("/", async (request, response) => {
         "Have-A-Biological-Effect-Or-Mainly-Absorbed - No",
         handleHaveABiologicalEffectOrMainlyAbsorbedNo
     );
+    intentMap.set("Class-Iib - Yes 6", handleClassIibYes6);
+    intentMap.set("Class-Iib - No 6", handleClassIibNo6);
     intentMap.set(
         "Control--Monitor-Or-Influence - Yes",
         handleControlMonitorOrInfluenceYes
@@ -8211,15 +11761,32 @@ router.post("/", async (request, response) => {
         handleActiveDeviceToAdministerMedicinesNo
     );
     intentMap.set(
-        "13Provide-Recent-Cqc-Registration - Yes",
-        handle13ProvideRecentCqcRegistrationYes
+        "14Need-Registration-Cqc - Yes 4",
+        handle14NeedRegistrationCqcYes4
     );
     intentMap.set(
-        "17Integrate-With-Website-Or-Others - Yes",
-        handle17IntegrateWithWebsiteOrOthersYes
+        "14Need-Registration-Cqc - No 4",
+        handle14NeedRegistrationCqcNo4
     );
+    intentMap.set(
+        "18Connect-With-Devices - Yes",
+        handle18ConnectWithDevicesYes
+    );
+    intentMap.set("18Connect-With-Devices - No", handle18ConnectWithDevicesNo);
+    intentMap.set(
+        "Functional-Classification-Over - Yes",
+        handleFunctionalClassificationOverYes
+    );
+    intentMap.set(
+        "Functional-Classification-Over - No",
+        handleFunctionalClassificationOverNo
+    );
+    intentMap.set("Class-Iib - Yes 7", handleClassIibYes7);
+    intentMap.set("Class-Iib - No 7", handleClassIibNo7);
     intentMap.set("Administer-Medicine - Yes", handleAdministerMedicineYes);
     intentMap.set("Administer-Medicine - No", handleAdministerMedicineNo);
+    intentMap.set("Class-Iii - Yes 6", handleClassIiiYes6);
+    intentMap.set("Class-Iii - No 6", handleClassIiiNo6);
     intentMap.set(
         "Undergo-Chemical-Change - Yes",
         handleUndergoChemicalChangeYes
@@ -8228,6 +11795,8 @@ router.post("/", async (request, response) => {
         "Undergo-Chemical-Change - No",
         handleUndergoChemicalChangeNo
     );
+    intentMap.set("Class-Iii - Yes 7", handleClassIiiYes7);
+    intentMap.set("Class-Iii - No 7", handleClassIiiNo7);
     intentMap.set(
         "Undergo-Chemical-Change-Or-Administer-Medicine - Yes",
         handleUndergoChemicalChangeOrAdministerMedicineYes
@@ -8236,6 +11805,12 @@ router.post("/", async (request, response) => {
         "Undergo-Chemical-Change-Or-Administer-Medicine - No",
         handleUndergoChemicalChangeOrAdministerMedicineNo
     );
+    intentMap.set("Class-Iib - Yes 8", handleClassIibYes8);
+    intentMap.set("Class-Iib - No 8", handleClassIibNo8);
+    intentMap.set("Class-Iia - Yes 9", handleClassIiaYes9);
+    intentMap.set("Class-Iia - No 9", handleClassIiaNo9);
+    intentMap.set("Class-Iib - Yes 9", handleClassIibYes9);
+    intentMap.set("Class-Iib - No 9", handleClassIibNo9);
     intentMap.set(
         "Emit-Ionizing-Radiation - Yes",
         handleEmitIonizingRadiationYes
@@ -8255,12 +11830,39 @@ router.post("/", async (request, response) => {
         handleActiveDeviceNotClassifiedNo
     );
     intentMap.set(
-        "18Connect-With-Devices - Yes",
-        handle18ConnectWithDevicesYes
+        "19Replace-A-Nhs-Service - Yes",
+        handle19ReplaceANhsServiceYes
     );
-    intentMap.set("18Connect-With-Devices - No", handle18ConnectWithDevicesNo);
+    intentMap.set("19Replace-A-Nhs-Service - No", handle19ReplaceANhsServiceNo);
+    intentMap.set(
+        "20Confirm-Replace-A-Nhs-Service - Yes",
+        handle20ConfirmReplaceANhsServiceYes
+    );
+    intentMap.set("1Provideurl - Yes 4", handle1ProvideurlYes4);
+    intentMap.set("End - Yes 4", handleEndYes4);
+    intentMap.set("End - No 4", handleEndNo4);
+    intentMap.set("Class-Iib - Yes 10", handleClassIibYes10);
+    intentMap.set("Class-Iib - No 10", handleClassIibNo10);
+    intentMap.set("Class-Iia - Yes 10", handleClassIiaYes10);
+    intentMap.set("Class-Iia - No 10", handleClassIiaNo10);
+    intentMap.set("Class-Iib - Yes 11", handleClassIibYes11);
+    intentMap.set("Class-Iib - No 11", handleClassIibNo11);
+    intentMap.set("Class-Iia - Yes 11", handleClassIiaYes11);
+    intentMap.set("Class-Iia - No 11", handleClassIiaNo11);
+    intentMap.set("Class-Iii - Yes 8", handleClassIiiYes8);
+    intentMap.set("Class-Iii - No 8", handleClassIiiNo8);
     intentMap.set("Use-In-Breast-Implants - Yes", handleUseInBreastImplantsYes);
     intentMap.set("Use-In-Breast-Implants - No", handleUseInBreastImplantsNo);
+    intentMap.set("Class-Iib - Yes 12", handleClassIibYes12);
+    intentMap.set("Class-Iib - No 12", handleClassIibNo12);
+    intentMap.set("Class-Iia - Yes 12", handleClassIiaYes12);
+    intentMap.set("Class-Iia - No 12", handleClassIiaNo12);
+    intentMap.set("Class-Iib - Yes 13", handleClassIibYes13);
+    intentMap.set("Class-Iib - No 13", handleClassIibNo13);
+    intentMap.set("Class-Iia - Yes 13", handleClassIiaYes13);
+    intentMap.set("Class-Iia - No 13", handleClassIiaNo13);
+    intentMap.set("Class-I - Yes 7", handleClassIYes7);
+    intentMap.set("Class-I - No 7", handleClassINo7);
     intentMap.set(
         "Incorporate-Integral-Medicinal-Substances - Yes",
         handleIncorporateIntegralMedicinalSubstancesYes
@@ -8270,22 +11872,30 @@ router.post("/", async (request, response) => {
         handleIncorporateIntegralMedicinalSubstancesNo
     );
     intentMap.set(
-        "19Replace-A-Nhs-Service - Yes",
-        handle19ReplaceANhsServiceYes
+        "20Confirm-Replace-A-Nhs-Service - Yes 2",
+        handle20ConfirmReplaceANhsServiceYes2
     );
-    intentMap.set("19Replace-A-Nhs-Service - No", handle19ReplaceANhsServiceNo);
-    intentMap.set(
-        "20Confirm-Replace-A-Nhs-Service - Yes",
-        handle20ConfirmReplaceANhsServiceYes
-    );
+    intentMap.set("21Free-To-Public - Yes", handle21FreeToPublicYes);
+    intentMap.set("21Free-To-Public - Yes 2", handle21FreeToPublicYes2);
+    intentMap.set("Class-Iii - Yes 9", handleClassIiiYes9);
+    intentMap.set("Class-Iii - No 9", handleClassIiiNo9);
+    intentMap.set("Class-Iib - Yes 14", handleClassIibYes14);
+    intentMap.set("Class-Iib - No 14", handleClassIibNo14);
+    intentMap.set("Class-Iii - Yes 10", handleClassIiiYes10);
+    intentMap.set("Class-Iii - No 10", handleClassIiiNo10);
     intentMap.set("Contraception - Yes", handleContraceptionYes);
     intentMap.set("Contraception - No", handleContraceptionNo);
-    intentMap.set("21Free-To-Public - Yes", handle21FreeToPublicYes);
+    intentMap.set("22Source-Of-Funding - Yes", handle22SourceOfFundingYes);
     intentMap.set("Implantable - Yes", handleImplantableYes);
     intentMap.set("Implantable - No", handleImplantableNo);
     intentMap.set("Disinfecting-Mds - Yes", handleDisinfectingMdsYes);
     intentMap.set("Disinfecting-Mds - No", handleDisinfectingMdsNo);
-    intentMap.set("22Source-Of-Funding - Yes", handle22SourceOfFundingYes);
+    intentMap.set("23Provide-A-Trial - Yes", handle23ProvideATrialYes);
+    intentMap.set("23Provide-A-Trial - No", handle23ProvideATrialNo);
+    intentMap.set("Class-Iii - Yes 11", handleClassIiiYes11);
+    intentMap.set("Class-Iii - No 11", handleClassIiiNo11);
+    intentMap.set("Class-Iib - Yes 15", handleClassIibYes15);
+    intentMap.set("Class-Iib - No 15", handleClassIibNo15);
     intentMap.set(
         "Disinfecting-Contact-Lenses - Yes",
         handleDisinfectingContactLensesYes
@@ -8296,24 +11906,6 @@ router.post("/", async (request, response) => {
     );
     intentMap.set("Recording-Of-X-Ray - Yes", handleRecordingOfXRayYes);
     intentMap.set("Recording-Of-X-Ray - No", handleRecordingOfXRayNo);
-    intentMap.set("23Provide-A-Trial - Yes", handle23ProvideATrialYes);
-    intentMap.set("23Provide-A-Trial - No", handle23ProvideATrialNo);
-    intentMap.set(
-        "Disinfecting-Invasive-Mds - Yes",
-        handleDisinfectingInvasiveMdsYes
-    );
-    intentMap.set(
-        "Disinfecting-Invasive-Mds - No",
-        handleDisinfectingInvasiveMdsNo
-    );
-    intentMap.set(
-        "Non-Viable-Animal-Tissues - Yes",
-        handleNonViableAnimalTissuesYes
-    );
-    intentMap.set(
-        "Non-Viable-Animal-Tissues - No",
-        handleNonViableAnimalTissuesNo
-    );
     intentMap.set(
         "24Provide-Detail-Of-The-Trial - Yes",
         handle24ProvideDetailOfTheTrialYes
@@ -8326,8 +11918,34 @@ router.post("/", async (request, response) => {
         "25Confirm-Process-Personal-Data - No",
         handle25ConfirmProcessPersonalDataNo
     );
-    intentMap.set("Blood-Bag - Yes", handleBloodBagYes);
-    intentMap.set("Blood Bag - No", handleBloodBagNo);
+    intentMap.set("Class-Iib - Yes 16", handleClassIibYes16);
+    intentMap.set("Class-Iib - No 16", handleClassIibNo16);
+    intentMap.set(
+        "Disinfecting-Invasive-Mds - Yes",
+        handleDisinfectingInvasiveMdsYes
+    );
+    intentMap.set(
+        "Disinfecting-Invasive-Mds - No",
+        handleDisinfectingInvasiveMdsNo
+    );
+    intentMap.set("Class-Iia - Yes 14", handleClassIiaYes14);
+    intentMap.set("Class-Iia - No 14", handleClassIiaNo14);
+    intentMap.set(
+        "Non-Viable-Animal-Tissues - Yes",
+        handleNonViableAnimalTissuesYes
+    );
+    intentMap.set(
+        "Non-Viable-Animal-Tissues - No",
+        handleNonViableAnimalTissuesNo
+    );
+    intentMap.set(
+        "25Confirm-Process-Personal-Data - Yes 2",
+        handle25ConfirmProcessPersonalDataYes2
+    );
+    intentMap.set(
+        "25Confirm-Process-Personal-Data - No 2",
+        handle25ConfirmProcessPersonalDataNo2
+    );
     intentMap.set(
         "26Comfirm-Where-To-Process - Yes",
         handle26ComfirmWhereToProcessYes
@@ -8340,6 +11958,22 @@ router.post("/", async (request, response) => {
         "27Comfrim-Available-On-Platforms - No",
         handle27ComfrimAvailableOnPlatformsNo
     );
+    intentMap.set("Class-Iib - Yes 17", handleClassIibYes17);
+    intentMap.set("Class-Iib - No 17", handleClassIibNo17);
+    intentMap.set("Class-Iia - Yes 15", handleClassIiaYes15);
+    intentMap.set("Class-Iia - No 15", handleClassIiaNo15);
+    intentMap.set("Class-Iii - Yes 12", handleClassIiiYes12);
+    intentMap.set("Class-Iii - No 12", handleClassIiiNo12);
+    intentMap.set("Blood-Bag - Yes", handleBloodBagYes);
+    intentMap.set("Blood Bag - No", handleBloodBagNo);
+    intentMap.set(
+        "27Comfrim-Available-On-Platforms - Yes 2",
+        handle27ComfrimAvailableOnPlatformsYes2
+    );
+    intentMap.set(
+        "27Comfrim-Available-On-Platforms - No 2",
+        handle27ComfrimAvailableOnPlatformsNo2
+    );
     intentMap.set(
         "28Provide-Platform-Number - Yes",
         handle28ProvidePlatformNumberYes
@@ -8347,6 +11981,14 @@ router.post("/", async (request, response) => {
     intentMap.set(
         "29Comfirm-Type-Of-Pharmacy - Yes",
         handle29ComfirmTypeOfPharmacyYes
+    );
+    intentMap.set("Class-Iib - Yes 18", handleClassIibYes18);
+    intentMap.set("Class-Iib - No 18", handleClassIibNo18);
+    intentMap.set("Blood-Bag - Yes 2", handleBloodBagYes2);
+    intentMap.set("Blood Bag - No 2", handleBloodBagNo2);
+    intentMap.set(
+        "29Comfirm-Type-Of-Pharmacy - Yes 2",
+        handle29ComfirmTypeOfPharmacyYes2
     );
     intentMap.set(
         "30Provide-Clinical-Benefits - Yes",
@@ -8381,6 +12023,18 @@ router.post("/", async (request, response) => {
         handle34ProvideBehaviouralBenefitsNo
     );
     intentMap.set(
+        "33Provide-The-Reason-Of-Not-Have-Clinical-Benefits - Yes 2",
+        handle33ProvideTheReasonOfNotHaveClinicalBenefitsYes2
+    );
+    intentMap.set(
+        "34Provide-Behavioural-Benefits - Yes 2",
+        handle34ProvideBehaviouralBenefitsYes2
+    );
+    intentMap.set(
+        "34Provide-Behavioural-Benefits - No 2",
+        handle34ProvideBehaviouralBenefitsNo2
+    );
+    intentMap.set(
         "35Provide-Improvement-Of-Bahavioural-Benefits - Yes",
         handle35ProvideImprovementOfBahaviouralBenefitsYes
     );
@@ -8409,6 +12063,26 @@ router.post("/", async (request, response) => {
         handle38ComfirmOfEconomicBenefitsNo
     );
     intentMap.set(
+        "38Comfirm-Of-Economic-Benefits - Yes 2",
+        handle38ComfirmOfEconomicBenefitsYes2
+    );
+    intentMap.set(
+        "38Comfirm-Of-Economic-Benefits - No 2",
+        handle38ComfirmOfEconomicBenefitsNo2
+    );
+    intentMap.set(
+        "37Comfirm-Reason-Not-Have-Behavioural-Benefits - Yes 2",
+        handle37ComfirmReasonNotHaveBehaviouralBenefitsYes2
+    );
+    intentMap.set(
+        "38Comfirm-Of-Economic-Benefits - Yes 3",
+        handle38ComfirmOfEconomicBenefitsYes3
+    );
+    intentMap.set(
+        "38Comfirm-Of-Economic-Benefits - No 3",
+        handle38ComfirmOfEconomicBenefitsNo3
+    );
+    intentMap.set(
         "39Describe-The-Economic-Benefits - Yes",
         handle39DescribeTheEconomicBenefitsYes
     );
@@ -8435,6 +12109,26 @@ router.post("/", async (request, response) => {
     intentMap.set(
         "42Comfirm-Any-Other-Outcomes - No",
         handle42ComfirmAnyOtherOutcomesNo
+    );
+    intentMap.set(
+        "42Comfirm-Any-Other-Outcomes - Yes 2",
+        handle42ComfirmAnyOtherOutcomesYes2
+    );
+    intentMap.set(
+        "42Comfirm-Any-Other-Outcomes - No 2",
+        handle42ComfirmAnyOtherOutcomesNo2
+    );
+    intentMap.set(
+        "41Provide-A-Reason-Not-Have-Economic-Benefits - Yes 2",
+        handle41ProvideAReasonNotHaveEconomicBenefitsYes2
+    );
+    intentMap.set(
+        "42Comfirm-Any-Other-Outcomes - Yes 3",
+        handle42ComfirmAnyOtherOutcomesYes3
+    );
+    intentMap.set(
+        "42Comfirm-Any-Other-Outcomes - No 3",
+        handle42ComfirmAnyOtherOutcomesNo3
     );
     intentMap.set(
         "43Provide-What-Other-Outcomes - Yes",
@@ -8481,6 +12175,22 @@ router.post("/", async (request, response) => {
         handle50ConfirmWithinNhsDcb0129No
     );
     intentMap.set(
+        "46Provide-Url-Of-Evaluating-Outcomes - Yes 2",
+        handle46ProvideUrlOfEvaluatingOutcomesYes2
+    );
+    intentMap.set(
+        "47Provide-Reason-Why-No-Outcomes - Yes 2",
+        handle47ProvideReasonWhyNoOutcomesYes2
+    );
+    intentMap.set(
+        "50Confirm-Within-Nhs-Dcb0129 - Yes 2",
+        handle50ConfirmWithinNhsDcb0129Yes2
+    );
+    intentMap.set(
+        "50Confirm-Within-Nhs-Dcb0129 - No 2",
+        handle50ConfirmWithinNhsDcb0129No2
+    );
+    intentMap.set(
         "51Provide-Copy-Of-Safety-Case - Yes",
         handle51ProvideCopyOfSafetyCaseYes
     );
@@ -8497,6 +12207,14 @@ router.post("/", async (request, response) => {
         handle53ComfirmAdverseEffectsNo
     );
     intentMap.set(
+        "53Comfirm-Adverse-Effects - Yes 2",
+        handle53ComfirmAdverseEffectsYes2
+    );
+    intentMap.set(
+        "53Comfirm-Adverse-Effects - No 2",
+        handle53ComfirmAdverseEffectsNo2
+    );
+    intentMap.set(
         "54Provide-Possible-Adverse-Effects - Yes",
         handle54ProvidePossibleAdverseEffectsYes
     );
@@ -8509,6 +12227,14 @@ router.post("/", async (request, response) => {
         handle55ComfirmApprovedByClinicianNo
     );
     intentMap.set(
+        "55Comfirm-Approved-By-Clinician - Yes 2",
+        handle55ComfirmApprovedByClinicianYes2
+    );
+    intentMap.set(
+        "55Comfirm-Approved-By-Clinician - No 2",
+        handle55ComfirmApprovedByClinicianNo2
+    );
+    intentMap.set(
         "56Provide-Name-Of-Clinician - Yes",
         handle56ProvideNameOfClinicianYes
     );
@@ -8519,6 +12245,14 @@ router.post("/", async (request, response) => {
     intentMap.set(
         "-57Confirm-Process-The-Data-Personal - No",
         handle57ConfirmProcessTheDataPersonalNo
+    );
+    intentMap.set(
+        "-57Confirm-Process-The-Data-Personal - Yes 2",
+        handle57ConfirmProcessTheDataPersonalYes2
+    );
+    intentMap.set(
+        "-57Confirm-Process-The-Data-Personal - No 2",
+        handle57ConfirmProcessTheDataPersonalNo2
     );
     intentMap.set(
         "58Provide-Peronal-Data-Processed - Yes",
@@ -8545,8 +12279,16 @@ router.post("/", async (request, response) => {
         handle60ProvideSensitivePersonalDataProcessedYes
     );
     intentMap.set(
+        "61Confirm-Fully-Understanding-Of-Personal-Data-Sensitive-Data - Yes 2",
+        handle61ConfirmFullyUnderstandingOfPersonalDataSensitiveDataYes2
+    );
+    intentMap.set(
         "63Process-Data-And-Not-A-Controller - Yes",
         handle63ProcessDataAndNotAControllerYes
+    );
+    intentMap.set(
+        "62Understand-Organisation-S-Role - Yes 2",
+        handle62UnderstandOrganisationSRoleYes2
     );
     intentMap.set(
         "64Process-Personal-Data-And-Processor-Not-Controller - Yes",
@@ -8576,6 +12318,14 @@ router.post("/", async (request, response) => {
         "68Process-Data-And-Controller - No",
         handle68ProcessDataAndControllerNo
     );
+    intentMap.set(
+        "68Process-Data-And-Controller - Yes 2",
+        handle68ProcessDataAndControllerYes2
+    );
+    intentMap.set(
+        "68Process-Data-And-Controller - No 2",
+        handle68ProcessDataAndControllerNo2
+    );
     intentMap.set("69Subject-To-Laws - Yes", handle69SubjectToLawsYes);
     intentMap.set(
         "70Data-And-Controller-And-Laws - Yes",
@@ -8584,6 +12334,14 @@ router.post("/", async (request, response) => {
     intentMap.set(
         "70Data-And-Controller-And-Laws - No",
         handle70DataAndControllerAndLawsNo
+    );
+    intentMap.set(
+        "70Data-And-Controller-And-Laws - Yes 2",
+        handle70DataAndControllerAndLawsYes2
+    );
+    intentMap.set(
+        "70Data-And-Controller-And-Laws - No 2",
+        handle70DataAndControllerAndLawsNo2
     );
     intentMap.set(
         "71Confirm-Number-Of-Dpr - Yes",
@@ -8596,6 +12354,14 @@ router.post("/", async (request, response) => {
     intentMap.set(
         "72Provide-The-Overall-Grading - No",
         handle72ProvideTheOverallGradingNo
+    );
+    intentMap.set(
+        "72Provide-The-Overall-Grading - Yes 2",
+        handle72ProvideTheOverallGradingYes2
+    );
+    intentMap.set(
+        "72Provide-The-Overall-Grading - No 2",
+        handle72ProvideTheOverallGradingNo2
     );
     intentMap.set(
         "72Provide-The-Name-Of-Overall-Grading - Yes",
@@ -8616,6 +12382,18 @@ router.post("/", async (request, response) => {
         handle76ConfirmPermissionOfDpiaYes
     );
     intentMap.set(
+        "74Comfirm-Meets-Annex-2 - Yes 2",
+        handle74ComfirmMeetsAnnex2Yes2
+    );
+    intentMap.set(
+        "74Comfirm-Meets-Annex-2 - No 2",
+        handle74ComfirmMeetsAnnex2No2
+    );
+    intentMap.set(
+        "76Confirm-Permission-Of-Dpia- - Yes 2",
+        handle76ConfirmPermissionOfDpiaYes2
+    );
+    intentMap.set(
         "77Confirm-Data-And-Controller - Yes",
         handle77ConfirmDataAndControllerYes
     );
@@ -8633,6 +12411,14 @@ router.post("/", async (request, response) => {
         handle79ConfirmOtherLegalBasisNo
     );
     intentMap.set(
+        "79Confirm-Other-Legal-Basis - Yes 2",
+        handle79ConfirmOtherLegalBasisYes2
+    );
+    intentMap.set(
+        "79Confirm-Other-Legal-Basis - No 2",
+        handle79ConfirmOtherLegalBasisNo2
+    );
+    intentMap.set(
         "80Describe-The-Other-Legal-Basis - Yes",
         handle80DescribeTheOtherLegalBasisYes
     );
@@ -8643,6 +12429,14 @@ router.post("/", async (request, response) => {
     intentMap.set(
         "81Confirm-Measures-To-Protect-Right - No",
         handle81ConfirmMeasuresToProtectRightNo
+    );
+    intentMap.set(
+        "81Confirm-Measures-To-Protect-Right - Yes 2",
+        handle81ConfirmMeasuresToProtectRightYes2
+    );
+    intentMap.set(
+        "81Confirm-Measures-To-Protect-Right - No 2",
+        handle81ConfirmMeasuresToProtectRightNo2
     );
     intentMap.set(
         "82Provide-Transparency-To-Data-Subject - Yes",
@@ -8698,8 +12492,20 @@ router.post("/", async (request, response) => {
         handle106ConfirmPdFormThirdPartyNo
     );
     intentMap.set(
+        "86Confirm-Measure-Ot-Verify-The-Identity - Yes 2",
+        handle86ConfirmMeasureOtVerifyTheIdentityYes2
+    );
+    intentMap.set(
         "90Confirm-Third-Party-Of-Personal-Data - Yes",
         handle90ConfirmThirdPartyOfPersonalDataYes
+    );
+    intentMap.set(
+        "106Confirm-Pd-Form-Third-Party - Yes 2",
+        handle106ConfirmPdFormThirdPartyYes2
+    );
+    intentMap.set(
+        "106Confirm-Pd-Form-Third-Party - No 2",
+        handle106ConfirmPdFormThirdPartyNo2
     );
     intentMap.set(
         "107Confirm-Fair-Pd-Of-Third-Party - Yes",
@@ -8716,6 +12522,14 @@ router.post("/", async (request, response) => {
     intentMap.set(
         "91Confirm-Written-Binding- - Yes",
         handle91ConfirmWrittenBindingYes
+    );
+    intentMap.set(
+        "108Confirm-Pd-And-Controller-Following-Q - Yes 2",
+        handle108ConfirmPdAndControllerFollowingQYes2
+    );
+    intentMap.set(
+        "108Confirm-Pd-And-Controller-Following-Q - No 2",
+        handle108ConfirmPdAndControllerFollowingQNo2
     );
     intentMap.set(
         "109Confirm-Include-Contact-Of-Controller - Yes",
@@ -8879,6 +12693,14 @@ router.post("/", async (request, response) => {
         handle178ConfirmFullyAnonymisedYes
     );
     intentMap.set(
+        "181Confirm-Product-A-Mobile-Devices - Yes 2",
+        handle181ConfirmProductAMobileDevicesYes2
+    );
+    intentMap.set(
+        "181Confirm-Product-A-Mobile-Devices - No 2",
+        handle181ConfirmProductAMobileDevicesNo2
+    );
+    intentMap.set(
         "182Confirm-Product-Processes-Pd - Yes",
         handle182ConfirmProductProcessesPdYes
     );
@@ -8904,6 +12726,8 @@ router.post("/", async (request, response) => {
         "171Confirm-Use-Strictly-Necessary-Cookies - Yes",
         handle171ConfirmUseStrictlyNecessaryCookiesYes
     );
+    intentMap.set("179Confirm-Dpo - Yes 2", handle179ConfirmDpoYes2);
+    intentMap.set("179Confirm-Dpo - No 2", handle179ConfirmDpoNo2);
     intentMap.set(
         "183Confirm-Smart-Phone-And-Process-Pd - Yes",
         handle183ConfirmSmartPhoneAndProcessPdYes
@@ -8946,9 +12770,18 @@ router.post("/", async (request, response) => {
         handle184ConfirmPersistedToMobileDevicesYes
     );
     intentMap.set(
+        "185Confirm-Code-Level-Security - Yes 2",
+        handle185ConfirmCodeLevelSecurityYes2
+    );
+    intentMap.set(
+        "185Confirm-Code-Level-Security - No 2",
+        handle185ConfirmCodeLevelSecurityNo2
+    );
+    intentMap.set(
         "186Confirm-Evidence-Of-Code-Level-Report - Yes",
         handle186ConfirmEvidenceOfCodeLevelReportYes
     );
+    intentMap.set("188Confirm-Color - Yes 2", handle188ConfirmColorYes2);
     intentMap.set(
         "190Rpovide-Phase-Of-Human-Cnetred-Design - Yes",
         handle190RpovidePhaseOfHumanCnetredDesignYes
@@ -8972,6 +12805,14 @@ router.post("/", async (request, response) => {
     intentMap.set(
         "173Confirm-Evidence-Valid-Consent - Yes",
         handle173ConfirmEvidenceValidConsentYes
+    );
+    intentMap.set(
+        "185Confirm-Code-Level-Security - Yes 3",
+        handle185ConfirmCodeLevelSecurityYes3
+    );
+    intentMap.set(
+        "185Confirm-Code-Level-Security - No 3",
+        handle185ConfirmCodeLevelSecurityNo3
     );
     intentMap.set(
         "187Confirm-By-External-Body - Yes",
@@ -9001,6 +12842,7 @@ router.post("/", async (request, response) => {
         "174Confirm-Consent-Withdraw-Easily - Yes",
         handle174ConfirmConsentWithdrawEasilyYes
     );
+    intentMap.set("188Confirm-Color - Yes 3", handle188ConfirmColorYes3);
     intentMap.set(
         "192Research-Informed-User-Needs - Yes",
         handle192ResearchInformedUserNeedsYes
@@ -9020,6 +12862,14 @@ router.post("/", async (request, response) => {
     intentMap.set(
         "149Confirm-Friendly-Way-Of-Data - Yes",
         handle149ConfirmFriendlyWayOfDataYes
+    );
+    intentMap.set(
+        "175Confirm-Bug-Reporting - Yes 2",
+        handle175ConfirmBugReportingYes2
+    );
+    intentMap.set(
+        "175Confirm-Bug-Reporting - No 2",
+        handle175ConfirmBugReportingNo2
     );
     intentMap.set(
         "193Provide-Product-Addresses - Yes",
@@ -9044,6 +12894,14 @@ router.post("/", async (request, response) => {
     intentMap.set(
         "194Provide-Times-Tested - Yes",
         handle194ProvideTimesTestedYes
+    );
+    intentMap.set(
+        "104Confirm-Pd-From-Individual - Yes 2",
+        handle104ConfirmPdFromIndividualYes2
+    );
+    intentMap.set(
+        "104Confirm-Pd-From-Individual - No 2",
+        handle104ConfirmPdFromIndividualNo2
     );
     intentMap.set(
         "122Confirm-Include-Decission-Based-On-Automated-Processing - Yes",
@@ -9084,6 +12942,22 @@ router.post("/", async (request, response) => {
     intentMap.set("199Ios-Or-Android - Yes", handle199IosOrAndroidYes);
     intentMap.set("199Ios-Or-Android - No", handle199IosOrAndroidNo);
     intentMap.set(
+        "124Confirm-Spd-And-Controller-And-Consent - Yes 2",
+        handle124ConfirmSpdAndControllerAndConsentYes2
+    );
+    intentMap.set(
+        "124Confirm-Spd-And-Controller-And-Consent - No 2",
+        handle124ConfirmSpdAndControllerAndConsentNo2
+    );
+    intentMap.set(
+        "139Confirm-Pd-Of-Child-And-Controller - Yes 2",
+        handle139ConfirmPdOfChildAndControllerYes2
+    );
+    intentMap.set(
+        "139Confirm-Pd-Of-Child-And-Controller - No 2",
+        handle139ConfirmPdOfChildAndControllerNo2
+    );
+    intentMap.set(
         "153Confirm-Not-Use-Pd-To-Auto-Decision - Yes",
         handle153ConfirmNotUsePdToAutoDecisionYes
     );
@@ -9109,6 +12983,14 @@ router.post("/", async (request, response) => {
         handle198ProvideScheduleOfImprovementYes
     );
     intentMap.set(
+        "201Confirm-Progressive-Web-App - Yes 2",
+        handle201ConfirmProgressiveWebAppYes2
+    );
+    intentMap.set(
+        "201Confirm-Progressive-Web-App - No 2",
+        handle201ConfirmProgressiveWebAppNo2
+    );
+    intentMap.set(
         "202Confirm-Comply-With-Baseline - Yes",
         handle202ConfirmComplyWithBaselineYes
     );
@@ -9118,6 +13000,8 @@ router.post("/", async (request, response) => {
         "155Confrim-Stop-Profilling - Yes",
         handle155ConfrimStopProfillingYes
     );
+    intentMap.set("199Ios-Or-Android - Yes 2", handle199IosOrAndroidYes2);
+    intentMap.set("199Ios-Or-Android - No 2", handle199IosOrAndroidNo2);
     intentMap.set(
         "203Confirm-Accessibility-Testing - Yes",
         handle203ConfirmAccessibilityTestingYes
@@ -9129,6 +13013,8 @@ router.post("/", async (request, response) => {
         "156Confirm-Marketing-Child-S-Pd - Yes",
         handle156ConfirmMarketingChildSPdYes
     );
+    intentMap.set("204Confirm-Website - Yes 2", handle204ConfirmWebsiteYes2);
+    intentMap.set("204Confirm-Website - No 2", handle204ConfirmWebsiteNo2);
     intentMap.set("206Confirm-Wcag2-1 - Yes", handle206ConfirmWcag21Yes);
     intentMap.set("213Api-Adhere-To-Gds - Yes", handle213ApiAdhereToGdsYes);
     intentMap.set(
@@ -9142,6 +13028,10 @@ router.post("/", async (request, response) => {
     intentMap.set(
         "207Provide-Text-Equivalence - Yes",
         handle207ProvideTextEquivalenceYes
+    );
+    intentMap.set(
+        "214Capable-In-Standard-Format - Yes 2",
+        handle214CapableInStandardFormatYes2
     );
     intentMap.set(
         "215Confirm-Wearable-Device - Yes",
@@ -9175,6 +13065,10 @@ router.post("/", async (request, response) => {
         "209Confirm-Keyboard-Only-Control - Yes",
         handle209ConfirmKeyboardOnlyControlYes
     );
+    intentMap.set(
+        "217Confirm-Source-Code-Controlled-With-Audited - Yes 2",
+        handle217ConfirmSourceCodeControlledWithAuditedYes2
+    );
     intentMap.set("218Confirm-Iso-9001 - Yes", handle218ConfirmIso9001Yes);
     intentMap.set(
         "160Confirm-Not-Offer-Iss - Yes",
@@ -9201,10 +13095,20 @@ router.post("/", async (request, response) => {
         handle211ProvideEvidenceImporvingAccessbilityYes
     );
     intentMap.set(
+        "212Confirm-Expose-Api - Yes 2",
+        handle212ConfirmExposeApiYes2
+    );
+    intentMap.set("212Confirm-Expose-Api - No 2", handle212ConfirmExposeApiNo2);
+    intentMap.set(
         "220Confirm-Issues-In-All-Tests - Yes",
         handle220ConfirmIssuesInAllTestsYes
     );
     intentMap.set("162Provide-Effort - Yes", handle162ProvideEffortYes);
+    intentMap.set(
+        "212Confirm-Expose-Api - Yes 3",
+        handle212ConfirmExposeApiYes3
+    );
+    intentMap.set("212Confirm-Expose-Api - No 3", handle212ConfirmExposeApiNo3);
     intentMap.set("221Confirm-Rollback - Yes", handle221ConfirmRollbackYes);
     intentMap.set("221Confirm-Rollback - No", handle221ConfirmRollbackNo);
     intentMap.set("163Confirm-Age-Limits - Yes", handle163ConfirmAgeLimitsYes);
@@ -9219,6 +13123,10 @@ router.post("/", async (request, response) => {
     intentMap.set(
         "164Confirm-Review-Age-Verification - Yes",
         handle164ConfirmReviewAgeVerificationYes
+    );
+    intentMap.set(
+        "223Confirm-Monitor-Running-Of-System - Yes 2",
+        handle223ConfirmMonitorRunningOfSystemYes2
     );
     intentMap.set(
         "224Confirm-Documented-Roadmap - Yes",
@@ -9244,18 +13152,30 @@ router.post("/", async (request, response) => {
         "226Confirm-Roadmap-For-Future - No",
         handle226ConfirmRoadmapForFutureNo
     );
+    intentMap.set("166Confirm-Cookies - Yes 2", handle166ConfirmCookiesYes2);
+    intentMap.set("166Confirm-Cookies - No 2", handle166ConfirmCookiesNo2);
+    intentMap.set(
+        "226Confirm-Roadmap-For-Future - Yes 2",
+        handle226ConfirmRoadmapForFutureYes2
+    );
+    intentMap.set(
+        "226Confirm-Roadmap-For-Future - No 2",
+        handle226ConfirmRoadmapForFutureNo2
+    );
     intentMap.set(
         "227Provide-Ensure-Availibility- - Yes",
         handle227ProvideEnsureAvailibilityYes
     );
     intentMap.set("228Decommissioning - Yes", handle228DecommissioningYes);
     intentMap.set("228Decommissioning - No", handle228DecommissioningNo);
+    intentMap.set("228Decommissioning - Yes 2", handle228DecommissioningYes2);
+    intentMap.set("228Decommissioning - No 2", handle228DecommissioningNo2);
     intentMap.set(
         "229Provide-Decommissioning - Yes",
         handle229ProvideDecommissioningYes
     );
-    intentMap.set("Placeholder2 - Yes", handlePlaceholder2Yes);
-    intentMap.set("Placeholder2 - No", handlePlaceholder2No);
+    intentMap.set("End - Yes 5", handleEndYes5);
+    intentMap.set("End - No 5", handleEndNo5);
     intentMap.set(
         "230Provide-Identifiable-Data - Yes",
         handle230ProvideIdentifiableDataYes
@@ -9264,9 +13184,14 @@ router.post("/", async (request, response) => {
         "231Provide-Retained-Identifiable - Yes",
         handle231ProvideRetainedIdentifiableYes
     );
+    intentMap.set("End - Yes 6", handleEndYes6);
+    intentMap.set("End - No 6", handleEndNo6);
     intentMap.set("Default Fallback Intent", handleDefaultFallbackIntent);
     intentMap.set("Clarification Intent", handleClarification);
-    intentMap.set("Email Conversation History", handleEmailConversationHistory)
+    function handleEmailConversationHistory(agent){
+        agent.add("I'll get right on that")
+    }
+    intentMap.set("Email Conversation History", handleEmailConversationHistory);
     agent.handleRequest(intentMap);
 });
 

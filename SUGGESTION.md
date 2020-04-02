@@ -142,5 +142,5 @@ Taking the **mhra** object as an example and looking at it's keys,
 **source** is an array of sources. source[0] will correspond to the source of information of actionNeeded[0]. Eg source[0] = http://mhra/what-to-do-if-you-are-class-i  
 **resource** is an array of resources. Resources are helpful links that users can follow to achieve a certain task. For example, if the **actionNeeded** is to register with MHRA, a helpful resource is a link to the registration page. The **value** key is the text that the user will see, and the **link** key is the page that a user will be redirected to when the user clicks on the text.
 
-### 3. Build /userData/suggestions route (server side)
+### 3. Build /userData/suggestionData route (server side)
 In _userData.js_ and under the `router.get("/suggestionData", async (req, res) => {...}` function, look for the line `{ projection: { _id: 0, mhraClass: 1 } }`. Here, `mhraClass` is the key stored in the database (this key has the same name as in _suggestions.json_). Update the `projection` object to include all the keys that you have added in _suggestions.json_. For example, since we added _knowTierOfDHT_ in our example above, the projection will now look like this `{ projection: { _id: 0, mhraClass: 1, knowTierOfDHT: 1 } }`
