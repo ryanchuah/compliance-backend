@@ -75,6 +75,33 @@
     },
 
     "nice": {
+        "knowTierOfDHT": [
+            {
+                "value": true,
+                "situation": "You already know the Tier of your DHT",
+                "actionNeeded": ["No action needed for NICE"],
+                "source": null,
+                "resource": [
+                    {
+                        "value": null,
+                        "link": null
+                    }
+                ]
+            },
+            {
+                "value": false,
+                "situation": "You do not know the Tier of your DHT",
+                "actionNeeded": ["Consult the chatbot to find out your Tier"],
+                "source": null,
+                "resource": [
+                    {
+                        "value": null,
+                        "link": null
+                    }
+                ]
+            }
+        ],
+
         "Tier1": [
             {
                 "value": "Tier 1",
