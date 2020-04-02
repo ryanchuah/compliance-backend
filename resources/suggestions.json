@@ -75,7 +75,7 @@
     },
 
     "nice": {
-        "class": [
+        "Tier1": [
             {
                 "value": "Tier 1",
                 "situation": "Your DHT belongs to Tier 1 under NICE rules",
@@ -125,7 +125,7 @@
             }
         ],
 
-        "class": [
+        "Tier2": [
             {
                 "value": "Tier 2",
                 "situation": "Your DHT belongs to Tier 2 under NICE rules",
@@ -199,7 +199,7 @@
             }
         ],
 
-        "class": [
+        "Tier3a": [
             {
                 "value": "Tier 3a",
                 "situation": "Your DHT belongs to Tier 3a under NICE rules",
@@ -285,7 +285,7 @@
             }
         ],
 
-        "class": [
+        "Tier3b": [
             {
                 "value": "Tier 3b",
                 "situation": "Your DHT belongs to Tier 3b under NICE rules",
