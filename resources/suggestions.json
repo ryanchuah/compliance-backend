@@ -72,7 +72,7 @@
                 ]
             }
         ]
-    }
+    },
     "nhsd": {
         "provideURL":[
             {
@@ -88,7 +88,7 @@
                 ]
             }
 
-        ]
+        ],
 
         "contactOrganisation":[
             {
@@ -104,7 +104,7 @@
                 ]
             }
 
-        ]
+        ],
 
         "NHSDBranding":[
             {
@@ -120,7 +120,7 @@
                 ]
             }
 
-        ]
+        ],
 
         "confirmGPC":[
             {
@@ -136,7 +136,7 @@
                 ]
             }
 
-        ]
+        ],
 
         "confirmHealthcareReg":[
             {
@@ -152,7 +152,7 @@
                 ]
             }
 
-        ]
+        ],
 
         "guestLogin":[
             {
@@ -168,7 +168,7 @@
                 ]
             }
 
-        ]
+        ],
 
         "confirmRegWithCQC":[
             {
@@ -184,7 +184,7 @@
                 ]
             }
 
-        ]
+        ],
 
         "provideCQCnumber":[
             {
@@ -200,7 +200,7 @@
                 ]
             }
 
-        ]
+        ],
 
         "provdieReCQC":[
             {
@@ -216,7 +216,7 @@
                 ]
             }
 
-        ]
+        ],
 
         "provideDescrip":[
             {
@@ -232,7 +232,7 @@
                 ]
             }
 
-        ]
+        ],
 
         "confirmReplNHSservice":[
             {
@@ -248,7 +248,7 @@
                 ]
             }
 
-        ]
+        ],
 
         "provideTrial":[
             {
@@ -264,7 +264,7 @@
                 ]
             }
 
-        ]
+        ],
 
         "confirmWhereProcessPD":[
             {
@@ -280,7 +280,7 @@
                 ]
             }
 
-        ]
+        ],
 
         "versionNumber":[
             {
@@ -296,7 +296,7 @@
                 ]
             }
 
-        ]
+        ],
 
         "typeOfPharmacy":[
             {
@@ -312,7 +312,7 @@
                 ]
             }
 
-        ]
+        ],
 
         "evidenceOfClicBenefit":[
             {
@@ -328,7 +328,7 @@
                 ]
             }
 
-        ]
+        ],
 
         "URLofBenefits":[
             {
@@ -344,7 +344,7 @@
                 ]
             }
 
-        ]
+        ],
 
         "reasonNotClinicBenefit":[
             {
@@ -360,7 +360,7 @@
                 ]
             }
 
-        ]
+        ],
 
         "reasonNotBehaBenefits":[
             {
