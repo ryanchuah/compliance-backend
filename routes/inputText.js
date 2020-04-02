@@ -10,7 +10,7 @@ const Dialogflow = require("../dialogflowHandler");
 const dialogflowHandler = new Dialogflow();
 const nodemailer = require("nodemailer");
 
-router.post("/", async (req, res) => {
+router.post("/", async (req, res, next) => {
     async function getRecentContextsFromDb(userID) {
         const result = await db
             .collection("userData")
@@ -18,8 +18,11 @@ router.post("/", async (req, res) => {
                 { _id: ObjectId(userID) },
                 { projection: { _id: 0, recentContexts: 1 } }
             );
-        const recentContexts = result.recentContexts;
-        return recentContexts;
+        if (result && result.recentContexts) {
+            const recentContexts = result.recentContexts;
+            return recentContexts;
+        }
+        return [];
     }
 
     async function getDialogflowResponse(
@@ -29,7 +32,7 @@ router.post("/", async (req, res) => {
         userID
     ) {
         try {
-            if (isStartOfNewSession) {
+            if (isStartOfNewSession && !isVisitor) {
                 var recentContexts = await getRecentContextsFromDb(userID);
             } else {
                 var recentContexts = null;
@@ -70,6 +73,59 @@ router.post("/", async (req, res) => {
             return dialogflowResponse[0];
         } catch (err) {
             console.log(err);
+        }
+    }
+
+    async function handleParameters(dialogflowResponse) {
+        const parameter = dialogflowResponse.queryResult.parameters.fields;
+        if (parameter["given-name"]) {
+            try {
+                db.collection("userData").updateOne(
+                    { _id: new ObjectId(userID) },
+                    {
+                        $set: { name: parameter["given-name"].stringValue }
+                    },
+                    { upsert: true }
+                );
+            } catch (err) {
+                console.log(err);
+            }
+        } else if (parameter["address"]) {
+            try {
+                db.collection("userData").updateOne(
+                    { _id: new ObjectId(userID) },
+                    {
+                        $set: { address: parameter["address"].stringValue }
+                    },
+                    { upsert: true }
+                );
+            } catch (err) {
+                console.log(err);
+            }
+        } else if (parameter["company"]) {
+            try {
+                db.collection("userData").updateOne(
+                    { _id: new ObjectId(userID) },
+                    {
+                        $set: { company: parameter["company"].stringValue }
+                    },
+                    { upsert: true }
+                );
+            } catch (err) {
+                console.log(err);
+            }
+        } else if (parameter["email"]) {
+            try {
+                db.collection("userData").updateOne(
+                    { _id: new ObjectId(userID) },
+                    {
+                        $set: { email: parameter["email"].stringValue }
+                    },
+                    { upsert: true }
+                );
+            } catch (err) {
+                console.log(err);
+            }
         }
     }
 
@@ -200,7 +256,8 @@ router.post("/", async (req, res) => {
 
     const message = req.body.message;
     const sessionID = req.body.sessionID;
-    const isStartOfNewSession = req.body.isStartOfNewSession;
+    // const isStartOfNewSession = req.body.isStartOfNewSession;
+    const isStartOfNewSession = true
     console.log("sessionID: " + req.body.sessionID);
     console.log("user: " + JSON.stringify(req.user));
 
@@ -219,7 +276,9 @@ router.post("/", async (req, res) => {
         userID
     );
 
-    const resultMessage =
+    // console.log(JSON.stringify(dialogflowResponse));
+
+    var resultMessage =
         dialogflowResponse.queryResult.fulfillmentMessages[0].text.text[0];
 
     if (isVisitor) {
@@ -230,8 +289,11 @@ router.post("/", async (req, res) => {
     }
 
     handleIntentName(dialogflowResponse);
-    const recentContexts = getRecentContexts(dialogflowResponse);
+    handleParameters(dialogflowResponse);
 
+    const recentContexts = getRecentContexts(dialogflowResponse);
+    // console.log(recentContexts);
+    
     const mhraClasses = ["Class I", "Class IIa", "Class IIb", "Class III"];
     var updatedConvHistory = false;
     for (const mhraClass of mhraClasses) {
@@ -286,13 +348,12 @@ router.post("/", async (req, res) => {
         }
     }
 
-    if (resultMessage == "Great! You’ve gone through all required questions!") {
-        console.log(1);
-    }
+    // console.log(resultMessage);
 
     res.json({
         message: resultMessage
     });
+    next()
 });
 
 module.exports = router;
