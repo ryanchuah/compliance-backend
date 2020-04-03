@@ -1,4 +1,4 @@
-require("dotenv").config()
+require("dotenv").config();
 const dialogflow = require("dialogflow");
 
 const LANGUAGE_CODE = "en-US";
@@ -28,6 +28,14 @@ class DialogFlow {
             this.projectId,
             sessionId
         );
+
+        // format context names
+        if (contexts){
+            for (const ctx of contexts) {
+                ctx.name = sessionPath + "/contexts/" + ctx.name;
+            }
+        }
+
         // The text query request.
         const request = {
             session: sessionPath,
@@ -37,15 +45,20 @@ class DialogFlow {
                     languageCode: LANGUAGE_CODE
                 }
             },
-            contexts: contexts ? contexts : []
+            queryParams: {
+                contexts: contexts ? contexts : []
+            }
         };
         try {
             let responses = await this.sessionClient.detectIntent(request);
+            const a = responses
+            
             return responses;
         } catch (err) {
             console.error("DialogFlow.sendTextMessageToDialogFlow ERROR:", err);
             throw err;
         }
+        
     }
 }
 
