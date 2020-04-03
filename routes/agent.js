@@ -57,10 +57,7 @@ router.post("/", async (request, response) => {
         return mostRecent;
     }
 
-    function handleNameInitial(agent) {
-        // reset contexts
-        const requestContexts = request.body.queryResult.outputContexts;
-        const mostRecentContextNames = getRecentContextNames(requestContexts);
+    function removeOldContexts(agent, requestContexts, mostRecentContextNames) {
         for (const ctx of requestContexts) {
             const words = ctx.name.split("/");
 
@@ -69,6170 +66,3008 @@ router.post("/", async (request, response) => {
                 agent.context.set({ name: context, lifespan: "0" });
             }
         }
+    }
+
+    function handleNameInitial(agent) {
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("What’s your name?");
     }
     function handleContactPersonNameInitial(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "What is the name of the contact person in your organization?"
         );
     }
     function handleEmailAddressInitial(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("What is their email address?");
     }
     function handlePhoneNumberInitial(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("What is their phone number?");
     }
     function handleOrganisationNameInitial(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("What is your organisation's name");
     }
     function handleOrganisationAddressInitial(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("What is your organisation's address?");
     }
     function handleKnowClassOfMedicalDeviceInitial(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do you know which class of Medical Device your software belongs to according to MHRA rules?"
         );
     }
     function handleKnowClassOfMedicalDeviceYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! You’re all set! Now, let's move on to NICE. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleKnowClassOfMedicalDeviceNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Does the MD not touch patient or contact only intact skin?");
     }
     function handleAlreadyKnowsMhraClassYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great let’s get started. Is your product available to the public and can you provide URL(s) to the app store location(s)?"
         );
     }
     function handleAlreadyKnowsMhraClassNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Now, let's start figuring out which Tier your DHT belongs to. Please remember your latest Tier as I say. Is your DHT unlikely to have direct and measurable individual patient outcomes? (If yes, Tier 1 - system service)"
         );
     }
     function handleNotTouchPatientYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class I. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleNotTouchPatientNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does the MD involve channelling or storing for eventual administration?"
         );
     }
     function handle1ProvideurlYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you confirm that users are able to contact you or your organisation directly via the product, if required? "
         );
     }
     function handle1SystemServiceYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your DHT provides information and resources to patients or the public? The information can include specific conditions or about healty living. (If yes, Tier 2 - inform)"
         );
     }
     function handleClassIYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassINo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleChannelingForAdministrationYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the MD to be used with blood, other bodily fluids, organs or tissues?"
         );
     }
     function handleChannelingForAdministrationNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does the MD modify biological or chemical composition of blood, body liquids, or other liquids intended for infusion?"
         );
     }
     function handle2ContactOrganisationYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Does your product use any forms of NHS Branding?");
     }
     function handle2InformYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your DHT allow users to record health parameters to create health diaries that are NOT shared with or sent to others? (If yes, Tier 2 - simple monitoring)"
         );
     }
     function handlePlaceholderYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great let’s get started. Is your product available to the public and can you provide URL(s) to the app store location(s)?"
         );
     }
     function handlePlaceholderNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! You’re all set! You can view suggested next steps by clicking on Suggestions in the navigation bar above."
         );
     }
     function handleDownloadedOrPurchasedYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great let’s get started. Is your product available to the public and can you provide URL(s) to the app store location(s)?"
         );
     }
     function handleDownloadedOrPurchasedNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Now, let's start figuring out which Tier your DHT belongs to. Please remember your latest Tier as I say. Is your DHT unlikely to have direct and measurable individual patient outcomes? (If yes, Tier 1 - system service)"
         );
     }
     function handleUsedWithBloodYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleUsedWithBloodNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "May the MD be connected to an active medical device in Class IIa or higher?"
         );
     }
     function handleModifyBiologicalCompositionYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the MD only for filtration, centrifiguration, or exchange of gas or heat?"
         );
     }
     function handleModifyBiologicalCompositionNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does the MD involve contact with injured skin (mechanical barrier, compression, absorb exudates)?"
         );
     }
     function handle3UseNhsBrandingYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you confirm that you have permission from the Department of Health & Social Care and that it complies with NHS England’s Branding Guidelines? "
         );
     }
     function handle3UseNhsBrandingNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product require registration with the General Pharmaceutical Council?"
         );
     }
     function handle2SimpleMonitoringYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your DHT allow 2-way communication between users and professionals, 3rd party organisations or peers? (Clinical advice is provided by professionals using the DHT). (If yes, Tier 2 - communicate)"
         );
     }
     function handle1ProvideurlYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you confirm that users are able to contact you or your organisation directly via the product, if required? "
         );
     }
     function handleEndYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("The session has ended");
     }
     function handleEndNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("The session has ended");
     }
     function handle1ProvideurlYes3(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you confirm that users are able to contact you or your organisation directly via the product, if required? "
         );
     }
     function handle1SystemServiceYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your DHT provides information and resources to patients or the public? The information can include specific conditions or about healty living. (If yes, Tier 2 - inform)"
         );
     }
     function handleClassIiaYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIiaNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleConnectedToActiveMedicalDeviceYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class I. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleConnectedToActiveMedicalDeviceNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleFiltrationCentrifigurationYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleFiltrationCentrifigurationNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleContactWithInjuredSkinYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the MD intended for wounds which breach dermis and heal only by secondary intent?"
         );
     }
     function handleContactWithInjuredSkinNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the MD invasive in body orifice or stoma (not surgically)?"
         );
     }
     function handle4ConfirmUseOfBrandingYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product require registration with the General Pharmaceutical Council?"
         );
     }
     function handle5RequireGpcYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you provide evidence confirming registration?");
     }
     function handle5RequireGpcNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product forms part of a service that requires registered healthcare professionals to operate?"
         );
     }
     function handle2CommunicateYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is your DHT designed to change user behaviour related to health issues (eg. smoking, eating, alcohol, sexual health, sleeping and exercise.)? (If yes, Tier 3a - preventative behaviour change)"
         );
     }
     function handleEndYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("The session has ended");
     }
     function handleEndNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("The session has ended");
     }
     function handleEndYes3(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("The session has ended");
     }
     function handleEndNo3(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("The session has ended");
     }
     function handlePlaceholderYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great let’s get started. Is your product available to the public and can you provide URL(s) to the app store location(s)?"
         );
     }
     function handlePlaceholderNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! You’re all set! You can view suggested next steps by clicking on Suggestions in the navigation bar above."
         );
     }
     function handleDownloadedOrPurchasedYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great let’s get started. Is your product available to the public and can you provide URL(s) to the app store location(s)?"
         );
     }
     function handleDownloadedOrPurchasedNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Now, let's start figuring out which Tier your DHT belongs to. Please remember your latest Tier as I say. Is your DHT unlikely to have direct and measurable individual patient outcomes? (If yes, Tier 1 - system service)"
         );
     }
     function handleClassIYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassINo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleClassIiaYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIiaNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleClassIiaYes3(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIiaNo3(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleClassIibYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIibNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleWoundsWhichBreachDermisYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleWoundsWhichBreachDermisNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Yes, is the MD intended to manage micro-environment of wounds + others?"
         );
     }
     function handleInvasiveInBodyOrificeYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is the MD for trancient use?");
     }
     function handleInvasiveInBodyOrificeNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is the MD surgically invasive and for trancient use?");
     }
     function handle5RequireGpcYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you provide evidence confirming registration?");
     }
     function handle5RequireGpcNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product forms part of a service that requires registered healthcare professionals to operate?"
         );
     }
     function handle6ConfirmWithGpcYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product forms part of a service that requires registered healthcare professionals to operate?"
         );
     }
     function handle7RequireHealthcaresYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you confirm their registration status and names? ");
     }
     function handle7RequireHealthcaresNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you provide a guest login for your product so that assessors can access and evaluate it? "
         );
     }
     function handle3ABehaviourChangeYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your DHT aim to help people with a diagnosed condition to manage their health? This may include symptom tracking function that connects with a healthcare professional. (If yes, Tier 3a - self-manage)"
         );
     }
     function handlePlaceholderYes3(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great let’s get started. Is your product available to the public and can you provide URL(s) to the app store location(s)?"
         );
     }
     function handlePlaceholderNo3(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! You’re all set! You can view suggested next steps by clicking on Suggestions in the navigation bar above."
         );
     }
     function handleDownloadedOrPurchasedYes3(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great let’s get started. Is your product available to the public and can you provide URL(s) to the app store location(s)?"
         );
     }
     function handleDownloadedOrPurchasedNo3(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Now, let's start figuring out which Tier your DHT belongs to. Please remember your latest Tier as I say. Is your DHT unlikely to have direct and measurable individual patient outcomes? (If yes, Tier 1 - system service)"
         );
     }
     function handleClassIibYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIibNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleManageMicroEnvironmentsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleManageMicroEnvironmentsNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class I. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleTrancientUseYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class I. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleTrancientUseNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is the MD for short-term use?");
     }
     function handleSurgicallyInvasiveYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the MD specifically to control/diagnose/monitor/correct a defect of heart or central circulatory system through direct contact?"
         );
     }
     function handleSurgicallyInvasiveNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is the MD surgically invasive and for short-term use?");
     }
     function handle7RequireHealthcaresYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you confirm their registration status and names? ");
     }
     function handle7RequireHealthcaresNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you provide a guest login for your product so that assessors can access and evaluate it? "
         );
     }
     function handle8ConfirmHealthcareRegistrationYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you provide a guest login for your product so that assessors can access and evaluate it? "
         );
     }
     function handle9ProvideAGuestLoginYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Your organisation requires CQC registration?");
     }
     function handle3ASelf_ManageYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your DHT provide treatment for a diagnosed condition, such as CBT for anxiety, or guides treatment decisions? (If yes, Tier 3b - treat)"
         );
     }
     function handleClassIiaYes4(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIiaNo4(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleClassIYes3(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassINo3(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleClassIYes4(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassINo4(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleShortTermUseYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the MD only for use in oral cavity, ear canal, or in nasal cavity?"
         );
     }
     function handleShortTermUseNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is the MD for long-term use?");
     }
     function handleControlDiagnoseMonitorOrCorrectYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleControlDiagnoseMonitorOrCorrectNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the MD or use in direct contact with the central nervous systerm?"
         );
     }
     function handleSurgicallyInvasiveAndShortTermUseYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the MD for use in direct contact with the central nervous system?"
         );
     }
     function handleSurgicallyInvasiveAndShortTermUseNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the MD surgically invasive, for long term use, or is an implantable device?"
         );
     }
     function handle9ProvideAGuestLoginYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Your organisation requires CQC registration?");
     }
     function handle10RequireRegistrationWithCqcYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is your organisation registered with CQC? ");
     }
     function handle10RequireRegistrationWithCqcNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do you think that your organisation does not require CQC registration?"
         );
     }
     function handle3BTreatYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your DHT automatically records information and transmits the data to a professional, career or 3rd party organisation WITHOUT any input from the user, to inform clinical management decisions? (If yes, Tier 3b - active monitoring)"
         );
     }
     function handleOralCavityEarCanalYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class I. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleOralCavityEarCanalNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleLongTermUseYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the MD only for use in oral cavity, ear canal, or in nasal cavity and is not liable to be absorbed by the mucous membrane?"
         );
     }
     function handleLongTermUseNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the MD to be connected to an active medical device in Class IIa or higher?"
         );
     }
     function handleClassIiiYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIiiNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleDirectContactWithCnsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleDirectContactWithCnsNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is the MD a reusable surgical instrument?");
     }
     function handleDirectContactWithCns2Yes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleDirectContactWithCns2No(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the MD specifically used to monitor/control/diagnose/correct defect of heart or central circulatory system by direct contact?"
         );
     }
     function handleSurgicallyInvasiveLongTermUseYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is the MD to be used in teeth?");
     }
     function handleSurgicallyInvasiveLongTermUseNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the MD an active therapeutic device intended to administer or exchange energy?"
         );
     }
     function handle11ConfirmRegistrationWithCqcYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you provide your organisation's CQC account number?");
     }
     function handle11ConfirmRegistrationWithCqcNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do you think that your organisation does not require CQC registration?"
         );
     }
     function handle14NeedRegistrationCqcYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you provide a brief description of your product?");
     }
     function handle14NeedRegistrationCqcNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Have you reviewed the scope of registration for CQC and confirmed your organisation's activities do not require registration?"
         );
     }
     function handle3BAcitve_MonitoringYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your DHT have tools that perform clinical calculations that are likely to affect clinical care decisions? (If yes, Tier 3b - calculate)"
         );
     }
     function handleClassIYes5(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassINo5(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleClassIiaYes5(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIiaNo5(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleOralCavityEarCanalNotLiableToBeAbsorbedYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleOralCavityEarCanalNotLiableToBeAbsorbedNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleConnectedToActiveMedicalDevice2Yes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleConnectedToActiveMedicalDevice2No(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is the MD surgically invasive and for trancient use?");
     }
     function handlePlaceholderYes4(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great let’s get started. Is your product available to the public and can you provide URL(s) to the app store location(s)?"
         );
     }
     function handlePlaceholderNo4(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! You’re all set! You can view suggested next steps by clicking on Suggestions in the navigation bar above."
         );
     }
     function handleDownloadedOrPurchasedYes4(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great let’s get started. Is your product available to the public and can you provide URL(s) to the app store location(s)?"
         );
     }
     function handleDownloadedOrPurchasedNo4(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Now, let's start figuring out which Tier your DHT belongs to. Please remember your latest Tier as I say. Is your DHT unlikely to have direct and measurable individual patient outcomes? (If yes, Tier 1 - system service)"
         );
     }
     function handleClassIiiYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIiiNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleReusableSurgicalInstrumentYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class I. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleReusableSurgicalInstrumentNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Does the MD supply energy or ionising radiation?");
     }
     function handleClassIiiYes3(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIiiNo3(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleMonitorControlDiagnoseOrCorrectYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleMonitorControlDiagnoseOrCorrectNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Does the MD supply energy or ionising radiation?");
     }
     function handleUsedInTeethYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleUsedInTeethNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the MD to be used in direct contact with heart or central nervous/circulatory system?"
         );
     }
     function handleActiveTherapeuticDeviceYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does the MD administer or exchange energy in a potentially hazardous way?"
         );
     }
     function handleActiveTherapeuticDeviceNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the MD an active device for diagnosis intended to supply energy to image in vivo distribution of radiopharmaceuticals, or for direct diagnosis or monitoring of vital physiological processes?"
         );
     }
     function handle12ProvideCqcNumberYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you provide the date of your organisation's most recent registration certificate?"
         );
     }
     function handle12ProvideCqcNumberNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do you think that your organisation does not require CQC registration?"
         );
     }
     function handle14NeedRegistrationCqcYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you provide a brief description of your product?");
     }
     function handle14NeedRegistrationCqcNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Have you reviewed the scope of registration for CQC and confirmed your organisation's activities do not require registration?"
         );
     }
     function handle16ProvideDescriptionYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product integrate with a website or other software/device?"
         );
     }
     function handle15ConfirmDoesNotNeedCqcYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you provide a brief description of your product?");
     }
     function handle3BCalculateYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your DHT use data to diagnose a condition in a patient, or to guide a diagnostic decision made by a healthcare professional? (If yes, Tier 3b - diagnose)"
         );
     }
     function handleClassIiaYes6(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIiaNo6(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleClassIibYes3(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIibNo3(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleClassIiaYes7(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIiaNo7(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleSurgicallyInvasiveYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the MD specifically to control/diagnose/monitor/correct a defect of heart or central circulatory system through direct contact?"
         );
     }
     function handleSurgicallyInvasiveNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is the MD surgically invasive and for short-term use?");
     }
     function handleClassIYes6(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassINo6(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleSupplyEnergyYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleSupplyEnergyNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does the MD have a biological effect, ie it is mainly or wholly absorbed?"
         );
     }
     function handleClassIiiYes4(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIiiNo4(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleSupplyEnergy2Yes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleSupplyEnergy2No(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does the MD have a biological effect or is mainly absorbed?"
         );
     }
     function handleClassIiaYes8(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIiaNo8(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleDirectContactWithHeartYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleDirectContactWithHeartNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does the MD have a biological effect or is mainly absorbed?"
         );
     }
     function handleAdministerOrExchangeEnergyYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleAdministerOrExchangeEnergyNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does the MD control, monitor, or influence directly the performance of a Class IIb active therapeutic device?"
         );
     }
     function handleSupplyEnergyToImageInVivoYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the MD specifically intended to monitor vital physiological parameters where variations could result in immediate danger?"
         );
     }
     function handleSupplyEnergyToImageInVivoNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the MD an active device to administer or remove medicines and other substances to or from the body?"
         );
     }
     function handle13ProvideRecentCqcRegistrationYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do you think that your organisation does not require CQC registration?"
         );
     }
     function handle14NeedRegistrationCqcYes3(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you provide a brief description of your product?");
     }
     function handle14NeedRegistrationCqcNo3(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Have you reviewed the scope of registration for CQC and confirmed your organisation's activities do not require registration?"
         );
     }
     function handle17IntegrateWithWebsiteOrOthersYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product connects to any of the NHS Service listed: Electronic Prescription Service (EPS) or Electronic Referrals Service (eRS) or GP2GP or GP? Connect  GPSoC Connection to Primary Care Systems (EMIS, Microtest, TPP & VISION)  Health and Social Care Network  NHS Mail  NHS Pathways  Spine  Summary Care Records."
         );
     }
     function handle16ProvideDescriptionYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product integrate with a website or other software/device?"
         );
     }
     function handle3BDiagnoseYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "This is the end of the Functional Classification. If you have told multiple Tiers, then you have to choose the highest Tier. Plus, the Tiers are cumulative. This means that your DHT must meet all the standards in the previous Tier(s), as well as its own Tier. (Please say Clarification if you need more explanation). Now we will move on to NHSD’s questions. Would you like to go through them?"
         );
     }
     function handleClassIibYes4(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIibNo4(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleHaveABiologicalEffectYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleHaveABiologicalEffectNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the MD intended to administer medicine in a potentially hazardous manner?"
         );
     }
     function handleClassIibYes5(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIibNo5(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleHaveABiologicalEffect2Yes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleHaveABiologicalEffect2No(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does the MD undergo chemical change in the body, or is used to administer medicine (not in teeth)?"
         );
     }
     function handleClassIiiYes5(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIiiNo5(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleHaveABiologicalEffectOrMainlyAbsorbedYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleHaveABiologicalEffectOrMainlyAbsorbedNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does the MD undergo chemical change in the body, or is used to administer medicine (not in teeth"
         );
     }
     function handleClassIibYes6(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIibNo6(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleControlMonitorOrInfluenceYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleControlMonitorOrInfluenceNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleMonitorVitalPhysiologicalParametersYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleMonitorVitalPhysiologicalParametersNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does the MD emit ionizing radiation and is intended for diagnostic and therapeutic interventional radiology?"
         );
     }
     function handleActiveDeviceToAdministerMedicinesYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Does the MD do so in a potentially hazardous way?");
     }
     function handleActiveDeviceToAdministerMedicinesNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the MD an active medical device but is not classified by any of the above rules?"
         );
     }
     function handle14NeedRegistrationCqcYes4(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you provide a brief description of your product?");
     }
     function handle14NeedRegistrationCqcNo4(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Have you reviewed the scope of registration for CQC and confirmed your organisation's activities do not require registration?"
         );
     }
     function handle18ConnectWithDevicesYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Could your product replace a commissioned NHS service?");
     }
     function handle18ConnectWithDevicesNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can provide details about how your product could replace a commissioned service?"
         );
     }
     function handleFunctionalClassificationOverYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great let’s get started. Is your product available to the public and can you provide URL(s) to the app store location(s)?"
         );
     }
     function handleFunctionalClassificationOverNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! You’re all set! You can view suggested next steps by clicking on Suggestions in the navigation bar above."
         );
     }
     function handleClassIibYes7(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIibNo7(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleAdministerMedicineYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleAdministerMedicineNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleClassIiiYes6(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIiiNo6(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleUndergoChemicalChangeYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleUndergoChemicalChangeNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleClassIiiYes7(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIiiNo7(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleUndergoChemicalChangeOrAdministerMedicineYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleUndergoChemicalChangeOrAdministerMedicineNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the MD for use in breast implants, or hip, knee, or shoulder joint replacements?"
         );
     }
     function handleClassIibYes8(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIibNo8(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleClassIiaYes9(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIiaNo9(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleClassIibYes9(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIibNo9(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleEmitIonizingRadiationYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleEmitIonizingRadiationNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handlePotentiallyHazardousYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handlePotentiallyHazardousNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleActiveDeviceNotClassifiedYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class I. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleActiveDeviceNotClassifiedNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does the MD incorporate integral medicinal substances liable to act in an ancillary way on the human body?"
         );
     }
     function handle19ReplaceANhsServiceYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can provide details about how your product could replace a commissioned service?"
         );
     }
     function handle19ReplaceANhsServiceNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is your product free to public users? ");
     }
     function handle20ConfirmReplaceANhsServiceYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is your product free to public users? ");
     }
     function handle1ProvideurlYes4(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you confirm that users are able to contact you or your organisation directly via the product, if required? "
         );
     }
     function handleEndYes4(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("The session has ended");
     }
     function handleEndNo4(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("The session has ended");
     }
     function handleClassIibYes10(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIibNo10(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleClassIiaYes10(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIiaNo10(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleClassIibYes11(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIibNo11(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleClassIiaYes11(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIiaNo11(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleClassIiiYes8(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIiiNo8(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleUseInBreastImplantsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleUseInBreastImplantsNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleClassIibYes12(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIibNo12(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleClassIiaYes12(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIiaNo12(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleClassIibYes13(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIibNo13(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleClassIiaYes13(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIiaNo13(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleClassIYes7(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassINo7(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleIncorporateIntegralMedicinalSubstancesYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleIncorporateIntegralMedicinalSubstancesNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the MD used for contraception or prevention of sexually transmitted diseases?"
         );
     }
     function handle20ConfirmReplaceANhsServiceYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is your product free to public users? ");
     }
     function handle21FreeToPublicYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Do you have the source of funding?");
     }
     function handle21FreeToPublicYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Do you have the source of funding?");
     }
     function handleClassIiiYes9(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIiiNo9(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleClassIibYes14(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIibNo14(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleClassIiiYes10(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIiiNo10(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleContraceptionYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is the MD implantable or is long-term invasive?");
     }
     function handleContraceptionNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is the MD specifically to be used for disinfecting MDs?");
     }
     function handle22SourceOfFundingYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is your product involved in a pilot or trial with an NHS hospital, Trust, CCG or in a primary care setting?"
         );
     }
     function handleImplantableYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleImplantableNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleDisinfectingMdsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the MD specifically to be used for disinfecting, cleaning, rinsing or hydrating contact lenses?"
         );
     }
     function handleDisinfectingMdsNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the MD intended for recording of X-ray diagnostic images?"
         );
     }
     function handle23ProvideATrialYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you provide a brief detail of the pilot or trial?(just answer Yes or No)"
         );
     }
     function handle23ProvideATrialNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product process personal data of NHS or Social Care users?"
         );
     }
     function handleClassIiiYes11(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIiiNo11(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleClassIibYes15(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIibNo15(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleDisinfectingContactLensesYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleDisinfectingContactLensesNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the MD specifically to be used for disinfecting invasive MDs?"
         );
     }
     function handleRecordingOfXRayYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleRecordingOfXRayNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does the MD utilize non-viable animal tissues or derivatives (not devices in contact with only intact skin)?"
         );
     }
     function handle24ProvideDetailOfTheTrialYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product process personal data of NHS or Social Care users?"
         );
     }
     function handle25ConfirmProcessPersonalDataYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do you know where does the product process (e.g. store) the personal data of NHS or Social Care patient/client/service users?"
         );
     }
     function handle25ConfirmProcessPersonalDataNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is your product available on iOS/Android/Windows Mobile/ OS X/ Linux/others?"
         );
     }
     function handleClassIibYes16(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIibNo16(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleDisinfectingInvasiveMdsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleDisinfectingInvasiveMdsNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIa. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleClassIiaYes14(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIiaNo14(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleNonViableAnimalTissuesYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class III. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleNonViableAnimalTissuesNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is the MD a blood bag?");
     }
     function handle25ConfirmProcessPersonalDataYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do you know where does the product process (e.g. store) the personal data of NHS or Social Care patient/client/service users?"
         );
     }
     function handle25ConfirmProcessPersonalDataNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is your product available on iOS/Android/Windows Mobile/ OS X/ Linux/others?"
         );
     }
     function handle26ComfirmWhereToProcessYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is your product available on iOS/Android/Windows Mobile/ OS X/ Linux/others?"
         );
     }
     function handle27ComfrimAvailableOnPlatformsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you provide the following version number?");
     }
     function handle27ComfrimAvailableOnPlatformsNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the type of pharmacy is clearly stated prior to the beginning of any sign up process?"
         );
     }
     function handleClassIibYes17(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIibNo17(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleClassIiaYes15(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIiaNo15(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleClassIiiYes12(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIiiNo12(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleBloodBagYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleBloodBagNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Error");
     }
     function handle27ComfrimAvailableOnPlatformsYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you provide the following version number?");
     }
     function handle27ComfrimAvailableOnPlatformsNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the type of pharmacy is clearly stated prior to the beginning of any sign up process?"
         );
     }
     function handle28ProvidePlatformNumberYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the type of pharmacy is clearly stated prior to the beginning of any sign up process?"
         );
     }
     function handle29ComfirmTypeOfPharmacyYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Does your product provide any clinical benefits?");
     }
     function handleClassIibYes18(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! Now let’s move on to NHS Digital. Would you like to answer questions required by NHS Digital?"
         );
     }
     function handleClassIibNo18(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Ok. Let's start functional classification now. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
         );
     }
     function handleBloodBagYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Your MD belongs to Class IIb. Now Let's move on to NICE. Do you know which Tier of Digital Healthcare Technology (DHT) belongs to according to NICE rules?"
         );
     }
     function handleBloodBagNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Error");
     }
     function handle29ComfirmTypeOfPharmacyYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Does your product provide any clinical benefits?");
     }
     function handle30ProvideClinicalBenefitsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do you have any evidence to show success of the clinical benefits?"
         );
     }
     function handle30ProvideClinicalBenefitsNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you give a reason why your product does not provide clinical benefits?"
         );
     }
     function handle31ProvideEvidenceOfClinicalBenefitsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you upload a relevant document or provide relevant URLs?"
         );
     }
     function handle33ProvideTheReasonOfNotHaveClinicalBenefitsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Does your product provide any behavioural benefits?");
     }
     function handle32ProvideTheUrlOfClinicalBenefitsD11Yes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you give a reason why your product does not provide clinical benefits?"
         );
     }
     function handle32ProvideTheUrlOfClinicalBenefitsD11No(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Does your product provide any behavioural benefits?");
     }
     function handle34ProvideBehaviouralBenefitsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you describe the improvements to psychological or social motivation, patient reported outcomes or experience measures?(Just answer Yes or No)."
         );
     }
     function handle34ProvideBehaviouralBenefitsNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you give a reason why not?");
     }
     function handle33ProvideTheReasonOfNotHaveClinicalBenefitsYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Does your product provide any behavioural benefits?");
     }
     function handle34ProvideBehaviouralBenefitsYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you describe the improvements to psychological or social motivation, patient reported outcomes or experience measures?(Just answer Yes or No)."
         );
     }
     function handle34ProvideBehaviouralBenefitsNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you give a reason why not?");
     }
     function handle35ProvideImprovementOfBahaviouralBenefitsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you upload a relevant document or provide relevant URLs ?"
         );
     }
     function handle35ProvideImprovementOfBahaviouralBenefitsNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Are there any economic benefits to using your product?");
     }
     function handle37ComfirmReasonNotHaveBehaviouralBenefitsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Are there any economic benefits to using your product?");
     }
     function handle36ProvideUrlOfBehavirouralBenefitsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you give a reason why not?");
     }
     function handle36ProvideUrlOfBehavirouralBenefitsNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Are there any economic benefits to using your product?");
     }
     function handle38ComfirmOfEconomicBenefitsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you describe what economic benefits and the timeframe for success?"
         );
     }
     function handle38ComfirmOfEconomicBenefitsNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you give a reason why not?");
     }
     function handle38ComfirmOfEconomicBenefitsYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you describe what economic benefits and the timeframe for success?"
         );
     }
     function handle38ComfirmOfEconomicBenefitsNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you give a reason why not?");
     }
     function handle37ComfirmReasonNotHaveBehaviouralBenefitsYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Are there any economic benefits to using your product?");
     }
     function handle38ComfirmOfEconomicBenefitsYes3(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you describe what economic benefits and the timeframe for success?"
         );
     }
     function handle38ComfirmOfEconomicBenefitsNo3(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you give a reason why not?");
     }
     function handle39DescribeTheEconomicBenefitsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you provide any evidence to show success of the economic benefits?"
         );
     }
     function handle39DescribeTheEconomicBenefitsNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Are there any other outcomes that you have measured? ");
     }
     function handle41ProvideAReasonNotHaveEconomicBenefitsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Are there any other outcomes that you have measured? ");
     }
     function handle40ProvideEvidenceOfEconomicBenefitsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you give a reason why not?");
     }
     function handle40ProvideEvidenceOfEconomicBenefitsNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Are there any other outcomes that you have measured? ");
     }
     function handle42ComfirmAnyOtherOutcomesYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you describe what other outcomes and the timeframe for success?"
         );
     }
     function handle42ComfirmAnyOtherOutcomesNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you give the reason why not?");
     }
     function handle42ComfirmAnyOtherOutcomesYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you describe what other outcomes and the timeframe for success?"
         );
     }
     function handle42ComfirmAnyOtherOutcomesNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you give the reason why not?");
     }
     function handle41ProvideAReasonNotHaveEconomicBenefitsYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Are there any other outcomes that you have measured? ");
     }
     function handle42ComfirmAnyOtherOutcomesYes3(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you describe what other outcomes and the timeframe for success?"
         );
     }
     function handle42ComfirmAnyOtherOutcomesNo3(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you give the reason why not?");
     }
     function handle43ProvideWhatOtherOutcomesYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Has your product been evaluated in any way for these other outcomes?"
         );
     }
     function handle47ProvideReasonWhyNoOutcomesYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Are there any resource impact benefits associated with your product?"
         );
     }
     function handle44ComfirmEvaluatedForOutcomesYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you provide evidence demonstrating the evaluation of these outcomes?"
         );
     }
     function handle44ComfirmEvaluatedForOutcomesNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you upload a relevant document or provide relevant URLs?"
         );
     }
     function handle48ConfirmResourceImpactBenefitsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you provide detail of resource impact benefits?");
     }
     function handle48ConfirmResourceImpactBenefitsNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             " Does your product fall within the scope of the NHS England mandated Safety Standard DCB0129?"
         );
     }
     function handle45ProvideEvidenceOfEvaluatingOutcomesYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you upload a relevant document or provide relevant URLs?"
         );
     }
     function handle46ProvideUrlOfEvaluatingOutcomesYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you give the reason why not?");
     }
     function handle49ProvideDetailOfResourceImpactBenefitsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             " Does your product fall within the scope of the NHS England mandated Safety Standard DCB0129?"
         );
     }
     function handle50ConfirmWithinNhsDcb0129Yes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you provide a copy of your Safety Case and Hazard Log?");
     }
     function handle50ConfirmWithinNhsDcb0129No(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you rovide a brief explanation as to why your product does not fall within the scope of the NHS England mandated Safety Standard DCB0129?"
         );
     }
     function handle46ProvideUrlOfEvaluatingOutcomesYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you give the reason why not?");
     }
     function handle47ProvideReasonWhyNoOutcomesYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Are there any resource impact benefits associated with your product?"
         );
     }
     function handle50ConfirmWithinNhsDcb0129Yes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you provide a copy of your Safety Case and Hazard Log?");
     }
     function handle50ConfirmWithinNhsDcb0129No2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you rovide a brief explanation as to why your product does not fall within the scope of the NHS England mandated Safety Standard DCB0129?"
         );
     }
     function handle51ProvideCopyOfSafetyCaseYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is it possible for users to experience adverse effects as a result of using your product? "
         );
     }
     function handle52ProvideWhyNotFallWithinDcb0129Yes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is it possible for users to experience adverse effects as a result of using your product? "
         );
     }
     function handle53ComfirmAdverseEffectsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you list all of the possible adverse effects of using your product if require?"
         );
     }
     function handle53ComfirmAdverseEffectsNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Has the safety assessment for your product been approved by a qualified clinician?"
         );
     }
     function handle53ComfirmAdverseEffectsYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you list all of the possible adverse effects of using your product if require?"
         );
     }
     function handle53ComfirmAdverseEffectsNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Has the safety assessment for your product been approved by a qualified clinician?"
         );
     }
     function handle54ProvidePossibleAdverseEffectsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Has the safety assessment for your product been approved by a qualified clinician?"
         );
     }
     function handle55ComfirmApprovedByClinicianYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you the name and job title of the reviewer?");
     }
     function handle55ComfirmApprovedByClinicianNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Does your product process personal data?");
     }
     function handle55ComfirmApprovedByClinicianYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you the name and job title of the reviewer?");
     }
     function handle55ComfirmApprovedByClinicianNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Does your product process personal data?");
     }
     function handle56ProvideNameOfClinicianYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Does your product process personal data?");
     }
     function handle57ConfirmProcessTheDataPersonalYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you provide details of any other personal data items being processed by your product that are not listed in the supporting information?"
         );
     }
     function handle57ConfirmProcessTheDataPersonalNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "You have indicated that the use of your product will not cause any personal or sensitive personal data to be processed.Please confirm that: You have read and fully understood the definitions of personal sensitive personal data provided by the Information Commissioner’s Office You have read and fully understood the supporting information and examples You have fully considered all the data including that processed by placing and retrieving information through a cookie or similar technology Should there be an intention to process such data, you accept that a reassessment will be required before the data processing begins in order to remain on the NHS Apps LibraryI confirm"
         );
     }
     function handle57ConfirmProcessTheDataPersonalYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you provide details of any other personal data items being processed by your product that are not listed in the supporting information?"
         );
     }
     function handle57ConfirmProcessTheDataPersonalNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "You have indicated that the use of your product will not cause any personal or sensitive personal data to be processed.Please confirm that: You have read and fully understood the definitions of personal sensitive personal data provided by the Information Commissioner’s Office You have read and fully understood the supporting information and examples You have fully considered all the data including that processed by placing and retrieving information through a cookie or similar technology Should there be an intention to process such data, you accept that a reassessment will be required before the data processing begins in order to remain on the NHS Apps LibraryI confirm"
         );
     }
     function handle58ProvidePeronalDataProcessedYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Does your product process sensitive personal data?");
     }
     function handle61ConfirmFullyUnderstandingOfPersonalDataSensitiveDataYes(
         agent
     ) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do you understand you/your organisation's role? 'Controller' 'Controller' and 'manufacturer/designer' of the product)  'Processor' only or Product 'manufacturer/designer' only."
         );
     }
     function handle59ConfirmProcessSensitiveDataYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you provide details of any other sensitive personal data items being processed by your product?"
         );
     }
     function handle59ConfirmProcessSensitiveDataNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "You have indicated that the use of your product will not cause any personal or sensitive personal data to be processed.Please confirm that: You have read and fully understood the definitions of personal sensitive personal data provided by the Information Commissioner’s Office You have read and fully understood the supporting information and examples You have fully considered all the data including that processed by placing and retrieving information through a cookie or similar technology Should there be an intention to process such data, you accept that a reassessment will be required before the data processing begins in order to remain on the NHS Apps LibraryI confirm"
         );
     }
     function handle62UnderstandOrganisationSRoleYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product process personal OR sensitive personal data AND your organisation is not a Controller?"
         );
     }
     function handle60ProvideSensitivePersonalDataProcessedYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do you understand you/your organisation's role? 'Controller' 'Controller' and 'manufacturer/designer' of the product)  'Processor' only or Product 'manufacturer/designer' only."
         );
@@ -6240,731 +3075,363 @@ router.post("/", async (request, response) => {
     function handle61ConfirmFullyUnderstandingOfPersonalDataSensitiveDataYes2(
         agent
     ) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do you understand you/your organisation's role? 'Controller' 'Controller' and 'manufacturer/designer' of the product)  'Processor' only or Product 'manufacturer/designer' only."
         );
     }
     function handle63ProcessDataAndNotAControllerYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product personal OR sensitive personal data AND your organisation is a Processor (and not a Controller)?"
         );
     }
     function handle62UnderstandOrganisationSRoleYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product process personal OR sensitive personal data AND your organisation is not a Controller?"
         );
     }
     function handle64ProcessPersonalDataAndProcessorNotControllerYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you provide the details of the 'Processor' organisation on whose behalf you are processing personal data."
         );
     }
     function handle65ProvideDetailsOfControllerYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does you rproduct process personal OR sensitive personal data AND your organisation is neither a Controller nor Processor?"
         );
     }
     function handle66ProcessDataNotControllerNotProcessorYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "You/your organisation is developing, or has developed, a product but you will not control or process the personal data because: the individual user who downloads your product controls their own data entirely OR the client (organisation) which buys your product is the Controller’ and will make the decisions described earlier regarding what personal data is processed when using your product).If your answer to this is 'Yes', then you/your organisation is a manufacturer or designer (neither a 'Controller' nor 'Processor'). Your app must be designed and configurable to meet the potential clients' (the 'Controller') legal requirements or safeguard the privacy rights of users who individually download the product you make available."
         );
     }
     function handle66ProcessDataNotControllerNotProcessorNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product process personal OR sensitive personal data AND is a Controller?"
         );
     }
     function handle67ChooseToKnowManufacturerOrDesignerYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product process personal OR sensitive personal data AND is a Controller?"
         );
     }
     function handle68ProcessDataAndControllerYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is your organisation subject to European/UK Data Protection laws?"
         );
     }
     function handle68ProcessDataAndControllerNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product process personal OR sensitive personal data AND your organisation is a Controller AND is subject to European/UK Data Protection Laws?"
         );
     }
     function handle68ProcessDataAndControllerYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is your organisation subject to European/UK Data Protection laws?"
         );
     }
     function handle68ProcessDataAndControllerNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product process personal OR sensitive personal data AND your organisation is a Controller AND is subject to European/UK Data Protection Laws?"
         );
     }
     function handle69SubjectToLawsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product process personal OR sensitive personal data AND your organisation is a Controller AND is subject to European/UK Data Protection Laws?"
         );
     }
     function handle70DataAndControllerAndLawsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product have a registration number in the Data Protection Register?"
         );
     }
     function handle70DataAndControllerAndLawsNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you tell us your overall grading (which must achieve Green or Amber to be considered for the NHS Apps Library)?"
         );
     }
     function handle70DataAndControllerAndLawsYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product have a registration number in the Data Protection Register?"
         );
     }
     function handle70DataAndControllerAndLawsNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you tell us your overall grading (which must achieve Green or Amber to be considered for the NHS Apps Library)?"
         );
     }
     function handle71ConfirmNumberOfDprYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you tell us your overall grading (which must achieve Green or Amber to be considered for the NHS Apps Library)?"
         );
     }
     function handle72ProvideTheOverallGradingYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you provide the name and title of a senior manager in the 'Controller' organisation who verifies the grading is accurate?"
         );
     }
     function handle72ProvideTheOverallGradingNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product your product partially meet the criteria set out in Annex 2 of Guidelines of DPIA?"
         );
     }
     function handle72ProvideTheOverallGradingYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you provide the name and title of a senior manager in the 'Controller' organisation who verifies the grading is accurate?"
         );
     }
     function handle72ProvideTheOverallGradingNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product your product partially meet the criteria set out in Annex 2 of Guidelines of DPIA?"
         );
     }
     function handle72ProvideTheNameOfOverallGradingYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you supply a copy of the completed ICO Checklist?");
     }
     function handle74ComfirmMeetsAnnex2Yes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you provide DPIA includes details of trackers and permissions used by your product along with the justification for why each is required and their purpose?"
         );
     }
     function handle74ComfirmMeetsAnnex2No(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your DPIA include details of trackers and permissions used by your product?"
         );
     }
     function handle73ProvideCopyPfTheChecklistYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product your product partially meet the criteria set out in Annex 2 of Guidelines of DPIA?"
         );
     }
     function handle75ProvideDpiaYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your DPIA include details of trackers and permissions used by your product?"
         );
     }
     function handle76ConfirmPermissionOfDpiaYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product porcess personal data AND your organisation is a Controller?"
         );
     }
     function handle74ComfirmMeetsAnnex2Yes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you provide DPIA includes details of trackers and permissions used by your product along with the justification for why each is required and their purpose?"
         );
     }
     function handle74ComfirmMeetsAnnex2No2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your DPIA include details of trackers and permissions used by your product?"
         );
     }
     function handle76ConfirmPermissionOfDpiaYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product porcess personal data AND your organisation is a Controller?"
         );
     }
     function handle77ConfirmDataAndControllerYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the legal basis for each processing purposer of the personal data clearly described to the individual?"
         );
     }
     function handle77ConfirmDataAndControllerNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is there an 'other legal basis' for the processing of personal data?"
         );
     }
     function handle78ComfirmLegalBasisYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is there an 'other legal basis' for the processing of personal data?"
         );
     }
     function handle79ConfirmOtherLegalBasisYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you describe the other legal basis?");
     }
     function handle79ConfirmOtherLegalBasisNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Has your organisation developed measures to protect the applicable rights of the data subjects?"
         );
     }
     function handle79ConfirmOtherLegalBasisYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you describe the other legal basis?");
     }
     function handle79ConfirmOtherLegalBasisNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Has your organisation developed measures to protect the applicable rights of the data subjects?"
         );
     }
     function handle80DescribeTheOtherLegalBasisYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Has your organisation developed measures to protect the applicable rights of the data subjects?"
         );
     }
     function handle81ConfirmMeasuresToProtectRightYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do the rights of the data subjects include providing transparency/fair processing information to data subjects?"
         );
     }
     function handle81ConfirmMeasuresToProtectRightNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation use all reasonable measures to verify the identity of an individual who exercises these rights?"
         );
     }
     function handle81ConfirmMeasuresToProtectRightYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do the rights of the data subjects include providing transparency/fair processing information to data subjects?"
         );
     }
     function handle81ConfirmMeasuresToProtectRightNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation use all reasonable measures to verify the identity of an individual who exercises these rights?"
         );
     }
     function handle82ProvideTransparencyToDataSubjectYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do the rights of the data include the right of data portability (which only applies where consent or contract with the data subject is the legal basis and personal data are / knowingly and actively provided by the data subject / generated by and collected from the use of the service or device e.g. observed’ such as search history, traffic data, location data, other raw data such as heartbeat tracked by fitness and health trackers)?"
         );
     }
     function handle86ConfirmMeasureOtVerifyTheIdentityYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product processe personal OR sensitive personal data AND your organisation is a Controller AND allows your users personal data to be processed by a third party?"
         );
     }
     function handle83ProvideTheProbabilityToDataSubjectYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do the rights of the data subjects include the right to erase (or the right to be forgotten)?"
         );
@@ -6972,17 +3439,9 @@ router.post("/", async (request, response) => {
     function handle87ConfirmDataAndControllerAndProcessedByAThirdPartyYes(
         agent
     ) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation allows or causes your users' personaldata to be processed by a third party (e.g. hosts the data, manages your website, provides user research or analytics services, user survey tools, bulk email providers that manage your client email lists)?"
         );
@@ -6990,937 +3449,465 @@ router.post("/", async (request, response) => {
     function handle87ConfirmDataAndControllerAndProcessedByAThirdPartyNo(
         agent
     ) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the personal data obtained directly from the individual?"
         );
     }
     function handle84ProvideTheRightToEraseYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do the rights include the right to rectify, object, restrict processing?"
         );
     }
     function handle88ConfirmAllowThirdPartyProcessingDataYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does the third party provide technical services (e.g. maintains personal data backups or stores personal data in a cloud)?"
         );
     }
     function handle104ConfirmPdFromIndividualYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is fair processing information provided at the time the personal data is obtained?"
         );
     }
     function handle104ConfirmPdFromIndividualNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is the personal data obtained from a third party?");
     }
     function handle85ProvideTheRightToRectifyObjectYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation use all reasonable measures to verify the identity of an individual who exercises these rights?"
         );
     }
     function handle89ProvideTechinicalServicesYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does the third party accesses/uses personal data (for which you are the 'Controller')?"
         );
     }
     function handle105ConfirmFairPdYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is the personal data obtained from a third party?");
     }
     function handle106ConfirmPdFormThirdPartyYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is a fair processing information provided within one month of having obtained the data from a third party OR, if the personal data is used to communicate with the individual, at the latest, when the first communication takes place?"
         );
     }
     function handle106ConfirmPdFormThirdPartyNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation process personal OR sensitive personal data AND is a Controller?"
         );
     }
     function handle86ConfirmMeasureOtVerifyTheIdentityYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product processe personal OR sensitive personal data AND your organisation is a Controller AND allows your users personal data to be processed by a third party?"
         );
     }
     function handle90ConfirmThirdPartyOfPersonalDataYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is a written binding agreement n place between you/your organisation and each third party ('Processor')?"
         );
     }
     function handle106ConfirmPdFormThirdPartyYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is a fair processing information provided within one month of having obtained the data from a third party OR, if the personal data is used to communicate with the individual, at the latest, when the first communication takes place?"
         );
     }
     function handle106ConfirmPdFormThirdPartyNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation process personal OR sensitive personal data AND is a Controller?"
         );
     }
     function handle107ConfirmFairPdOfThirdPartyYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation process personal OR sensitive personal data AND is a Controller?"
         );
     }
     function handle108ConfirmPdAndControllerFollowingQYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation processing include The identity and the contact details of the 'Controller' and where applicable, the 'Controller's' representative?"
         );
     }
     function handle108ConfirmPdAndControllerFollowingQNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does  your product processe personal OR sensitive personal data AND your organisation is a Controller and if the legal basis for processing personal data is consent?"
         );
     }
     function handle91ConfirmWrittenBindingYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do No contract clauses indemnify 'Processors' against fines or claims under UK/EU data protection law?"
         );
     }
     function handle108ConfirmPdAndControllerFollowingQYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation processing include The identity and the contact details of the 'Controller' and where applicable, the 'Controller's' representative?"
         );
     }
     function handle108ConfirmPdAndControllerFollowingQNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does  your product processe personal OR sensitive personal data AND your organisation is a Controller and if the legal basis for processing personal data is consent?"
         );
     }
     function handle109ConfirmIncludeContactOfControllerYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation processing include the purposes and the legal basis for each purpose?"
         );
     }
     function handle124ConfirmSpdAndControllerAndConsentYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is consent freely given, specific for each separate purpose and informed?"
         );
     }
     function handle124ConfirmSpdAndControllerAndConsentNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product processe personal OR sensitive personal data of children AND your organisation is a Controller?"
         );
     }
     function handle92ConfirmNoClausesIndemnifyProcessorsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do all contracts clearly set out the subject matter and duration of the processing?"
         );
     }
     function handle110ConfirmIncludeLegalBasisForPurposeYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation include the recipients, or categories of recipients, of the personal data?"
         );
     }
     function handle125ConfirmFreelyGivenYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is consent not a precondition of signing up to a service unless it is necessary for that service?"
         );
     }
     function handle139ConfirmPdOfChildAndControllerYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does the processes design by which a child can exercise their data protection rights with the child in mind, and make them easy for children to access and understand?"
         );
     }
     function handle139ConfirmPdOfChildAndControllerNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation use cookies, web beacons or similar technologies?"
         );
     }
     function handle93ConfirmSetOutSubjectMatterYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do all contracts clearly set out the nature and purpose of the processing?"
         );
     }
     function handle111ConfirmIncludeRecipientsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation include the details of data transfers outside the European Economic Area, including how the data will be protected. For example:  The recipient is in an adequate’ country (e.g. recognised by the EU Commission to have an adequate level of protection) Binding Corporate Rules (BCR) or Model Contract Clausesand you have made the individual aware of how they may obtain a copy of the safeguards, or where they can be seen?"
         );
     }
     function handle126ConfirmNotAPreconditionYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is consent requested separately from the terms and conditions?"
         );
     }
     function handle140ConfirmDesignEasyToUndersatndYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product Allow competent children to exercise their own data protection rights?"
         );
     }
     function handle166ConfirmCookiesYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation provides users with a cookie policy?"
         );
     }
     function handle166ConfirmCookiesNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation use Bug reporting and Online tracking?"
         );
     }
     function handle94ConfirmSetOtTheNaturEorPurposeYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do all contracts clearly set out the type of personal data and categories of data subject?"
         );
     }
     function handle112ConfirmIncludeEucBcrYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation include the retention period or, if no fixed retention period can be provided, the criteria used to determine that period?"
         );
     }
     function handle127ConfirmSeparatelyFromTeamYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the individual provided with the relevant fair processing information?"
         );
     }
     function handle141ConfirmExercissDataProtectionRightsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does you design your processes so that, as far as possible, it is as easy for a child to get their personal data erased as it was for them to provide it in the first place?"
         );
     }
     function handle167ConfirmCookiesPolicyYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does cookie policy explain that consent is being requested for the storage and access of cookies in and from the users’ terminal equipment?"
         );
     }
     function handle175ConfirmBugReportingYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation collect usage or bug report data (e.g. Google/Adobe Analytics)?"
         );
     }
     function handle175ConfirmBugReportingNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation use Appointment of a Data Protection Officer?"
         );
     }
     function handle95ConfirmSetOutTheTypeOfDataYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do all contracts clearly set out the obligations and rights of the 'Controller'?"
         );
     }
     function handle113ConfirmIncludeRetentionPeriodYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation include the right to lodge a complaint with a supervisory authority (in the UK this would be the Information Commissioner's Office (ICO))?"
         );
     }
     function handle128ConfirmFairProcessInfoYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can the invidual withdraw consent as easily as it was given (e.g. via the same electronic interface, an unsubscribe link; instructions in emails contained in all communications)?"
         );
     }
     function handle142ConfirmGetPdErasedEasilyYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation complies with all the requirements of the UK/EU data protection legislation, not just those specifically relating to children and included in this checklist?"
         );
     }
     function handle168ConfirmCookieExplainYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the cookie policy ensures consent valid by requiring a clear affirmative action from the user (e.g. pre-ticked boxes or inactivity do not constitute valid consent)?"
         );
     }
     function handle176ConfirmColletBugReportDataYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is it collected with informed and valid consent of the user?"
         );
     }
     function handle179ConfirmDpoYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisatin have a designated Data Protection Officer who is formally tasked with ensuring that you/your organisation is aware of, and complies with, its data protection responsibilities?"
         );
     }
     function handle179ConfirmDpoNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is your product an application for a smartphone or tablet?");
     }
     function handle96ConfirmSetOutObligationOfControllerYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do all contracts require the 'Processor' to only act on the written instructions of the 'Controller'?"
         );
     }
     function handle114ConfirmIncludeRigthToLodgeYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation include whether the provision of personal data is part of a statutory or contractual requirement or obligation and possible consequences of failing to provide the personal data?"
         );
     }
     function handle129ConfirmWithdrawConsentEasilyYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is consent obtained separately for every type of purpose foreseen, for example marketing?"
         );
     }
     function handle143ConfirmCompliesRequirementsOfUkDataYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does you/your organisation design your processing with children in mind from the outset and uses a data protection by design and by default approach?"
         );
     }
     function handle169ConfirmValidCookieYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "The cookie policy fully explains the purpose, in plain language, of each cookie type being used."
         );
     }
     function handle177ConfirmInformedConsentOfUserYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is it collected using fully anonymised data (e.g. no personal data, such as tracking data, is collected by you/your organisation or any third party?"
         );
     }
     function handle180ConfirmHaveDpoYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is your product an application for a smartphone or tablet?");
     }
     function handle181ConfirmProductAMobileDevicesYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product access, process or store personal or sensitive personal data?"
         );
     }
     function handle181ConfirmProductAMobileDevicesNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does the colour contrast of the text on your native app comply with WCAG 2.0 AA level requirements? All text in your product must have a contrast ratio of at least 4.5 : 1.?"
         );
     }
     function handle97ConfirmProcessorActOnTheWrittenInstructionYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do all contracts require the 'Processor' to ensure that their employees processing the data are subject to a duty of confidence?"
         );
@@ -7928,2467 +3915,1203 @@ router.post("/", async (request, response) => {
     function handle115ConfirmIncludeFailingToTheProvbideThePeronalDataYes(
         agent
     ) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation include the existence of automated decision making including profiling and information about how decisions are made, the significance and the consequences?"
         );
     }
     function handle130ConfirmObtainedSeperatelyYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is consent recoreded?");
     }
     function handle144ConfirmProcessChilDfromOutsetYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation makes sure that your processing is fair and complies with the data protection principles?"
         );
     }
     function handle170ConfirmCookieExplainThePurposeYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation use strictly necessary’ cookies (without which the end user would be unable to use the specific service explicitly requested)?"
         );
     }
     function handle178ConfirmFullyAnonymisedYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation use Appointment of a Data Protection Officer?"
         );
     }
     function handle181ConfirmProductAMobileDevicesYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product access, process or store personal or sensitive personal data?"
         );
     }
     function handle181ConfirmProductAMobileDevicesNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does the colour contrast of the text on your native app comply with WCAG 2.0 AA level requirements? All text in your product must have a contrast ratio of at least 4.5 : 1.?"
         );
     }
     function handle182ConfirmProductProcessesPdYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is your product an application for a smartphone or tablet AND accesses, processes or stores personal or sensitive personal data?"
         );
     }
     function handle182ConfirmProductProcessesPdNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Has a code-level security assessment been undertaken?");
     }
     function handle188ConfirmColorYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Did you follow the 6 key principles under the human- centred design process that conforms to the ISO 9241-210 Standard?"
         );
     }
     function handle98ConfirmUnsureTheirEmployeesProcessingYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do all contracts require the 'Processor' to take appropriate measures to ensure the security of processing?"
         );
     }
     function handle116ConfirmIncludeConsequencesYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation include The existence of the data subject’s right to access/obtain a copy of their personal data?"
         );
     }
     function handle131ConfirmRecordedYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can your organisation  evidence that the individual gave their valid consent to the processing (e.g. how and when consent was obtained and the information provided to the individual (data subject) at the time)?"
         );
     }
     function handle145ConfirmFairAndCompliesWithDppYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation use Data Protection Impact Assessments (DPIAs) to help you assess and mitigate the risks to children?"
         );
     }
     function handle171ConfirmUseStrictlyNecessaryCookiesYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does you organisation Exclude 'strictly necessary' cookies, is consent obtained for each separate cookie purpose?"
         );
     }
     function handle179ConfirmDpoYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisatin have a designated Data Protection Officer who is formally tasked with ensuring that you/your organisation is aware of, and complies with, its data protection responsibilities?"
         );
     }
     function handle179ConfirmDpoNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is your product an application for a smartphone or tablet?");
     }
     function handle183ConfirmSmartPhoneAndProcessPdYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is sensitive personal data persisted to the mobile device?");
     }
     function handle183ConfirmSmartPhoneAndProcessPdNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Has a code-level security assessment been undertaken?");
     }
     function handle185ConfirmCodeLevelSecurityYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can your organisation evidence of the assessment report?");
     }
     function handle185ConfirmCodeLevelSecurityNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does the colour contrast of the text on your native app comply with WCAG 2.0 AA level requirements? All text in your product must have a contrast ratio of at least 4.5 : 1.?"
         );
     }
     function handle189ConfirmFollow6PrinciplesYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you give what phases did your human-centred design process go through? For example discovery, alpha, beta, go live?"
         );
     }
     function handle99ConfirmEnsureTheSecurityOfProcessingYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do all contracts require the 'Processor' to only engage 'Sub- Processors' with the prior consent of the 'Controller' and under the same conditions as the processing written contract?"
         );
     }
     function handle117ConfirmIncludeObtainCopyOfPdYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation include The existence of the data subject’s rights to rectify, erase and restrict their personal data?"
         );
     }
     function handle132ConfirmEvidenceOfValidConsentYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the individual required to provide a clear affirmative action to signify consent to the processing of personal data for each purpose?"
         );
     }
     function handle146ConfirmUseDpiasYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is your processing  likely to result in a high risk to the rights and freedom of children, then you always complete a DPIA?"
         );
     }
     function handle172ConfirmExcludeStrictlyNecessaryCookiesYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can your organisation evidence that the individual gavetheir valid consent to the processing (e.g. how and when consent was obtained and the information provided to the individual (data subject) at the time)?"
         );
     }
     function handle184ConfirmPersistedToMobileDevicesYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Has a code-level security assessment been undertaken?");
     }
     function handle185ConfirmCodeLevelSecurityYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can your organisation evidence of the assessment report?");
     }
     function handle185ConfirmCodeLevelSecurityNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does the colour contrast of the text on your native app comply with WCAG 2.0 AA level requirements? All text in your product must have a contrast ratio of at least 4.5 : 1.?"
         );
     }
     function handle186ConfirmEvidenceOfCodeLevelReportYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Has the security assessment been undertaken by an external body?"
         );
     }
     function handle188ConfirmColorYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Did you follow the 6 key principles under the human- centred design process that conforms to the ISO 9241-210 Standard?"
         );
     }
     function handle190RpovidePhaseOfHumanCnetredDesignYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you give what user demographics were defined at the outset of your product's development?"
         );
     }
     function handle100ConfirmOnlyengageSubProcessingYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do all contracts require the 'Processor' to assist the 'Controller' in providing subject access and allowing data subjects to exercise their rights under the UK/EU law?"
         );
     }
     function handle118ConfirmIncludeRestrictTheirPdYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation include the existence of the data subject’s rights to object to the processing?"
         );
     }
     function handle133ConfirmAffirmativeYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Does your organisation NOT use pre-ticked opt-in boxes?");
     }
     function handle147ConfirmRiskOfChildsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you provide privacy notices which are clear, and written in plain, age-appropriate language?"
         );
     }
     function handle173ConfirmEvidenceValidConsentYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can the consent be withdrawn as easily as it was given (e.g. via the same electronic interface)?"
         );
     }
     function handle185ConfirmCodeLevelSecurityYes3(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can your organisation evidence of the assessment report?");
     }
     function handle185ConfirmCodeLevelSecurityNo3(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does the colour contrast of the text on your native app comply with WCAG 2.0 AA level requirements? All text in your product must have a contrast ratio of at least 4.5 : 1.?"
         );
     }
     function handle187ConfirmByExternalBodyYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does the colour contrast of the text on your native app comply with WCAG 2.0 AA level requirements? All text in your product must have a contrast ratio of at least 4.5 : 1.?"
         );
     }
     function handle191ProvideUserDemographicsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can yo ugive what user research informed your user needs?");
     }
     function handle101ConfirmDataSujectToExerciseTheirRightsUnderUkLawsYes(
         agent
     ) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do all contracts require the 'Processor' to assist the 'Controller' in meeting its UK/EU data protection law obligations in relation to: the security of processing the notification of personal data breaches, and  data protection impact assessment?"
         );
     }
     function handle119ConfirmIncludeExistenceOfTheDataYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation include existence of the data subject’s rights to withdraw consent (if consent is the legal basis)?"
         );
     }
     function handle134ConfirmNotPretickedYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Does your organisation NOT use blank opt-out boxes?");
     }
     function handle148ConfirmPrivacyNoticesYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation use child friendly ways of presenting privacy information, such as diagrams, cartoons, graphics and videos, dashboards, layered and just-in-time notices, icons and symbols?"
         );
     }
     function handle174ConfirmConsentWithdrawEasilyYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation use Bug reporting and Online tracking?"
         );
     }
     function handle188ConfirmColorYes3(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Did you follow the 6 key principles under the human- centred design process that conforms to the ISO 9241-210 Standard?"
         );
     }
     function handle192ResearchInformedUserNeedsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you list each user need your product addresses, and the acceptance criteria for each need?"
         );
     }
     function handle102ConfirmProcessorAssistControllerYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do all contracts require the 'Processor' to tell the 'Controller' immediately if it is asked to do something infringing UK/EU data protection law?"
         );
     }
     function handle120ConfirmIncludeRightToWithdrawConsentYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation include existence of the data subject’s rights to data portability (provide the personal data in machine readable form)?"
         );
     }
     function handle135ConfirmNotUseBlankYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Does your organisation NOT use default settings?");
     }
     function handle149ConfirmFriendlyWayOfDataYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you explain to children why you require the personal data you have asked for, and what you will do with it, in a way which they can understand?"
         );
     }
     function handle175ConfirmBugReportingYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation collect usage or bug report data (e.g. Google/Adobe Analytics)?"
         );
     }
     function handle175ConfirmBugReportingNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation use Appointment of a Data Protection Officer?"
         );
     }
     function handle193ProvideProductAddressesYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you give how many times were versions of your product tested with users?"
         );
     }
     function handle103ConfirmProcessorTellControllerYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is the personal data obtained directly from the individual?"
         );
     }
     function handle121ConfirmIncludeRightToDataProbabilityYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation include the existence of the data subject’s rights to object to decisions based solely on automated processing (which could include profiling), if the decisions produce legal effects or similarly significantly affects the data subject?"
         );
     }
     function handle136ConfirmNotDefaultSettingYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation NOT use a blanket acceptance of your terms and conditions?"
         );
     }
     function handle150ConfirmexplainToChildsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation Explain the risks inherent in the processing, and how you intend to safeguard against them, in a child friendly way, so that children (and their parents) understand the implications of sharing their personal data?"
         );
     }
     function handle194ProvideTimesTestedYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Was your product evaluated for usability and accessibility before release?"
         );
     }
     function handle104ConfirmPdFromIndividualYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is fair processing information provided at the time the personal data is obtained?"
         );
     }
     function handle104ConfirmPdFromIndividualNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is the personal data obtained from a third party?");
     }
     function handle122ConfirmIncludeDecissionBasedOnAutomatedProcessingYes(
         agent
     ) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation include Users are notified of substantial changes to the existing transparency information (and consent obtained again unless the consent obtained previously remains valid)?"
         );
     }
     function handle137ConfirmNotUseABlanketAcceptanceYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation ensures that an individual who refuses or withdraws consent can do so without detriment to the service provided (e.g. an individual is not unfairly penalised - though it is acceptable to offer additiona?"
         );
     }
     function handle151ConfirmExplainRiskOfInherentYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation tell children what rights they have over their personal data in language they can understand?"
         );
     }
     function handle195ConfirmTestOfUsabilityAndAccessibilityYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Throughout the evaluation of early versions and pre- release versions, can you give what changes were made to your product in light of the user feedback? "
         );
     }
     function handle195ConfirmTestOfUsabilityAndAccessibilityNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is your product a native iOS or Android app?");
     }
     function handle123ConfirmIncludeNotifiedWhenChangesYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does  your product processe personal OR sensitive personal data AND your organisation is a Controller and if the legal basis for processing personal data is consent?"
         );
     }
     function handle138ConfirmEnsureIndividualRefuseYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product processe personal OR sensitive personal data of children AND your organisation is a Controller?"
         );
     }
     function handle152ConfirmTellChildRightsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation not usually use children’s personal data to make solely automated decisions about them if these will have a legal, or a similarly significant, effect upon them?"
         );
     }
     function handle196ProvideUserFeedbackYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Post-release, can you giev how do you continue to collect feedback from users and make changes to your product based on this feedback?"
         );
     }
     function handle199IosOrAndroidYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you give what device OS accessibility features does your product use? For example VoiceOver (iOS), Dynamic Type (iOS), TalkBack (Android) or Select To Speak (Android)?"
         );
     }
     function handle199IosOrAndroidNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is your product a progressive web app?");
     }
     function handle124ConfirmSpdAndControllerAndConsentYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is consent freely given, specific for each separate purpose and informed?"
         );
     }
     function handle124ConfirmSpdAndControllerAndConsentNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product processe personal OR sensitive personal data of children AND your organisation is a Controller?"
         );
     }
     function handle139ConfirmPdOfChildAndControllerYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does the processes design by which a child can exercise their data protection rights with the child in mind, and make them easy for children to access and understand?"
         );
     }
     function handle139ConfirmPdOfChildAndControllerNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation use cookies, web beacons or similar technologies?"
         );
     }
     function handle153ConfirmNotUsePdToAutoDecisionYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "If you do use children’s personal data to make suchdecisions, then you make sure that one of the exceptions applies and that suitable, child appropriate measures are in place to safeguard the child’s rights, freedoms and legitimate interests."
         );
     }
     function handle197ProvidePostReleaseYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you give what is your post-release schedule of improvements to your product?"
         );
     }
     function handle200OsAccessibilityYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is your product a progressive web app?");
     }
     function handle201ConfirmProgressiveWebAppYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product comply with the baseline checklist for progressive web apps, as defined by Google?"
         );
     }
     function handle201ConfirmProgressiveWebAppNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is your product a website?");
     }
     function handle154ConfirmNoeExceptionYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation stop any profiling of a child that is related to direct marketing if they ask you to?"
         );
     }
     function handle198ProvideScheduleOfImprovementYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is your product a native iOS or Android app?");
     }
     function handle201ConfirmProgressiveWebAppYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product comply with the baseline checklist for progressive web apps, as defined by Google?"
         );
     }
     function handle201ConfirmProgressiveWebAppNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is your product a website?");
     }
     function handle202ConfirmComplyWithBaselineYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Have you conducted accessibility testing on your progressive web app?"
         );
     }
     function handle204ConfirmWebsiteYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is your website responsive? ");
     }
     function handle204ConfirmWebsiteNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product expose any Application Programming Interfaces (APIs) or integration channels for other consumers?"
         );
     }
     function handle155ConfrimStopProfillingYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "When considering marketing to children, you take into account their reduced ability to recognise and critically assess the purposes behind the processing and the potential consequences of providing their personal data."
         );
     }
     function handle199IosOrAndroidYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you give what device OS accessibility features does your product use? For example VoiceOver (iOS), Dynamic Type (iOS), TalkBack (Android) or Select To Speak (Android)?"
         );
     }
     function handle199IosOrAndroidNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is your product a progressive web app?");
     }
     function handle203ConfirmAccessibilityTestingYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is your product a website?");
     }
     function handle205ConfirmResponsiveYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your website accessibility conform to WCAG 2.1 level AA?"
         );
     }
     function handle212ConfirmExposeApiYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your API adhere to the Government Digital Services (GDS) Open API Best Practices?"
         );
     }
     function handle212ConfirmExposeApiNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is your product capable of exporting data in a standard format?"
         );
     }
     function handle156ConfirmMarketingChildSPdYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation take into account sector specific guidance on marketing to make sure that children’s personal data is not used in a way that might lead to their exploitation?"
         );
     }
     function handle204ConfirmWebsiteYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Is your website responsive? ");
     }
     function handle204ConfirmWebsiteNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product expose any Application Programming Interfaces (APIs) or integration channels for other consumers?"
         );
     }
     function handle206ConfirmWcag21Yes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your website provide text equivalents for every non- text element within the product?"
         );
     }
     function handle213ApiAdhereToGdsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is your product capable of exporting data in a standard format?"
         );
     }
     function handle214CapableInStandardFormatYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is your product a wearable or device or integrates with them?"
         );
     }
     function handle157ConfirmTakeGuidanceIntoAccountYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation stop processing a child’s personal data for the purposes of direct marketing if they ask you to?"
         );
     }
     function handle207ProvideTextEquivalenceYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Have you conducted accessibility testing on your web service?"
         );
     }
     function handle214CapableInStandardFormatYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is your product a wearable or device or integrates with them?"
         );
     }
     function handle215ConfirmWearableDeviceYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you give evidence of how it complies with ISO/IEEE 11073 Personal Health Data (PHD) Standards?"
         );
     }
     function handle215ConfirmWearableDeviceNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Are the source code and any configuration items for your product version controlled with all changes audited?"
         );
     }
     function handle158ConfirmStopPdForMarketingYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation comply with the direct marketing requirements of the Privacy and Electronic Communications Regulations (PECR)?"
         );
     }
     function handle208ConfirmTestingOnWebYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can your product be used with keyboard-only control, and with assistive technologies, such as screen readers and screen magnifiers?"
         );
     }
     function handle216ProvideEvidenceWithIsoIeeeYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Are the source code and any configuration items for your product version controlled with all changes audited?"
         );
     }
     function handle217ConfirmSourceCodeControlledWithAuditedYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do you have accreditation to any industry wide testing standards such as ISO 9001, ISO 29119 etc?"
         );
     }
     function handle159ConfirmComplyWithMarketingYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "If you decide not to offer your ISS (online service) directly to children, then you mitigate the risk of them gaining access, using measures that are proportionate to the risks inherent in the processing?"
         );
     }
     function handle209ConfirmKeyboardOnlyControlYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Does your website provide an accessibility statement?");
     }
     function handle217ConfirmSourceCodeControlledWithAuditedYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do you have accreditation to any industry wide testing standards such as ISO 9001, ISO 29119 etc?"
         );
     }
     function handle218ConfirmIso9001Yes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "What testing accreditation(s) do you have or are in the process of acquiring (including completion dates)?"
         );
     }
     function handle160ConfirmNotOfferIssYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "When offering ISS to UK children on the basis of consent, you make reasonable efforts (taking into account the available technology and the risks inherent in the processing) to ensure that anyone who provides their own consent is at least 13 years old?"
         );
     }
     function handle210ProvideAccessibilityTestingYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation provide evidence of this testing, including outcomes and any planned further changes to improve accessibility?"
         );
     }
     function handle210ProvideAccessibilityTestingNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product expose any Application Programming Interfaces (APIs) or integration channels for other consumers?"
         );
     }
     function handle219ConfirmTestingAccreditationYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Are all significant issues identified in all test phases resolved prior to release?"
         );
     }
     function handle161Provide13YearsOldYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "When offering ISS to UK children on the basis of consent, youobtain parental consent to the processing for children who are under the age of 13, and make reasonable efforts (taking into account the available technology and risks inherent in the processing) to verify that the person providing consent holds parental responsibility for the child?"
         );
     }
     function handle211ProvideEvidenceImporvingAccessbilityYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your product expose any Application Programming Interfaces (APIs) or integration channels for other consumers?"
         );
     }
     function handle212ConfirmExposeApiYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your API adhere to the Government Digital Services (GDS) Open API Best Practices?"
         );
     }
     function handle212ConfirmExposeApiNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is your product capable of exporting data in a standard format?"
         );
     }
     function handle220ConfirmIssuesInAllTestsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Can you rollback to previous versions of your product?");
     }
     function handle162ProvideEffortYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "When targeting wider European (non UK) markets you comply with the age limits applicable in each member state?"
         );
     }
     function handle212ConfirmExposeApiYes3(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your API adhere to the Government Digital Services (GDS) Open API Best Practices?"
         );
     }
     function handle212ConfirmExposeApiNo3(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Is your product capable of exporting data in a standard format?"
         );
     }
     function handle221ConfirmRollbackYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you provide a brief outline of your rollback process and provide documentation to support this.?"
         );
     }
     function handle221ConfirmRollbackNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do you proactively monitor running of systems and system components to automatically identify faults and technical issues?"
         );
     }
     function handle163ConfirmAgeLimitsYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "You regularly review available age verification and parental responsibility verification mechanisms to ensure you are using appropriate current technology?"
         );
     }
     function handle222ProvideHowRollbackYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do you proactively monitor running of systems and system components to automatically identify faults and technical issues?"
         );
     }
     function handle223ConfirmMonitorRunningOfSystemYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do you have a documented roadmap for the future development of your product?"
         );
     }
     function handle164ConfirmReviewAgeVerificationYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "You do NOT seek parental consent when offering online preventive or counselling services to a child?"
         );
     }
     function handle223ConfirmMonitorRunningOfSystemYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do you have a documented roadmap for the future development of your product?"
         );
     }
     function handle224ConfirmDocumentedRoadmapYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you provide details of planned development, technical updates and potential release dates?"
         );
     }
     function handle224ConfirmDocumentedRoadmapNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do you have a documented roadmap for the future development of your product?"
         );
     }
     function handle165ConfirmNotSeekParentalConsentYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation use cookies, web beacons or similar technologies?"
         );
     }
     function handle225ConfirmDetailsOfDevelopmentYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do you have a documented roadmap for the future development of your product?"
         );
     }
     function handle226ConfirmRoadmapForFutureYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you provide details of how you will ensure the continued availability of your product?"
         );
     }
     function handle226ConfirmRoadmapForFutureNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Do you have a plan for decommissioning your product?");
     }
     function handle166ConfirmCookiesYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation provides users with a cookie policy?"
         );
     }
     function handle166ConfirmCookiesNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Does your organisation use Bug reporting and Online tracking?"
         );
     }
     function handle226ConfirmRoadmapForFutureYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you provide details of how you will ensure the continued availability of your product?"
         );
     }
     function handle226ConfirmRoadmapForFutureNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Do you have a plan for decommissioning your product?");
     }
     function handle227ProvideEnsureAvailibilityYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("Do you have a plan for decommissioning your product?");
     }
     function handle228DecommissioningYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you describe your processes for decommissioning your product and dealing with any retained identifiable data?"
         );
     }
     function handle228DecommissioningNo(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! You’re all set! You can view suggested next steps by clicking on Suggestions in the navigation bar above."
         );
     }
     function handle228DecommissioningYes2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you describe your processes for decommissioning your product and dealing with any retained identifiable data?"
         );
     }
     function handle228DecommissioningNo2(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! You’re all set! You can view suggested next steps by clicking on Suggestions in the navigation bar above."
         );
     }
     function handle229ProvideDecommissioningYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Do you have a plan for dealing with any retained identifiable data in the event that an individual stops using your product? For example by uninstalling or unsubscribing?"
         );
     }
     function handleEndYes5(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("The session has ended");
     }
     function handleEndNo5(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("The session has ended");
     }
     function handle230ProvideIdentifiableDataYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Can you describe your processes for dealing with any retained identifiable data in the event that an individual stops using your product?"
         );
     }
     function handle231ProvideRetainedIdentifiableYes(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add(
             "Great! You’re all set! You can view suggested next steps by clicking on Suggestions in the navigation bar above."
         );
     }
     function handleEndYes6(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("The session has ended");
     }
     function handleEndNo6(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("The session has ended");
     }
     function handleDefaultFallbackIntent(agent) {
-        // reset contexts
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContextNames = getRecentContextNames(requestContexts);
-        for (const ctx of requestContexts) {
-            const words = ctx.name.split("/");
-
-            const context = words[words.length - 1];
-            if (!mostRecentContextNames.has(context)) {
-                agent.context.set({ name: context, lifespan: "0" });
-            }
-        }
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
         agent.add("I didn't get that. Can you say it again?");
         agent.add("I missed what you said. What was that?");
         agent.add("Sorry, could you say that again?");
@@ -11282,12 +6005,8 @@ router.post("/", async (request, response) => {
         const requestContexts = request.body.queryResult.outputContexts;
         const mostRecentContext = getMostRecentContext(requestContexts);
 
-        const words = mostRecentContext.name.split("/");
-
-        const context = words[words.length - 1];
-
-        if (clarificationMap.has(context)) {
-            var responseText = clarificationMap.get(context);
+        if (clarificationMap.has(mostRecentContext)) {
+            var responseText = clarificationMap.get(mostRecentContext);
         } else {
             var responseText = "No clarification is available";
         }
@@ -13188,10 +7907,28 @@ router.post("/", async (request, response) => {
     intentMap.set("End - No 6", handleEndNo6);
     intentMap.set("Default Fallback Intent", handleDefaultFallbackIntent);
     intentMap.set("Clarification Intent", handleClarification);
-    function handleEmailConversationHistory(agent){
-        agent.add("I'll get right on that")
+    function handleEmailConversationHistory(agent) {
+        agent.add("I'll get right on that");
+    }
+    function handleGeneralQuestion(agent) {
+        const parameter = request.body.queryResult.parameters;
+
+        if (parameter["regulation-body"] === "MHRA") {
+            agent.add(
+                "The Medicines and Healthcare products Regulatory Agency (MHRA) regulates medicines, medical devices and blood components for transfusion in the United Kingdom."
+            );
+        } else if (parameter["regulation-body"] === "NICE") {
+            agent.add(
+                "The National Institute for Health and Care Excellence (NICE) provides national guidance and advice to improve health and social care."
+            );
+        } else if (parameter["regulation-body"] === "NHSD") {
+            agent.add(
+                "NHS Digital is the national provider of information, data and IT systems for commissioners, analysts and clinicians in health and social care. They work with partners across the health and social care system to ensure information flows efficiently and securely."
+            );
+        }
     }
     intentMap.set("Email Conversation History", handleEmailConversationHistory);
+    intentMap.set("General Question", handleGeneralQuestion);
     agent.handleRequest(intentMap);
 });
 
