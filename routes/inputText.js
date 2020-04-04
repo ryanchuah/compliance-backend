@@ -78,12 +78,27 @@ router.post("/", async (req, res, next) => {
 
     async function handleParameters(dialogflowResponse) {
         const parameter = dialogflowResponse.queryResult.parameters.fields;
-        if (parameter["given-name"]) {
+        
+        if (parameter["full-name"]) {
+            function titleCase(str){
+                const words = str.split(" ")
+                const result = []
+                for (const word of words){
+                  result.push(word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                }    
+                return result.join(" ")   
+              }
+
+            const givenNames = []
+            for (const val of parameter["full-name"].listValue.values){
+                givenNames.push(titleCase(val.stringValue)) 
+            }
+            
             try {
                 db.collection("userData").updateOne(
                     { _id: new ObjectId(userID) },
                     {
-                        $set: { name: parameter["given-name"].stringValue }
+                        $set: { name: givenNames.join(" ") }
                     },
                     { upsert: true }
                 );
