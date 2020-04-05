@@ -14,10 +14,10 @@ router.get("/history", async (req, res) => {
         } catch (err) {
             console.log(err);
         }
-        if (userData && userData.conversationHistory){
+        if (userData && userData.conversationHistory) {
             res.json(userData.conversationHistory);
-        } else{
-            res.json([])
+        } else {
+            res.json([]);
         }
     }
 });
@@ -51,18 +51,55 @@ router.get("/suggestionData", async (req, res) => {
     console.log(suggestionReferenceObj);
     const suggestionResult = [];
     try {
-        var userSuggestionData = await db
-            .collection("userData")
-            .findOne(
-                { _id: userID },
-                { projection: { _id: 0, mhraClass: 1 } }
-            );
-
+        var userSuggestionData = await db.collection("userData").findOne(
+            { _id: userID },
+            {
+                projection: {
+                    _id: 0,
+                    mhraClass: 1,
+                    providURL: 1,
+                    contactOrganisation: 1,
+                    NHSDBranding: 1,
+                    confirmGPC: 1,
+                    confirmHealthcareReg: 1,
+                    guestLogin: 1,
+                    confirmRegWithCQC: 1,
+                    provideCQCnumber: 1,
+                    provdieReCQC: 1,
+                    provideDescrip: 1,
+                    confirmReplNHSservice: 1,
+                    provideTrial: 1,
+                    confirmWhereProcessPD: 1,
+                    versionNumber: 1,
+                    typeOfPharmacy: 1,
+                    evidenceOfClicBenefit: 1,
+                    URLofBenefits: 1,
+                    reasonNotClinicBenefit: 1,
+                    reasonNotBehaBenefits: 1,
+                    downloadedORpurchased: 1,
+                    Tier1: 1,
+                    Tier2: 1,
+                    Tier3a: 1,
+                    Tier3b: 1
+                }
+            }
+        );
     } catch (err) {
         console.log(err);
     }
 
-    if (userSuggestionData){
+    if (userSuggestionData) {
+        // get highest NICE tier
+        if (userSuggestionData.Tier3b) {
+            var niceTier = "Tier 3b";
+        } else if (userSuggestionData.Tier3a) {
+            var niceTier = "Tier 3a";
+        } else if (userSuggestionData.Tier2) {
+            var niceTier = "Tier 2";
+        } else if (userSuggestionData.Tier1) {
+            var niceTier = "Tier 1";
+        }
+
         for (const obj of suggestionReferenceObj.mhra.class) {
             if (obj.value === userSuggestionData.mhraClass) {
                 suggestionResult.push([
@@ -73,7 +110,26 @@ router.get("/suggestionData", async (req, res) => {
                 ]);
             }
         }
-
+        for (const obj of suggestionReferenceObj.nice.class) {
+            if (obj.value === niceTier) {
+                suggestionResult.push([
+                    obj.situation,
+                    obj.actionNeeded,
+                    obj.source,
+                    obj.resource
+                ]);
+            }
+        }
+        for (const key in suggestionReferenceObj.nhsd){
+            if (userSuggestionData.key){
+                suggestionResult.push([
+                    suggestionReferenceObj[key].situation,
+                    suggestionReferenceObj[key].actionNeeded,
+                    suggestionReferenceObj[key].source,
+                    suggestionReferenceObj[key].resource
+                ]);
+            }
+        }
     }
     res.json(suggestionResult);
 });
