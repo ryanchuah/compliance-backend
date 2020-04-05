@@ -545,6 +545,96 @@ router.post("/", async (req, res, next) => {
                     console.log(err);
                 }
                 break;
+
+            case "Downloaded-Or-Purchased - Yes":
+                // 
+                try {
+                    await db.collection("userData").updateOne(
+                        { _id: new ObjectId(userID) },
+                        {
+                            $set: {
+                                downloadedORpurchased:
+                                    true
+                            }
+                        },
+                        { upsert: true }
+                    );
+                } catch (err) {
+                    console.log(err);
+                }
+                break;
+        
+                case "1-System-Service - Yes":
+                // 
+                try {
+                    await db.collection("userData").updateOne(
+                        { _id: new ObjectId(userID) },
+                        {
+                            $set: {
+                                Tier1:
+                                    true
+                            }
+                        },
+                        { upsert: true }
+                    );
+                } catch (err) {
+                    console.log(err);
+                }
+                break;
+        
+                case "2-Inform - Yes" || "2-Simple-Monitoring - Yes" || "2-Communicate - Yes":
+                // 
+                try {
+                    await db.collection("userData").updateOne(
+                        { _id: new ObjectId(userID) },
+                        {
+                            $set: {
+                                Tier2:
+                                    true
+                            }
+                        },
+                        { upsert: true }
+                    );
+                } catch (err) {
+                    console.log(err);
+                }
+                break;
+        
+                case "3A-Behaviour-Change - Yes" || "3A-Self_Manage - Yes":
+                // 
+                try {
+                    await db.collection("userData").updateOne(
+                        { _id: new ObjectId(userID) },
+                        {
+                            $set: {
+                                Tier3a:
+                                    true
+                            }
+                        },
+                        { upsert: true }
+                    );
+                } catch (err) {
+                    console.log(err);
+                }
+                break;
+        
+                case "3B-Treat - Yes" || "3B-Acitve_Monitoring - Yes" || "3B-Calculate - Yes" || "3B-Diagnose - Yes":
+                // 
+                try {
+                    await db.collection("userData").updateOne(
+                        { _id: new ObjectId(userID) },
+                        {
+                            $set: {
+                                Tier3b:
+                                    true
+                            }
+                        },
+                        { upsert: true }
+                    );
+                } catch (err) {
+                    console.log(err);
+                }
+                break;
         }
     }
 
