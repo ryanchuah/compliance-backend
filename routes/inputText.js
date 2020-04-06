@@ -223,7 +223,7 @@ router.post("/", async (req, res, next) => {
 
                 break;
 
-            case "handle1ProvideurlNo":
+            case "1Provideurl - No":
                 //user can not provide URL
                 try {
                     await db.collection("userData").updateOne(
@@ -240,7 +240,7 @@ router.post("/", async (req, res, next) => {
                 }
                 break;
 
-            case "handle2ContactOrganisationNo":
+            case "2Contact-Organisation - No":
                 // users can not get contact with the organisation via the product
                 try {
                     await db.collection("userData").updateOne(
@@ -257,7 +257,7 @@ router.post("/", async (req, res, next) => {
                 }
                 break;
 
-            case "handle4ConfirmUseOfBrandingNo":
+            case "4Confirm-Use-Of-Branding - No":
                 // User do not have th permission to use NHSD branding
                 try {
                     await db.collection("userData").updateOne(
@@ -274,7 +274,7 @@ router.post("/", async (req, res, next) => {
                 }
                 break;
 
-            case "handle6ConfirmWithGpcNo":
+            case "6Confirm-With-Gpc - No":
                 // User can not confirm that they have registered with GPC when required
                 try {
                     await db.collection("userData").updateOne(
@@ -291,7 +291,7 @@ router.post("/", async (req, res, next) => {
                 }
                 break;
 
-            case "handle8ConfirmHealthcareRegistrationNo":
+            case "8Confirm-Healthcare-Registration - No":
                 // User can not confirm the recent healthcare registration when required
                 try {
                     await db.collection("userData").updateOne(
@@ -308,7 +308,7 @@ router.post("/", async (req, res, next) => {
                 }
                 break;
 
-            case "handle9ProvideAGuestLoginNo":
+            case "9Provide-A-Guest-Login - No":
                 // It does not provide a Guest Login in the product
                 try {
                     await db.collection("userData").updateOne(
@@ -325,7 +325,7 @@ router.post("/", async (req, res, next) => {
                 }
                 break;
 
-            case "handle11ConfirmRegistrationWithCqcNo":
+            case "11Confirm-Registration-With-Cqc - No":
                 // User can not confirm registration with CQC
                 try {
                     await db.collection("userData").updateOne(
@@ -342,7 +342,7 @@ router.post("/", async (req, res, next) => {
                 }
                 break;
 
-            case "handle12ProvideCqcNumberNo":
+            case "12Provide-Cqc-Number - No":
                 // User can not provide CQC number when required
                 try {
                     await db.collection("userData").updateOne(
@@ -359,7 +359,7 @@ router.post("/", async (req, res, next) => {
                 }
                 break;
 
-            case "handle13ProvideRecentCqcRegistrationNo":
+            case "13Provide-Recent-Cqc-Registration - No":
                 // User are not able to provide the recent CQC registration
                 try {
                     await db.collection("userData").updateOne(
@@ -376,7 +376,7 @@ router.post("/", async (req, res, next) => {
                 }
                 break;
 
-            case "handle16ProvideDescriptionNo":
+            case "16Provide-Description - No":
                 // User can not provide CQC number when required
                 try {
                     await db.collection("userData").updateOne(
@@ -393,7 +393,7 @@ router.post("/", async (req, res, next) => {
                 }
                 break;
 
-            case "handle20ConfirmReplaceANhsServiceNo":
+            case "20Confirm-Replace-A-Nhs-Service - No":
                 // User can not provide CQC number when required
                 try {
                     await db.collection("userData").updateOne(
@@ -410,7 +410,7 @@ router.post("/", async (req, res, next) => {
                 }
                 break;
 
-            case "handle24ProvideDetailOfTheTrialNo":
+            case "24Provide-Detail-Of-The-Trial - No":
                 // User can not provide CQC number when required
                 try {
                     await db.collection("userData").updateOne(
@@ -427,7 +427,7 @@ router.post("/", async (req, res, next) => {
                 }
                 break;
 
-            case "handle26ComfirmWhereToProcessNo":
+            case "26Comfirm-Where-To-Process - No":
                 // User can not provide CQC number when required
                 try {
                     await db.collection("userData").updateOne(
@@ -444,7 +444,7 @@ router.post("/", async (req, res, next) => {
                 }
                 break;
 
-            case "handle28ProvidePlatformNumberNo":
+            case "28Provide-Platform-Number - No":
                 // User can not provide CQC number when required
                 try {
                     await db.collection("userData").updateOne(
@@ -461,7 +461,7 @@ router.post("/", async (req, res, next) => {
                 }
                 break;
 
-            case "handle29ComfirmTypeOfPharmacyNo":
+            case "29Comfirm-Type-Of-Pharmacy - No":
                 // User can not provide CQC number when required
                 try {
                     await db.collection("userData").updateOne(
@@ -478,7 +478,7 @@ router.post("/", async (req, res, next) => {
                 }
                 break;
 
-            case "handle31ProvideEvidenceOfClinicalBenefitsNo":
+            case "31Provide-Evidence-Of-Clinical-Benefits - No":
                 // User can not provide CQC number when required
                 try {
                     await db.collection("userData").updateOne(
@@ -495,7 +495,7 @@ router.post("/", async (req, res, next) => {
                 }
                 break;
 
-            case "handle32ProvideTheUrlOfClinicalBenefitsD11No":
+            case "32Provide-The-Url-Of-Clinical-Benefits-D11 - No":
                 // User can not provide CQC number when required
                 try {
                     await db.collection("userData").updateOne(
@@ -512,7 +512,7 @@ router.post("/", async (req, res, next) => {
                 }
                 break;
 
-            case "handle33ProvideTheReasonOfNotHaveClinicalBenefitsNo":
+            case "33Provide-The-Reason-Of-Not-Have-Clinical-Benefits - No":
                 // User can not provide CQC number when required
                 try {
                     await db.collection("userData").updateOne(
@@ -529,7 +529,7 @@ router.post("/", async (req, res, next) => {
                 }
                 break;
 
-            case "handle37ComfirmReasonNotHaveBehaviouralBenefitsNo":
+            case "37Comfirm-Reason-Not-Have-Behavioural-Benefits - No":
                 // User can not provide CQC number when required
                 try {
                     await db.collection("userData").updateOne(
