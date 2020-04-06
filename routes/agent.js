@@ -15238,8 +15238,34 @@ router.post("/", async (request, response) => {
             );
         }
     }
+
+    function handleJumpToComplianceBody(agent){
+        const parameter = request.body.queryResult.parameters;
+        const requestContexts = request.body.queryResult.outputContexts;
+        const mostRecentContextNames = getRecentContextNames(requestContexts);
+        removeOldContexts(agent, requestContexts, mostRecentContextNames);
+        if (parameter["regulation-body"] === "MHRA") {            
+            agent.context.set({name:"know-class-of-medical-device-initial", lifespan:"3"})
+            agent.add(
+                "Do you know which class of Medical Device your software belongs to according to MHRA rules?"
+            );
+        } else if (parameter["regulation-body"] === "NICE") {
+            agent.context.set({name:"know-class-of-medical-device", lifespan:"3"})
+            agent.context.set({name:"know-class-of-medical-device-yes", lifespan:"3"})
+            agent.add(
+                "Great! You’re all set! Now, let's move on to NICE. Can your Digital Healthcare Technology (DHT) be directly downloaded or purchased by users? Or, is your Digital Healtcare Technology (DHT) designed with artificial intelligence using adaptive algorithms (that is, algorithms which continually and automatically change)? "
+            );
+        } else if (parameter["regulation-body"] === "NHSD") {
+            agent.context.set({name:"proceed-to-nhsd", lifespan:"3"})
+            agent.context.set({name:"proceed-to-nhsd-yes", lifespan:"3"})
+            agent.add(
+                "Great let’s get started. Is your product available to the public and can you provide URL(s) to the app store location(s)?"
+            );
+        }
+    }
     intentMap.set("Email Conversation History", handleEmailConversationHistory);
     intentMap.set("General Question", handleGeneralQuestion);
+    intentMap.set("Jump To Compliance Body", handleJumpToComplianceBody)
     agent.handleRequest(intentMap);
 });
 

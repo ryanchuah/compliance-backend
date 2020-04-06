@@ -5,6 +5,7 @@ const db = mongoUtil.getDbData();
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
 
+// route to check if a user is logged in
 router.get("/", (req, res, next) => {    
     if (req.user) {
         var userInfo = {
@@ -18,7 +19,6 @@ router.get("/", (req, res, next) => {
     next();
 });
 
-//Login page
 router.post("/login", passport.authenticate("local"), (req, res) => {
     console.log(req.user);
     
@@ -29,11 +29,11 @@ router.post("/login", passport.authenticate("local"), (req, res) => {
     res.send(userInfo);
 });
 
-//Register page
 router.post("/register", async (req, res, next) => {
     const newUser = req.body;
 
     try {
+        // hash password using bcrypt
         const salt = await bcrypt.genSalt(10);
 
         newUser.hashedPassword = await new Promise((resolve, reject) => {
@@ -44,7 +44,6 @@ router.post("/register", async (req, res, next) => {
         });
     } catch (error) {
         console.log(error);
-
         res.status(500).json(error);
     }
 

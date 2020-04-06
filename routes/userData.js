@@ -5,6 +5,7 @@ const db = mongoUtil.getDbData();
 var ObjectId = require("mongodb").ObjectId;
 
 router.get("/history", async (req, res) => {
+    // returns user conversation history
     const userID = req.user._id;
     if (req.user) {
         try {
@@ -23,23 +24,12 @@ router.get("/history", async (req, res) => {
 });
 
 router.get("/suggestionData", async (req, res) => {
-    // console.log(req.user);
     const userID = req.user._id;
-    // if (req.user) {
-    //     try {
-    //         var userData = await db
-    //             .collection("userData")
-    //             .findOne({ _id: ObjectId(userID) })
-    //             .project({ mhraClass: 1 }) //return only mhraClass without _id field
-    //             .toArray();
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    //     console.debug(JSON.stringify(userData.conversationHistory));
-    //     res.json(userData.conversationHistory);
-    // }
     const path = require("path");
     const jsonfile = require("jsonfile");
+
+    // file containing JSON with all suggestion details
+    // such as what to suggest if a user has MHRA Class 1 medical device
     const suggestionsFile = path.join(
         __dirname,
         "../",
@@ -48,9 +38,9 @@ router.get("/suggestionData", async (req, res) => {
     );
 
     const suggestionReferenceObj = await jsonfile.readFile(suggestionsFile);
-    console.log(suggestionReferenceObj);
     const suggestionResult = [];
     try {
+        // get all values in database that is related to suggestions
         var userSuggestionData = await db.collection("userData").findOne(
             { _id: userID },
             {
@@ -89,6 +79,7 @@ router.get("/suggestionData", async (req, res) => {
     }
 
     if (userSuggestionData) {
+
         // get highest NICE tier
         if (userSuggestionData.Tier3b) {
             var niceTier = "Tier 3b";
@@ -98,6 +89,8 @@ router.get("/suggestionData", async (req, res) => {
             var niceTier = "Tier 2";
         } else if (userSuggestionData.Tier1) {
             var niceTier = "Tier 1";
+        } else{
+            var niceTier = ""
         }
 
         for (const obj of suggestionReferenceObj.mhra.class) {
@@ -110,6 +103,7 @@ router.get("/suggestionData", async (req, res) => {
                 ]);
             }
         }
+
         for (const obj of suggestionReferenceObj.nice.class) {
             if (obj.value === niceTier) {
                 suggestionResult.push([
@@ -120,6 +114,7 @@ router.get("/suggestionData", async (req, res) => {
                 ]);
             }
         }
+        
         for (const key in suggestionReferenceObj.nhsd){
             if (userSuggestionData.key){
                 suggestionResult.push([

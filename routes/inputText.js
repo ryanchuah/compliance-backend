@@ -1,4 +1,6 @@
-//original code
+// connect frontend to DialogFlow API 
+// the reason why the frontend does not just hit Dialogflow's detectIntent API directly
+// is because we would not be able to identify users based on authentication
 "use strict";
 const express = require("express");
 const router = express.Router();
@@ -49,7 +51,7 @@ router.post("/", async (req, res, next) => {
                     dialogflowResponse[0].queryResult.fulfillmentMessages
                 )
             ) {
-                //retry once
+                // if empty response from dialogflow, retry once
                 var dialogflowResponse = await dialogflowHandler.sendTextMessageToDialogFlow(
                     message,
                     sessionID,
@@ -69,7 +71,6 @@ router.post("/", async (req, res, next) => {
                     return;
                 }
             }
-
             return dialogflowResponse[0];
         } catch (err) {
             console.log(err);
@@ -77,6 +78,8 @@ router.post("/", async (req, res, next) => {
     }
 
     async function handleParameters(dialogflowResponse) {
+        // post parameter values to database
+
         const parameter = dialogflowResponse.queryResult.parameters.fields;
         
         if (parameter["full-name"]) {
@@ -145,6 +148,7 @@ router.post("/", async (req, res, next) => {
     }
 
     async function handleIntentName(dialogflowResponse) {
+        // perform actions if certain intents are matched
         const intentName = dialogflowResponse.queryResult.intent.displayName;
         switch (intentName) {
             case "Email Conversation History":
@@ -639,6 +643,8 @@ router.post("/", async (req, res, next) => {
     }
 
     function getRecentContexts(dialogflowResponse) {
+        // get an array of the most recent contexts 
+
         function getContextName(ctx) {
             const words = ctx.name.split("/");
             return words[words.length - 1];
@@ -668,9 +674,6 @@ router.post("/", async (req, res, next) => {
     const message = req.body.message;
     const sessionID = req.body.sessionID;
     const isStartOfNewSession = req.body.isStartOfNewSession;
-    // const isStartOfNewSession = true
-    console.log("sessionID: " + req.body.sessionID);
-    console.log("user: " + JSON.stringify(req.user));
 
     if (req.session.passport && req.session.passport.user) {
         // user is logged in
@@ -680,16 +683,12 @@ router.post("/", async (req, res, next) => {
         var isVisitor = true;
     }
 
-    console.log("new sesh: ", isStartOfNewSession);
-
     const dialogflowResponse = await getDialogflowResponse(
         message,
         sessionID,
         isStartOfNewSession,
         userID
     );
-
-    // console.log(JSON.stringify(dialogflowResponse));
 
     var resultMessage =
         dialogflowResponse.queryResult.fulfillmentMessages[0].text.text[0];
@@ -701,17 +700,19 @@ router.post("/", async (req, res, next) => {
         return;
     }
 
+     // perform actions if certain intents are matched
     handleIntentName(dialogflowResponse);
+    
+    // post parameter values to database
     handleParameters(dialogflowResponse);
 
     const recentContexts = getRecentContexts(dialogflowResponse);
-    // console.log(recentContexts);
 
+    // update MHRA class if class has been determined
     const mhraClasses = ["Class I", "Class IIa", "Class IIb", "Class III"];
     var updatedConvHistory = false;
     for (const mhraClass of mhraClasses) {
         const regex = RegExp(`\\s${mhraClass}[^a-zA-Z0-9]`);
-        // if (resultMessage.includes(mhraClass)) {
         if (regex.test(resultMessage)) {
             // if user's MD is of var mhraClass, update convHistory and mhraClass
             try {
@@ -739,6 +740,7 @@ router.post("/", async (req, res, next) => {
         }
     }
     if (!updatedConvHistory) {
+        // if the conv history hasn't been updated at this point, update conv history
         try {
             db.collection("userData").updateOne(
                 { _id: new ObjectId(userID) },

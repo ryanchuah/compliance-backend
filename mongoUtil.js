@@ -1,3 +1,5 @@
+// utility module to open connection to MongoDB
+
 const MongoClient = require("mongodb").MongoClient;
 
 // Connection URL

@@ -21,6 +21,7 @@ router.get("/stats", passport.authenticate("basic"), async (req, res) => {
             "Class III": 0
         };
         for (let i = 0; i < data.length; i++) {
+            // count occurrence of each MHRA class
             if (data[i] && data[i].mhraClass) {
                 const currMhraClass = data[i].mhraClass;
                 
@@ -31,15 +32,19 @@ router.get("/stats", passport.authenticate("basic"), async (req, res) => {
                 }
             }
         }
+
+        // get max and min occurrence of MHRA classes
         const max = Math.max.apply(null, Object.values(classDict));
         const min = Math.min.apply(null, Object.values(classDict));
 
         const localResult = {
             classCount: classDict,
             mostFrequent: Object.keys(classDict).filter(
+                // return only MHRA class that has occurrence equal to "const max"
                 key => classDict[key] == max
             ),
             leastFrequent: Object.keys(classDict).filter(
+                // return only MHRA class that has occurrence equal to "const min"
                 key => classDict[key] == min
             )
         };
@@ -50,10 +55,10 @@ router.get("/stats", passport.authenticate("basic"), async (req, res) => {
     res.json(result)
 });
 
-//Register page
 router.post("/register", async (req, res, next) => {
-    const newUser = req.body;
+    // register an admin account
 
+    const newUser = req.body;
     try {
         const salt = await bcrypt.genSalt(10);
 

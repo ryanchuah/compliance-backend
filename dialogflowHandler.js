@@ -1,3 +1,5 @@
+// module to detect intent of text using Dialogflow's Detect Intent API
+
 require("dotenv").config();
 const dialogflow = require("dialogflow");
 
