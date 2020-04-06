@@ -47,7 +47,7 @@ router.get("/suggestionData", async (req, res) => {
                 projection: {
                     _id: 0,
                     mhraClass: 1,
-                    providURL: 1,
+                    provideURL: 1,
                     contactOrganisation: 1,
                     NHSDBranding: 1,
                     confirmGPC: 1,
@@ -114,14 +114,16 @@ router.get("/suggestionData", async (req, res) => {
                 ]);
             }
         }
-        
+
         for (const key in suggestionReferenceObj.nhsd){
-            if (userSuggestionData.key){
+            if (userSuggestionData[key] !== undefined && userSuggestionData[key] === suggestionReferenceObj.nhsd[key][0].value){
+                console.log(1);
+                
                 suggestionResult.push([
-                    suggestionReferenceObj[key].situation,
-                    suggestionReferenceObj[key].actionNeeded,
-                    suggestionReferenceObj[key].source,
-                    suggestionReferenceObj[key].resource
+                    suggestionReferenceObj.nhsd[key][0].situation,
+                    suggestionReferenceObj.nhsd[key][0].actionNeeded,
+                    suggestionReferenceObj.nhsd[key][0].source,
+                    suggestionReferenceObj.nhsd[key][0].resource
                 ]);
             }
         }

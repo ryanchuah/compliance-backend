@@ -77,7 +77,7 @@
         "provideURL":[
             {
                 "value": false,
-                "situation": "you can not provide the URL",
+                "situation": "You can not provide the URL",
                 "actionNeeded": ["Be able to provide your URL."],
                 "source": ["No source provided."],
                 "resource": [
@@ -377,8 +377,6 @@
             }
 
         ]
-
-        
     },
 
     "nice": {
