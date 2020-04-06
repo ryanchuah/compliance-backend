@@ -117,8 +117,6 @@ router.get("/suggestionData", async (req, res) => {
 
         for (const key in suggestionReferenceObj.nhsd){
             if (userSuggestionData[key] !== undefined && userSuggestionData[key] === suggestionReferenceObj.nhsd[key][0].value){
-                console.log(1);
-                
                 suggestionResult.push([
                     suggestionReferenceObj.nhsd[key][0].situation,
                     suggestionReferenceObj.nhsd[key][0].actionNeeded,

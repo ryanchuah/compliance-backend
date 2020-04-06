@@ -1,12 +1,13 @@
+// this module powers the chatbot's Dialogflow Fulfillment
+// whenever a request is made to Dialogflow's detectIntent API, the API will hit this route
+// for a high level overview of this code, look at the "handleNameInitial" function in this 
+// module. This function has been commented for brief understanding
+
 "use strict";
 const express = require("express");
 const router = express.Router();
 
-var mongoUtil = require("../mongoUtil");
-var db = mongoUtil.getDbData();
 const { WebhookClient } = require("dialogflow-fulfillment");
-const info = {};
-var currentUsername;
 process.env.DEBUG = "dialogflow:debug"; // enables lib debugging statements
 router.post("/", async (request, response) => {
     const agent = new WebhookClient({ request, response });
@@ -69,9 +70,19 @@ router.post("/", async (request, response) => {
     }
 
     function handleNameInitial(agent) {
+        // this function is called when the intent name that Dialogflow's detectIntent API matches a key in the intentMap declared in this module (see "let intentMap = new Map();" and "agent.handleRequest(intentMap);")
+
+        // get all request contexts
         const requestContexts = request.body.queryResult.outputContexts;
+
+        // filter the contexts to the most recent contexts only
         const mostRecentContextNames = getRecentContextNames(requestContexts);
+
+        // remove all contexts that are not the most recent context
+        // this is to prevent the conversation flow from derailing
         removeOldContexts(agent, requestContexts, mostRecentContextNames);
+
+        // send response text
         agent.add("What’s your name?");
     }
     function handleContactPersonNameInitial(agent) {

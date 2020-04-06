@@ -50,20 +50,14 @@ module.exports = function(passport) {
 
     // takes user then stores it in req.session.passport
     passport.serializeUser(function(user, done) {
-        // console.log("*** serializeUser called, user: ");
-        // console.log(user); // the whole raw user object!
-        // console.log("---------");
         done(null, user._id);
     });
 
     // takes user id then stores it in req.user
     passport.deserializeUser(function(id, done) {
-        // console.log("DeserializeUser called");
         id = new ObjectId(id);
 
         db.collection("user").findOne({ _id: id }, function(err, user) {
-            // console.log("*** Deserialize user, user:");
-            // console.log(user);
             done(err, user);
         });
     });
